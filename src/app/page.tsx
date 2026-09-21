@@ -12,15 +12,15 @@ export default function Home() {
   return (
     <>
       {/* hero */}
-      <section className="border-b border-line bg-surface/50">
-        <div className="mx-auto grid max-w-7xl gap-10 px-4 py-14 sm:px-6 lg:grid-cols-[1.15fr_1fr] lg:py-20">
+      <section className="border-b border-brand/25 bg-[radial-gradient(circle_at_25%_0%,rgb(var(--c-brand)/.12),transparent_32rem)]">
+        <div className="mx-auto grid max-w-7xl gap-10 px-4 py-20 sm:px-6 lg:grid-cols-[1.15fr_1fr] lg:py-32">
           <div className="space-y-6">
             <span className="chip">
               {totalTemas} temas · {questoes.length} questões · assistente de IA
             </span>
-            <h1 className="font-display text-4xl font-black leading-[1.05] tracking-tight sm:text-5xl">
+            <h1 className="font-display text-4xl font-bold uppercase leading-[1.12] tracking-[.04em] sm:text-5xl">
               Química do jeito que a prova cobra —<br />
-              <span className="text-brand">organizada do zero ao gabarito.</span>
+              <span className="font-serif normal-case italic font-normal text-brand">organizada do zero ao gabarito.</span>
             </h1>
             <p className="max-w-xl text-lg text-muted">
               Cada tema tem teoria progressiva, fórmulas comentadas, vídeos, materiais para baixar, flashcards e as questões
@@ -48,7 +48,7 @@ export default function Home() {
           { href: '/simulado', Icone: Timer, titulo: 'Simulado cronometrado', texto: 'Monte uma prova do tamanho que quiser e receba o relatório.' },
           { href: '/assistente', Icone: Bot, titulo: 'Assistente de química', texto: 'Explica, corrige e puxa exemplos dos materiais do curso.' },
         ].map(({ href, Icone, titulo, texto }) => (
-          <Link key={href} href={href} className="card group p-5 transition-colors hover:border-brand">
+          <Link key={href} href={href} className="card group p-5 transition-all hover:-translate-y-1 hover:border-brand hover:shadow-[0_20px_50px_rgb(0_0_0_/_0.55),0_0_28px_rgb(var(--c-brand)/.12)]">
             <Icone size={20} className="mb-3 text-brand" />
             <p className="mb-1 font-display text-base font-bold">{titulo}</p>
             <p className="text-sm text-muted">{texto}</p>

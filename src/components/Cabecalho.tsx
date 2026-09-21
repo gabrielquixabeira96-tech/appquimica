@@ -32,14 +32,14 @@ export default function Cabecalho() {
   }
 
   return (
-    <header className="sticky top-0 z-40 border-b border-line bg-bg/85 backdrop-blur no-print">
+    <header className="sticky top-0 z-40 border-b border-brand/25 bg-bg/85 backdrop-blur-xl no-print">
       <div className="mx-auto flex max-w-7xl items-center gap-4 px-4 py-3 sm:px-6">
         <Link href="/" className="flex items-center gap-2.5 shrink-0">
-          <span className="grid h-9 w-9 place-items-center rounded-xl bg-brand text-brandInk">
+          <span className="grid h-9 w-9 place-items-center rounded-full bg-accent text-white shadow-[0_0_16px_rgb(var(--c-accent)/.7)]">
             <Atom size={19} />
           </span>
           <span className="leading-tight">
-            <span className="block font-display text-lg font-bold">Química</span>
+            <span className="block font-display text-base font-semibold tracking-[.15em] uppercase">Química</span>
             <span className="label">ENEM &amp; Vestibulares</span>
           </span>
         </Link>
@@ -50,8 +50,8 @@ export default function Cabecalho() {
               key={href}
               href={href}
               className={clsx(
-                'flex items-center gap-2 rounded-xl px-3 py-2 text-sm font-medium transition-colors',
-                pathname.startsWith(href) ? 'bg-surface2 text-ink' : 'text-muted hover:bg-surface2 hover:text-ink',
+                'flex items-center gap-2 rounded-full px-3 py-2 text-xs font-mono uppercase tracking-[.1em] transition-colors',
+                pathname.startsWith(href) ? 'bg-brand/10 text-brand' : 'text-muted hover:text-brand',
               )}
             >
               <Icone size={16} />
