@@ -1,0 +1,79 @@
+{
+  "versao": 1,
+  "titulo": "Química para ENEM e Vestibulares",
+  "eixos": [
+    {
+      "id": "1",
+      "slug": "quimica-geral",
+      "titulo": "Química Geral e Atomística",
+      "descricao": "A base de tudo: o que é matéria, como separar misturas, como o átomo é organizado e por que as substâncias se ligam.",
+      "cor": "#3b82f6",
+      "temas": [
+        { "id": "1.1", "slug": "materia-e-misturas", "titulo": "Matéria e Misturas", "resumo": "Substância pura x mistura, propriedades físicas, estados da matéria e métodos de separação.", "prioridade": "alta", "horas": 3, "tags": ["densidade", "solubilidade", "destilação", "filtração", "decantação"] },
+        { "id": "1.2", "slug": "estrutura-atomica", "titulo": "Estrutura Atômica", "resumo": "Modelos atômicos, prótons/nêutrons/elétrons, isótopos, íons e distribuição eletrônica.", "prioridade": "media", "horas": 3, "tags": ["modelos atômicos", "isótopos", "número de massa", "Linus Pauling"] },
+        { "id": "1.3", "slug": "tabela-periodica", "titulo": "Tabela Periódica", "resumo": "Organização por período e família e as propriedades periódicas que caem em prova.", "prioridade": "media", "horas": 2, "tags": ["eletronegatividade", "raio atômico", "energia de ionização", "famílias"] },
+        { "id": "1.4", "slug": "ligacoes-quimicas", "titulo": "Ligações Químicas", "resumo": "Iônica, covalente e metálica: como a ligação explica as propriedades do material.", "prioridade": "alta", "horas": 3, "tags": ["iônica", "covalente", "metálica", "condutividade", "ponto de fusão"] },
+        { "id": "1.5", "slug": "forcas-intermoleculares", "titulo": "Geometria e Forças Intermoleculares", "resumo": "Polaridade, geometria molecular, ligação de hidrogênio e o efeito disso em solubilidade e temperatura de ebulição.", "prioridade": "alta", "horas": 3, "tags": ["polaridade", "ligação de hidrogênio", "dipolo", "London", "solubilidade"] }
+      ]
+    },
+    {
+      "id": "2",
+      "slug": "fisico-quimica",
+      "titulo": "Físico-Química",
+      "descricao": "O eixo que mais cai e mais exige conta: quantidade de matéria, energia, velocidade e equilíbrio das reações.",
+      "cor": "#f97316",
+      "temas": [
+        { "id": "2.1", "slug": "estequiometria", "titulo": "Estequiometria", "resumo": "Mol, massa molar, balanceamento, reagente limitante, pureza e rendimento.", "prioridade": "critica", "horas": 5, "tags": ["mol", "massa molar", "reagente limitante", "rendimento", "pureza"] },
+        { "id": "2.2", "slug": "solucoes", "titulo": "Soluções e Concentrações", "resumo": "Concentração comum, molaridade, ppm, diluição e mistura de soluções.", "prioridade": "alta", "horas": 3, "tags": ["molaridade", "ppm", "diluição", "título"] },
+        { "id": "2.3", "slug": "termoquimica", "titulo": "Termoquímica", "resumo": "Entalpia, reações endo e exotérmicas, lei de Hess e energia de ligação.", "prioridade": "alta", "horas": 3, "tags": ["entalpia", "lei de Hess", "combustão", "energia de ligação"] },
+        { "id": "2.4", "slug": "cinetica-quimica", "titulo": "Cinética Química", "resumo": "Velocidade de reação, energia de ativação, catalisadores e fatores que aceleram a reação.", "prioridade": "alta", "horas": 3, "tags": ["catalisador", "energia de ativação", "superfície de contato", "gráficos"] },
+        { "id": "2.5", "slug": "equilibrio-quimico", "titulo": "Equilíbrio Químico", "resumo": "Kc/Kp, princípio de Le Chatelier, deslocamento de equilíbrio e aplicações.", "prioridade": "critica", "horas": 4, "tags": ["Le Chatelier", "Kc", "deslocamento", "equilíbrio iônico"] },
+        { "id": "2.6", "slug": "equilibrio-ionico-ph", "titulo": "Equilíbrio Iônico e pH", "resumo": "Ácidos e bases fortes/fracos, Ka/Kb, escala de pH, hidrólise salina e tampões.", "prioridade": "alta", "horas": 3, "tags": ["pH", "Ka", "tampão", "hidrólise", "indicadores"] },
+        { "id": "2.7", "slug": "eletroquimica", "titulo": "Eletroquímica", "resumo": "Pilhas, potencial-padrão, eletrólise, corrosão e proteção catódica.", "prioridade": "alta", "horas": 4, "tags": ["pilha", "eletrólise", "oxirredução", "nox", "corrosão"] },
+        { "id": "2.8", "slug": "gases-e-propriedades-coligativas", "titulo": "Gases e Propriedades Coligativas", "resumo": "Equação geral dos gases, volume molar, e os quatro efeitos coligativos.", "prioridade": "baixa", "horas": 2, "tags": ["CNTP", "volume molar", "ebulioscopia", "osmose"] },
+        { "id": "2.9", "slug": "radioatividade", "titulo": "Radioatividade", "resumo": "Emissões alfa/beta/gama, meia-vida, fissão e fusão, usos e riscos.", "prioridade": "baixa", "horas": 2, "tags": ["meia-vida", "fissão", "fusão", "isótopos radioativos"] }
+      ]
+    },
+    {
+      "id": "3",
+      "slug": "quimica-organica",
+      "titulo": "Química Orgânica",
+      "descricao": "O carbono e suas moléculas: nomenclatura, funções, isomeria, reações, polímeros e bioquímica aplicada.",
+      "cor": "#10b981",
+      "temas": [
+        { "id": "3.1", "slug": "introducao-organica", "titulo": "Introdução à Orgânica e Nomenclatura", "resumo": "Cadeias carbônicas, classificação do carbono, hidrocarbonetos e regras de nomenclatura IUPAC.", "prioridade": "media", "horas": 3, "tags": ["cadeia carbônica", "IUPAC", "hidrocarbonetos", "insaturação"] },
+        { "id": "3.2", "slug": "funcoes-organicas", "titulo": "Funções Orgânicas", "resumo": "Identificar grupos funcionais e prever propriedades a partir deles — campeão de incidência.", "prioridade": "critica", "horas": 4, "tags": ["álcool", "ácido carboxílico", "éster", "amida", "cetona", "amina"] },
+        { "id": "3.3", "slug": "isomeria", "titulo": "Isomeria", "resumo": "Isomeria plana e espacial, cis-trans, quiralidade e atividade biológica.", "prioridade": "media", "horas": 3, "tags": ["cis-trans", "quiralidade", "enantiômeros", "tautomeria"] },
+        { "id": "3.4", "slug": "reacoes-organicas", "titulo": "Reações Orgânicas", "resumo": "Adição, substituição, eliminação, oxidação, esterificação e saponificação.", "prioridade": "alta", "horas": 4, "tags": ["esterificação", "saponificação", "hidrogenação", "combustão", "oxidação"] },
+        { "id": "3.5", "slug": "polimeros", "titulo": "Polímeros", "resumo": "Adição x condensação, plásticos do dia a dia, reciclagem e biodegradabilidade.", "prioridade": "alta", "horas": 2, "tags": ["PET", "polietileno", "condensação", "reciclagem", "biopolímero"] },
+        { "id": "3.6", "slug": "bioquimica", "titulo": "Bioquímica: Carboidratos, Lipídios e Proteínas", "resumo": "As biomoléculas pela ótica da química orgânica — ligação peptídica, desnaturação, fermentação.", "prioridade": "media", "horas": 3, "tags": ["proteína", "lipídio", "carboidrato", "enzima", "fermentação"] }
+      ]
+    },
+    {
+      "id": "4",
+      "slug": "quimica-inorganica",
+      "titulo": "Química Inorgânica",
+      "descricao": "Funções inorgânicas, reações clássicas e os compostos presentes no cotidiano e na indústria.",
+      "cor": "#8b5cf6",
+      "temas": [
+        { "id": "4.1", "slug": "funcoes-inorganicas", "titulo": "Funções Inorgânicas", "resumo": "Ácidos, bases, sais e óxidos: identificação, nomenclatura e comportamento.", "prioridade": "alta", "horas": 3, "tags": ["ácido", "base", "sal", "óxido", "Arrhenius"] },
+        { "id": "4.2", "slug": "reacoes-inorganicas", "titulo": "Reações Inorgânicas", "resumo": "Síntese, decomposição, deslocamento e dupla troca — e como prever produtos.", "prioridade": "media", "horas": 2, "tags": ["dupla troca", "neutralização", "precipitação", "fila de reatividade"] },
+        { "id": "4.3", "slug": "quimica-do-cotidiano", "titulo": "Química do Cotidiano e Industrial", "resumo": "Sabões e detergentes, medicamentos, alimentos, materiais e processos industriais.", "prioridade": "media", "horas": 2, "tags": ["sabão", "tensoativo", "aditivos", "ligas metálicas", "indústria"] }
+      ]
+    },
+    {
+      "id": "5",
+      "slug": "quimica-ambiental",
+      "titulo": "Química Ambiental e Contextualizada",
+      "descricao": "O jeito ENEM de cobrar química: texto de contexto ambiental, gráfico e interpretação.",
+      "cor": "#0ea5e9",
+      "temas": [
+        { "id": "5.1", "slug": "ciclos-biogeoquimicos", "titulo": "Ciclos Biogeoquímicos", "resumo": "Ciclos do carbono, nitrogênio, enxofre e água e a interferência humana neles.", "prioridade": "media", "horas": 2, "tags": ["ciclo do carbono", "nitrogênio", "fixação", "eutrofização"] },
+        { "id": "5.2", "slug": "impactos-ambientais", "titulo": "Poluição e Impactos Ambientais", "resumo": "Chuva ácida, efeito estufa, camada de ozônio, metais pesados e poluentes atmosféricos.", "prioridade": "critica", "horas": 3, "tags": ["chuva ácida", "efeito estufa", "ozônio", "metais pesados", "material particulado"] },
+        { "id": "5.3", "slug": "saneamento-e-tratamento-de-agua", "titulo": "Saneamento e Tratamento de Água", "resumo": "Etapas do tratamento de água e esgoto, DBO, potabilidade e reúso.", "prioridade": "alta", "horas": 2, "tags": ["floculação", "cloração", "DBO", "potabilidade", "esgoto"] },
+        { "id": "5.4", "slug": "matrizes-energeticas", "titulo": "Matrizes Energéticas e Combustíveis", "resumo": "Combustíveis fósseis x renováveis, biodiesel, etanol, células a combustível e balanço de CO₂.", "prioridade": "alta", "horas": 3, "tags": ["biodiesel", "etanol", "biogás", "célula a combustível", "poder calorífico"] },
+        { "id": "5.5", "slug": "residuos-e-reciclagem", "titulo": "Resíduos, Reciclagem e Sustentabilidade", "resumo": "Química verde, ciclo de vida dos materiais, reciclagem de metais e plásticos.", "prioridade": "media", "horas": 2, "tags": ["química verde", "reciclagem", "aterro", "compostagem"] }
+      ]
+    }
+  ]
+}

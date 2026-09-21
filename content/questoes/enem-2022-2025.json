@@ -1,0 +1,1988 @@
+[
+  {
+    "id": "enem-2022-2025-Q93",
+    "eixo": "quimica-geral",
+    "tema": "materia-e-misturas",
+    "subtema": "1.1 Matéria e Misturas",
+    "ano": 2022,
+    "banca": "ENEM",
+    "enunciado": "Experimento com mel, água, óleo e álcool etílico em frasco. Sistema com duas fases (agitado) e quatro fases (sem agitação). Propriedades que justificam os resultados.",
+    "alternativas": [
+      {
+        "letra": "A",
+        "texto": "solubilidade e densidade"
+      },
+      {
+        "letra": "B",
+        "texto": "densidade e viscosidade"
+      },
+      {
+        "letra": "C",
+        "texto": "viscosidade e solubilidade"
+      },
+      {
+        "letra": "D",
+        "texto": "miscibilidade e viscosidade"
+      },
+      {
+        "letra": "E",
+        "texto": "solubilidade e miscibilidade"
+      }
+    ],
+    "gabarito": "A",
+    "tags": [
+      "Propriedades físicas",
+      "estados físicos",
+      "métodos de separação"
+    ]
+  },
+  {
+    "id": "enem-2022-2025-Q122",
+    "eixo": "quimica-geral",
+    "tema": "materia-e-misturas",
+    "subtema": "1.1 Matéria e Misturas",
+    "ano": 2023,
+    "banca": "ENEM",
+    "enunciado": "Purificação do para-xileno contaminado por orto e meta-xileno. Dados de temperaturas de fusão e ebulição dos isômeros. Qual processo de separação permite a purificação?",
+    "alternativas": [
+      {
+        "letra": "A",
+        "texto": "Destilação simples"
+      },
+      {
+        "letra": "B",
+        "texto": "Cristalização simples"
+      },
+      {
+        "letra": "C",
+        "texto": "Destilação fracionada"
+      },
+      {
+        "letra": "D",
+        "texto": "Extração líquido-líquido"
+      },
+      {
+        "letra": "E",
+        "texto": "Solidificação fracionada"
+      }
+    ],
+    "gabarito": "E",
+    "tags": [
+      "Separação de isômeros (cristalização/solidificação fracionada)"
+    ]
+  },
+  {
+    "id": "enem-2022-2025-Q96",
+    "eixo": "quimica-geral",
+    "tema": "materia-e-misturas",
+    "subtema": "1.1 Matéria e Misturas",
+    "ano": 2025,
+    "banca": "ENEM",
+    "enunciado": "Processo de purificação de água que remove sais dissolvidos. Usada em laboratórios, indústrias e baterias. Não adequada para ingestão. Essa água é chamada de...",
+    "alternativas": [
+      {
+        "letra": "A",
+        "texto": "dura"
+      },
+      {
+        "letra": "B",
+        "texto": "pesada"
+      },
+      {
+        "letra": "C",
+        "texto": "sanitária"
+      },
+      {
+        "letra": "D",
+        "texto": "destilada"
+      },
+      {
+        "letra": "E",
+        "texto": "oxigenada"
+      }
+    ],
+    "gabarito": "D",
+    "tags": [
+      "Água destilada",
+      "purificação"
+    ]
+  },
+  {
+    "id": "enem-2022-2025-Q116",
+    "eixo": "quimica-geral",
+    "tema": "materia-e-misturas",
+    "subtema": "1.1 Matéria e Misturas",
+    "ano": 2025,
+    "banca": "ENEM",
+    "enunciado": "Filtro para separar óleo e água usando malha de aço com camadas de polímero, nanopartículas de sílica e surfactante. Onde ocorre a retenção do óleo?",
+    "alternativas": [
+      {
+        "letra": "A",
+        "texto": "no surfactante"
+      },
+      {
+        "letra": "B",
+        "texto": "na camada superior de polímero"
+      },
+      {
+        "letra": "C",
+        "texto": "nas nanopartículas de sílica"
+      },
+      {
+        "letra": "D",
+        "texto": "na camada inferior de polímero"
+      },
+      {
+        "letra": "E",
+        "texto": "na malha de aço"
+      }
+    ],
+    "gabarito": "A",
+    "tags": [
+      "Separação de misturas (filtração em carvão ativado)"
+    ]
+  },
+  {
+    "id": "enem-2022-2025-Q99",
+    "eixo": "quimica-geral",
+    "tema": "estrutura-atomica",
+    "subtema": "1.2 Estrutura Atômica",
+    "ano": 2022,
+    "banca": "ENEM",
+    "enunciado": "Detector de fumaça com amerício-243. Partículas alfa ionizam o ar criando corrente elétrica. Fumaça obstrui a câmara. O sensor percebe a fumaça quando interrompe...",
+    "alternativas": [
+      {
+        "letra": "A",
+        "texto": "fissão nuclear do gás hélio"
+      },
+      {
+        "letra": "B",
+        "texto": "passagem de corrente elétrica"
+      },
+      {
+        "letra": "C",
+        "texto": "transmutação das moléculas do ar"
+      },
+      {
+        "letra": "D",
+        "texto": "decaimento radioativo do amerício"
+      },
+      {
+        "letra": "E",
+        "texto": "fusão nuclear entre hélio e amerício"
+      }
+    ],
+    "gabarito": "B",
+    "tags": [
+      "Partículas subatômicas",
+      "detector de fumaça",
+      "amerício"
+    ]
+  },
+  {
+    "id": "enem-2022-2025-Q132",
+    "eixo": "quimica-geral",
+    "tema": "ligacoes-quimicas",
+    "subtema": "1.4 Ligações Químicas",
+    "ano": 2022,
+    "banca": "ENEM",
+    "enunciado": "Amálgamas dentárias: Ag + Sn + Hg formam Ag₂Hg₃ e Sn₈Hg. Os materiais formados são caracterizados como...",
+    "alternativas": [
+      {
+        "letra": "A",
+        "texto": "precipitados"
+      },
+      {
+        "letra": "B",
+        "texto": "ligas metálicas"
+      },
+      {
+        "letra": "C",
+        "texto": "compostos iônicos"
+      },
+      {
+        "letra": "D",
+        "texto": "produtos de oxidação"
+      },
+      {
+        "letra": "E",
+        "texto": "compostos covalentes"
+      }
+    ],
+    "gabarito": "B",
+    "tags": [
+      "Ligas metálicas",
+      "ligação metálica"
+    ]
+  },
+  {
+    "id": "enem-2022-2025-Q114",
+    "eixo": "quimica-geral",
+    "tema": "forcas-intermoleculares",
+    "subtema": "1.5 Forças Intermoleculares",
+    "ano": 2022,
+    "banca": "ENEM",
+    "enunciado": "Mistura de 500 mL água + 500 mL etanol resulta em 970 mL. Do ponto de vista da química, a que se deve essa variação de volume?",
+    "alternativas": [
+      {
+        "letra": "A",
+        "texto": "redução do volume das moléculas"
+      },
+      {
+        "letra": "B",
+        "texto": "abaixamento da massa molecular"
+      },
+      {
+        "letra": "C",
+        "texto": "formação de ligações covalentes mais fortes"
+      },
+      {
+        "letra": "D",
+        "texto": "diminuição do grau de agitação"
+      },
+      {
+        "letra": "E",
+        "texto": "estabelecimento de interações intermoleculares mais intensas"
+      }
+    ],
+    "gabarito": "E",
+    "tags": [
+      "Interações intermoleculares",
+      "variação de volume"
+    ]
+  },
+  {
+    "id": "enem-2022-2025-Q91",
+    "eixo": "quimica-geral",
+    "tema": "forcas-intermoleculares",
+    "subtema": "1.5 Forças Intermoleculares",
+    "ano": 2023,
+    "banca": "ENEM",
+    "enunciado": "Dodecilbenzenossulfonato de sódio em detergentes. É tensoativo em razão da presença de...",
+    "alternativas": [
+      {
+        "letra": "A",
+        "texto": "íon Na+ hidrofílico e porção sulfonato lipofílica"
+      },
+      {
+        "letra": "B",
+        "texto": "porções sulfonato hidrofílica e dodecilbenzeno lipofílica"
+      },
+      {
+        "letra": "C",
+        "texto": "porção benzenossulfonato lipofílica"
+      },
+      {
+        "letra": "D",
+        "texto": "íon Na+ hidrofílico e lipofílico"
+      },
+      {
+        "letra": "E",
+        "texto": "dodecilbenzeno hidrofílico e lipofílico"
+      }
+    ],
+    "gabarito": "B",
+    "tags": [
+      "Tensoativos",
+      "parte hidrofílica e lipofílica"
+    ]
+  },
+  {
+    "id": "enem-2022-2025-Q117",
+    "eixo": "quimica-geral",
+    "tema": "forcas-intermoleculares",
+    "subtema": "1.5 Forças Intermoleculares",
+    "ano": 2025,
+    "banca": "ENEM",
+    "enunciado": "Hormônios sexuais de baixa polaridade com solubilidade variável em água. Qual hormônio apresenta maior solubilidade em ambientes aquáticos?",
+    "alternativas": [
+      {
+        "letra": "A",
+        "texto": "Estradiol"
+      },
+      {
+        "letra": "B",
+        "texto": "Estriol"
+      },
+      {
+        "letra": "C",
+        "texto": "Estrona"
+      },
+      {
+        "letra": "D",
+        "texto": "Novestrol"
+      },
+      {
+        "letra": "E",
+        "texto": "Noretindrona"
+      }
+    ],
+    "gabarito": "B",
+    "tags": [
+      "Solubilidade em água",
+      "hormônios",
+      "grupos funcionais"
+    ]
+  },
+  {
+    "id": "enem-2022-2025-Q102",
+    "eixo": "fisico-quimica",
+    "tema": "estequiometria",
+    "subtema": "2.1 Grandezas Químicas e Estequiometria",
+    "ano": 2022,
+    "banca": "ENEM",
+    "enunciado": "Airbag: 2NaN₃→2Na+3N₂. 100g de NaN₃, calcular volume de N₂ produzido (PV=nRT, P=1atm, T=25°C).",
+    "alternativas": [
+      {
+        "letra": "A",
+        "texto": "4,7 L"
+      },
+      {
+        "letra": "B",
+        "texto": "9,4 L"
+      },
+      {
+        "letra": "C",
+        "texto": "18,8 L"
+      },
+      {
+        "letra": "D",
+        "texto": "56,5 L"
+      },
+      {
+        "letra": "E",
+        "texto": "113,0 L"
+      }
+    ],
+    "gabarito": "D",
+    "tags": [
+      "Cálculos estequiométricos",
+      "gases ideais"
+    ]
+  },
+  {
+    "id": "enem-2022-2025-Q92",
+    "eixo": "fisico-quimica",
+    "tema": "estequiometria",
+    "subtema": "2.1 Grandezas Químicas e Estequiometria",
+    "ano": 2023,
+    "banca": "ENEM",
+    "enunciado": "Carro com 200 kg de alumínio. Bauxita com 50% Al₂O₃. Massa de bauxita necessária para produzir o alumínio?",
+    "alternativas": [
+      {
+        "letra": "A",
+        "texto": "378 kg"
+      },
+      {
+        "letra": "B",
+        "texto": "400 kg"
+      },
+      {
+        "letra": "C",
+        "texto": "637 kg"
+      },
+      {
+        "letra": "D",
+        "texto": "756 kg"
+      },
+      {
+        "letra": "E",
+        "texto": "1 512 kg"
+      }
+    ],
+    "gabarito": "D",
+    "tags": [
+      "Cálculo estequiométrico",
+      "bauxita e alumínio"
+    ]
+  },
+  {
+    "id": "enem-2022-2025-Q101",
+    "eixo": "fisico-quimica",
+    "tema": "estequiometria",
+    "subtema": "2.1 Grandezas Químicas e Estequiometria",
+    "ano": 2024,
+    "banca": "ENEM",
+    "enunciado": "Automóvel emite 3000 kg CO₂/ano. Angico-branco: 3520 kg/1000m², 50% carbono. Menor área para compensar emissões?",
+    "alternativas": [
+      {
+        "letra": "A",
+        "texto": "230 m²"
+      },
+      {
+        "letra": "B",
+        "texto": "465 m²"
+      },
+      {
+        "letra": "C",
+        "texto": "850 m²"
+      },
+      {
+        "letra": "D",
+        "texto": "1700 m²"
+      },
+      {
+        "letra": "E",
+        "texto": "2000 m²"
+      }
+    ],
+    "gabarito": "B",
+    "tags": [
+      "Cálculos estequiométricos",
+      "CO₂ e fixação de carbono"
+    ]
+  },
+  {
+    "id": "enem-2022-2025-Q106",
+    "eixo": "fisico-quimica",
+    "tema": "estequiometria",
+    "subtema": "2.1 Grandezas Químicas e Estequiometria",
+    "ano": 2024,
+    "banca": "ENEM",
+    "enunciado": "Sal light (50% NaCl, 50% KCl). Brasileiros consomem 12g sal/dia, recomendado 5g NaCl. Massa de sódio em excesso?",
+    "alternativas": [
+      {
+        "letra": "A",
+        "texto": "0,4 g"
+      },
+      {
+        "letra": "B",
+        "texto": "1,0 g"
+      },
+      {
+        "letra": "C",
+        "texto": "1,4 g"
+      },
+      {
+        "letra": "D",
+        "texto": "2,8 g"
+      },
+      {
+        "letra": "E",
+        "texto": "3,5 g"
+      }
+    ],
+    "gabarito": "C",
+    "tags": [
+      "Sal light",
+      "cálculo de massa de sódio"
+    ]
+  },
+  {
+    "id": "enem-2022-2025-Q119",
+    "eixo": "fisico-quimica",
+    "tema": "estequiometria",
+    "subtema": "2.1 Grandezas Químicas e Estequiometria",
+    "ano": 2024,
+    "banca": "ENEM",
+    "enunciado": "TiO₂ + 2Cl₂ + 2CO → TiCl₄ + 2CO₂; 2Mg + TiCl₄ → 2MgCl₂ + Ti. Massa de Cl₂ para 480 kg Ti?",
+    "alternativas": [
+      {
+        "letra": "A",
+        "texto": "179 kg"
+      },
+      {
+        "letra": "B",
+        "texto": "359 kg"
+      },
+      {
+        "letra": "C",
+        "texto": "480 kg"
+      },
+      {
+        "letra": "D",
+        "texto": "710 kg"
+      },
+      {
+        "letra": "E",
+        "texto": "1420 kg"
+      }
+    ],
+    "gabarito": "D",
+    "tags": [
+      "Estequiometria",
+      "produção de titânio"
+    ]
+  },
+  {
+    "id": "enem-2022-2025-Q127",
+    "eixo": "fisico-quimica",
+    "tema": "estequiometria",
+    "subtema": "2.1 Grandezas Químicas e Estequiometria",
+    "ano": 2024,
+    "banca": "ENEM",
+    "enunciado": "Biomassa: qual fonte primária permite obter energia elétrica por processos químicos?",
+    "alternativas": [
+      {
+        "letra": "A",
+        "texto": "Eólica"
+      },
+      {
+        "letra": "B",
+        "texto": "Nuclear"
+      },
+      {
+        "letra": "C",
+        "texto": "Biomassa"
+      },
+      {
+        "letra": "D",
+        "texto": "Maremotriz"
+      },
+      {
+        "letra": "E",
+        "texto": "Geotérmica"
+      }
+    ],
+    "gabarito": "C",
+    "tags": [
+      "Reagente limitante/excesso",
+      "pureza"
+    ]
+  },
+  {
+    "id": "enem-2022-2025-Q114",
+    "eixo": "fisico-quimica",
+    "tema": "estequiometria",
+    "subtema": "2.1 Grandezas Químicas e Estequiometria",
+    "ano": 2025,
+    "banca": "ENEM",
+    "enunciado": "Produção de nióbio: 3Nb₂O₅+10Al→6Nb+5Al₂O₃ com excesso de 10% de Al. Massa de Al para 9,3 kg de Nb?",
+    "alternativas": [
+      {
+        "letra": "A",
+        "texto": "2,7 kg"
+      },
+      {
+        "letra": "B",
+        "texto": "3,0 kg"
+      },
+      {
+        "letra": "C",
+        "texto": "4,1 kg"
+      },
+      {
+        "letra": "D",
+        "texto": "4,5 kg"
+      },
+      {
+        "letra": "E",
+        "texto": "5,0 kg"
+      }
+    ],
+    "gabarito": "D",
+    "tags": [
+      "Estequiometria",
+      "aluminotermia",
+      "excesso de reagente"
+    ]
+  },
+  {
+    "id": "enem-2022-2025-Q129",
+    "eixo": "fisico-quimica",
+    "tema": "solucoes",
+    "subtema": "2.2 Soluções",
+    "ano": 2022,
+    "banca": "ENEM",
+    "enunciado": "Bula: 500mL solução com KCl=75mg, NaCl=0,07g, Glicose=0,00008kg. Substância em maior concentração e não condutora?",
+    "alternativas": [
+      {
+        "letra": "A",
+        "texto": "glicose e glicose"
+      },
+      {
+        "letra": "B",
+        "texto": "glicose e NaCl"
+      },
+      {
+        "letra": "C",
+        "texto": "NaCl e glicose"
+      },
+      {
+        "letra": "D",
+        "texto": "KCl e glicose"
+      },
+      {
+        "letra": "E",
+        "texto": "NaCl e KCl"
+      }
+    ],
+    "gabarito": "A",
+    "tags": [
+      "Concentração",
+      "unidades (mg",
+      "g",
+      "kg)",
+      "condutividade"
+    ]
+  },
+  {
+    "id": "enem-2022-2025-Q123",
+    "eixo": "fisico-quimica",
+    "tema": "termoquimica",
+    "subtema": "2.3 Termoquímica",
+    "ano": 2022,
+    "banca": "ENEM",
+    "enunciado": "Tabela de entalpias de combustão (C, C₂H₂, C₃H₈, C₄H₁₀, C₈H₁₈). Qual libera mais energia com menor produção de CO₂?",
+    "alternativas": [
+      {
+        "letra": "A",
+        "texto": "Carbono"
+      },
+      {
+        "letra": "B",
+        "texto": "Etino"
+      },
+      {
+        "letra": "C",
+        "texto": "Propano"
+      },
+      {
+        "letra": "D",
+        "texto": "Butano"
+      },
+      {
+        "letra": "E",
+        "texto": "Octano"
+      }
+    ],
+    "gabarito": "B",
+    "tags": [
+      "Entalpia de combustão",
+      "impacto ambiental"
+    ]
+  },
+  {
+    "id": "enem-2022-2025-Q104",
+    "eixo": "fisico-quimica",
+    "tema": "termoquimica",
+    "subtema": "2.3 Termoquímica",
+    "ano": 2023,
+    "banca": "ENEM",
+    "enunciado": "Alimento queimado aquece 4mL de água de 20°C a 50°C. Amostra de 0,5g. Calor de combustão = 120 cal/g. Qual alimento?",
+    "alternativas": [
+      {
+        "letra": "A",
+        "texto": "I"
+      },
+      {
+        "letra": "B",
+        "texto": "II"
+      },
+      {
+        "letra": "C",
+        "texto": "III"
+      },
+      {
+        "letra": "D",
+        "texto": "IV"
+      },
+      {
+        "letra": "E",
+        "texto": "V"
+      }
+    ],
+    "gabarito": "D",
+    "tags": [
+      "Calor de combustão",
+      "experimento"
+    ]
+  },
+  {
+    "id": "enem-2022-2025-Q110",
+    "eixo": "fisico-quimica",
+    "tema": "cinetica-quimica",
+    "subtema": "2.4 Cinética Química",
+    "ano": 2025,
+    "banca": "ENEM",
+    "enunciado": "Cobalto-60, meia-vida 5,3 anos. Amostra 2,00mg armazenada 26,5 anos. Massa restante?",
+    "alternativas": [
+      {
+        "letra": "A",
+        "texto": "2,00 mg"
+      },
+      {
+        "letra": "B",
+        "texto": "1,00 mg"
+      },
+      {
+        "letra": "C",
+        "texto": "0,40 mg"
+      },
+      {
+        "letra": "D",
+        "texto": "0,13 mg"
+      },
+      {
+        "letra": "E",
+        "texto": "0,06 mg"
+      }
+    ],
+    "gabarito": "E",
+    "tags": [
+      "Meia-vida",
+      "decaimento radioativo"
+    ]
+  },
+  {
+    "id": "enem-2022-2025-Q132",
+    "eixo": "fisico-quimica",
+    "tema": "cinetica-quimica",
+    "subtema": "2.4 Cinética Química",
+    "ano": 2025,
+    "banca": "ENEM",
+    "enunciado": "Carvão ativado vs carvão comum na purificação de água. Qual característica explica sua maior eficiência?",
+    "alternativas": [
+      {
+        "letra": "A",
+        "texto": "Massa"
+      },
+      {
+        "letra": "B",
+        "texto": "Dureza"
+      },
+      {
+        "letra": "C",
+        "texto": "Densidade"
+      },
+      {
+        "letra": "D",
+        "texto": "Superfície"
+      },
+      {
+        "letra": "E",
+        "texto": "Condutividade"
+      }
+    ],
+    "gabarito": "D",
+    "tags": [
+      "Superfície de contato",
+      "adsorção",
+      "carvão ativado"
+    ]
+  },
+  {
+    "id": "enem-2022-2025-Q120",
+    "eixo": "fisico-quimica",
+    "tema": "equilibrio-quimico",
+    "subtema": "2.5 Equilíbrio Químico",
+    "ano": 2022,
+    "banca": "ENEM",
+    "enunciado": "Solo ácido, correção com substância que libera OH⁻. Opções: KCl, MgO, NH₄Br, AlCl₃, P₂O₅. Qual usar?",
+    "alternativas": [
+      {
+        "letra": "A",
+        "texto": "I (KCl)"
+      },
+      {
+        "letra": "B",
+        "texto": "II (MgO)"
+      },
+      {
+        "letra": "C",
+        "texto": "III (NH₄Br)"
+      },
+      {
+        "letra": "D",
+        "texto": "IV (AlCl₃)"
+      },
+      {
+        "letra": "E",
+        "texto": "V (P₂O₅)"
+      }
+    ],
+    "gabarito": "B",
+    "tags": [
+      "pH do solo",
+      "correção com óxido básico"
+    ]
+  },
+  {
+    "id": "enem-2022-2025-Q97",
+    "eixo": "fisico-quimica",
+    "tema": "equilibrio-quimico",
+    "subtema": "2.5 Equilíbrio Químico",
+    "ano": 2023,
+    "banca": "ENEM",
+    "enunciado": "Solo alcalino, ajustar pH para 6. Qual composto adicionar? KNO₃, CaCO₃, Na₃PO₄, Al₂(SO₄)₃, (NH₄)₂SO₄",
+    "alternativas": [
+      {
+        "letra": "A",
+        "texto": "KNO₃"
+      },
+      {
+        "letra": "B",
+        "texto": "CaCO₃"
+      },
+      {
+        "letra": "C",
+        "texto": "Na₃PO₄"
+      },
+      {
+        "letra": "D",
+        "texto": "Al₂(SO₄)₃"
+      },
+      {
+        "letra": "E",
+        "texto": "(NH₄)₂SO₄"
+      }
+    ],
+    "gabarito": "E",
+    "tags": [
+      "Correção de pH",
+      "solo alcalino"
+    ]
+  },
+  {
+    "id": "enem-2022-2025-Q118",
+    "eixo": "fisico-quimica",
+    "tema": "equilibrio-quimico",
+    "subtema": "2.5 Equilíbrio Químico",
+    "ano": 2023,
+    "banca": "ENEM",
+    "enunciado": "Eliminar odor de peixe (metilamina). Escolher substância para neutralizar grupo amino. Dados de Ka/Kb.",
+    "alternativas": [
+      {
+        "letra": "A",
+        "texto": "NaClO"
+      },
+      {
+        "letra": "B",
+        "texto": "NaHCO₃"
+      },
+      {
+        "letra": "C",
+        "texto": "CH₃COOH"
+      },
+      {
+        "letra": "D",
+        "texto": "NaCl"
+      },
+      {
+        "letra": "E",
+        "texto": "CH₃CH₂OH"
+      }
+    ],
+    "gabarito": "C",
+    "tags": [
+      "Ka",
+      "Kb",
+      "neutralização"
+    ]
+  },
+  {
+    "id": "enem-2022-2025-Q129",
+    "eixo": "fisico-quimica",
+    "tema": "equilibrio-quimico",
+    "subtema": "2.5 Equilíbrio Químico",
+    "ano": 2023,
+    "banca": "ENEM",
+    "enunciado": "Produção de HNO₃: etapas com NH₃, NO, NO₂. Diminuir formação de NO subproduto. Qual procedimento?",
+    "alternativas": [
+      {
+        "letra": "A",
+        "texto": "↑pressão O₂ etapa 1"
+      },
+      {
+        "letra": "B",
+        "texto": "↑conc. NO₂ etapa 3"
+      },
+      {
+        "letra": "C",
+        "texto": "↑NH₃ etapa 1"
+      },
+      {
+        "letra": "D",
+        "texto": "↑O₂ etapa 2"
+      },
+      {
+        "letra": "E",
+        "texto": "↑temperatura etapa 1"
+      }
+    ],
+    "gabarito": "D",
+    "tags": [
+      "Princípio de Le Chatelier",
+      "deslocamento"
+    ]
+  },
+  {
+    "id": "enem-2022-2025-Q123",
+    "eixo": "fisico-quimica",
+    "tema": "equilibrio-quimico",
+    "subtema": "2.5 Equilíbrio Químico",
+    "ano": 2024,
+    "banca": "ENEM",
+    "enunciado": "Fertilizantes com NH₄⁺ e NO₃⁻ lixiviam para rios/lagos. Consequência da adubação?",
+    "alternativas": [
+      {
+        "letra": "A",
+        "texto": "elevação alcalinidade"
+      },
+      {
+        "letra": "B",
+        "texto": "redução nutrientes"
+      },
+      {
+        "letra": "C",
+        "texto": "proliferação de algas"
+      },
+      {
+        "letra": "D",
+        "texto": "retenção de íons"
+      },
+      {
+        "letra": "E",
+        "texto": "multiplicação espécies nativas"
+      }
+    ],
+    "gabarito": "C",
+    "tags": [
+      "Eutrofização",
+      "adubação nitrogenada"
+    ]
+  },
+  {
+    "id": "enem-2022-2025-Q119",
+    "eixo": "fisico-quimica",
+    "tema": "equilibrio-quimico",
+    "subtema": "2.5 Equilíbrio Químico",
+    "ano": 2025,
+    "banca": "ENEM",
+    "enunciado": "TiO₂+2Cl₂ ⇌ TiCl₄+O₂ ΔH=+175kJ/mol. Como favorecer formação de TiCl₄?",
+    "alternativas": [
+      {
+        "letra": "A",
+        "texto": "↑pressão total"
+      },
+      {
+        "letra": "B",
+        "texto": "↓temperatura"
+      },
+      {
+        "letra": "C",
+        "texto": "↑pressão parcial O₂"
+      },
+      {
+        "letra": "D",
+        "texto": "↑pressão parcial Cl₂"
+      },
+      {
+        "letra": "E",
+        "texto": "variar qtd TiO₂"
+      }
+    ],
+    "gabarito": "D",
+    "tags": [
+      "Equilíbrio",
+      "Le Chatelier",
+      "cloração"
+    ]
+  },
+  {
+    "id": "enem-2022-2025-Q108",
+    "eixo": "fisico-quimica",
+    "tema": "equilibrio-ionico-ph",
+    "subtema": "2.6 Eletroquímica",
+    "ano": 2024,
+    "banca": "ENEM",
+    "enunciado": "Dessalinizador-pilha com eletrodos de bismuto e titânio. Durante eletrólise ocorre formação de...",
+    "alternativas": [
+      {
+        "letra": "A",
+        "texto": "BiOCl no ânodo"
+      },
+      {
+        "letra": "B",
+        "texto": "H₂ no cátodo"
+      },
+      {
+        "letra": "C",
+        "texto": "Bi no polo positivo"
+      },
+      {
+        "letra": "D",
+        "texto": "O₂ no polo negativo"
+      },
+      {
+        "letra": "E",
+        "texto": "Na₃Ti₂(PO₄)₃ no ânodo"
+      }
+    ],
+    "gabarito": "A",
+    "tags": [
+      "Eletrólise",
+      "dessalinização"
+    ]
+  },
+  {
+    "id": "enem-2022-2025-Q109",
+    "eixo": "fisico-quimica",
+    "tema": "equilibrio-ionico-ph",
+    "subtema": "2.6 Eletroquímica",
+    "ano": 2024,
+    "banca": "ENEM",
+    "enunciado": "Produção de H₂SO₄ em etapas. Em qual etapa o S atinge maior estado de oxidação?",
+    "alternativas": [
+      {
+        "letra": "A",
+        "texto": "1"
+      },
+      {
+        "letra": "B",
+        "texto": "2"
+      },
+      {
+        "letra": "C",
+        "texto": "3"
+      },
+      {
+        "letra": "D",
+        "texto": "4"
+      },
+      {
+        "letra": "E",
+        "texto": "5"
+      }
+    ],
+    "gabarito": "B",
+    "tags": [
+      "Nox",
+      "estado de oxidação do enxofre"
+    ]
+  },
+  {
+    "id": "enem-2022-2025-Q112",
+    "eixo": "quimica-organica",
+    "tema": "funcoes-organicas",
+    "subtema": "3.2 Funções Orgânicas e Nomenclatura",
+    "ano": 2022,
+    "banca": "ENEM",
+    "enunciado": "Separação de fenol, anilina, ácido acético e acetona com NaHCO₃, NaOH e HCl. Frações aquosas II e III contêm...",
+    "alternativas": [
+      {
+        "letra": "A",
+        "texto": "fenol e anilina"
+      },
+      {
+        "letra": "B",
+        "texto": "fenol e acetona"
+      },
+      {
+        "letra": "C",
+        "texto": "anilina e acetona"
+      },
+      {
+        "letra": "D",
+        "texto": "ác. acético e anilina"
+      },
+      {
+        "letra": "E",
+        "texto": "ác. acético e acetona"
+      }
+    ],
+    "gabarito": "A",
+    "tags": [
+      "Separação ácido-base de compostos orgânicos"
+    ]
+  },
+  {
+    "id": "enem-2022-2025-Q117",
+    "eixo": "quimica-organica",
+    "tema": "funcoes-organicas",
+    "subtema": "3.2 Funções Orgânicas e Nomenclatura",
+    "ano": 2022,
+    "banca": "ENEM",
+    "enunciado": "Pesticidas (Atrazina, DDT, HCB, Malation, Paration) e solubilidade em água. Leite materno com lipídeos. Qual pesticida transmitido em maior proporção?",
+    "alternativas": [
+      {
+        "letra": "A",
+        "texto": "Atrazina"
+      },
+      {
+        "letra": "B",
+        "texto": "DDT"
+      },
+      {
+        "letra": "C",
+        "texto": "HCB"
+      },
+      {
+        "letra": "D",
+        "texto": "Malation"
+      },
+      {
+        "letra": "E",
+        "texto": "Paration"
+      }
+    ],
+    "gabarito": "B",
+    "tags": [
+      "Pesticidas",
+      "solubilidade",
+      "lipofilia"
+    ]
+  },
+  {
+    "id": "enem-2022-2025-Q126",
+    "eixo": "quimica-organica",
+    "tema": "funcoes-organicas",
+    "subtema": "3.2 Funções Orgânicas e Nomenclatura",
+    "ano": 2022,
+    "banca": "ENEM",
+    "enunciado": "Timol (fenol) pouco solúvel em água mas solúvel em NaOH. Dissolução se deve a...",
+    "alternativas": [
+      {
+        "letra": "A",
+        "texto": "formação de sal orgânico"
+      },
+      {
+        "letra": "B",
+        "texto": "ataque dos íons hidróxido ao anel"
+      },
+      {
+        "letra": "C",
+        "texto": "complexação com Na⁺"
+      },
+      {
+        "letra": "D",
+        "texto": "ligações de H entre OH fenólico e OH⁻"
+      },
+      {
+        "letra": "E",
+        "texto": "aumento da polaridade do solvente"
+      }
+    ],
+    "gabarito": "A",
+    "tags": [
+      "Fenol",
+      "dissolução em NaOH"
+    ]
+  },
+  {
+    "id": "enem-2022-2025-Q110",
+    "eixo": "quimica-organica",
+    "tema": "funcoes-organicas",
+    "subtema": "3.2 Funções Orgânicas e Nomenclatura",
+    "ano": 2023,
+    "banca": "ENEM",
+    "enunciado": "Lavagem a seco: solvente seguro por não ser inflamável (menor qtd ligações C-H). Canfeno, Benzeno, Tricloroetileno, Hexano, Iso-octano.",
+    "alternativas": [
+      {
+        "letra": "A",
+        "texto": "hexano"
+      },
+      {
+        "letra": "B",
+        "texto": "canfeno"
+      },
+      {
+        "letra": "C",
+        "texto": "benzeno"
+      },
+      {
+        "letra": "D",
+        "texto": "iso-octano"
+      },
+      {
+        "letra": "E",
+        "texto": "tricloroetileno"
+      }
+    ],
+    "gabarito": "E",
+    "tags": [
+      "Organoclorados",
+      "ligações C-H"
+    ]
+  },
+  {
+    "id": "enem-2022-2025-Q106",
+    "eixo": "quimica-organica",
+    "tema": "funcoes-organicas",
+    "subtema": "3.2 Funções Orgânicas e Nomenclatura",
+    "ano": 2025,
+    "banca": "ENEM",
+    "enunciado": "Borneol (álcool secundário, C₁₀H₁₈O) oxidado origina cânfora (cetona). Fórmula molecular da cânfora?",
+    "alternativas": [
+      {
+        "letra": "A",
+        "texto": "C₉H₁₆O"
+      },
+      {
+        "letra": "B",
+        "texto": "C₉H₁₇O"
+      },
+      {
+        "letra": "C",
+        "texto": "C₁₀H₁₆O"
+      },
+      {
+        "letra": "D",
+        "texto": "C₁₀H₁₆O₂"
+      },
+      {
+        "letra": "E",
+        "texto": "C₁₀H₁₈O₂"
+      }
+    ],
+    "gabarito": "C",
+    "tags": [
+      "Fórmula molecular",
+      "álcool→cetona"
+    ]
+  },
+  {
+    "id": "enem-2022-2025-Q106",
+    "eixo": "quimica-organica",
+    "tema": "isomeria",
+    "subtema": "3.3 Isomeria",
+    "ano": 2023,
+    "banca": "ENEM",
+    "enunciado": "Lentes fotocrômicas com indenonaftopiranos. UVA quebra ligação, molécula rearranja absorvendo maior comprimento de onda. Escurecimento por...",
+    "alternativas": [
+      {
+        "letra": "A",
+        "texto": "polimerizam"
+      },
+      {
+        "letra": "B",
+        "texto": "tautomerizam"
+      },
+      {
+        "letra": "C",
+        "texto": "polarizam"
+      },
+      {
+        "letra": "D",
+        "texto": "oxidam"
+      },
+      {
+        "letra": "E",
+        "texto": "dispersam"
+      }
+    ],
+    "gabarito": "B",
+    "tags": [
+      "Tautomeria",
+      "lentes fotocrômicas"
+    ]
+  },
+  {
+    "id": "enem-2022-2025-Q98",
+    "eixo": "quimica-organica",
+    "tema": "reacoes-organicas",
+    "subtema": "3.4 Reações Orgânicas",
+    "ano": 2022,
+    "banca": "ENEM",
+    "enunciado": "Benzopireno (I) convertido em composto (II) com grupos OH e epóxido. Tipo de reação?",
+    "alternativas": [
+      {
+        "letra": "A",
+        "texto": "adição"
+      },
+      {
+        "letra": "B",
+        "texto": "oxidação"
+      },
+      {
+        "letra": "C",
+        "texto": "eliminação"
+      },
+      {
+        "letra": "D",
+        "texto": "substituição"
+      },
+      {
+        "letra": "E",
+        "texto": "hidrogenação"
+      }
+    ],
+    "gabarito": "B",
+    "tags": [
+      "Biotransformação",
+      "oxidação"
+    ]
+  },
+  {
+    "id": "enem-2022-2025-Q107",
+    "eixo": "quimica-organica",
+    "tema": "reacoes-organicas",
+    "subtema": "3.4 Reações Orgânicas",
+    "ano": 2023,
+    "banca": "ENEM",
+    "enunciado": "Cloroacetofenona (CA) lavada com sal → produto + NaCl. Qual sal usar?",
+    "alternativas": [
+      {
+        "letra": "A",
+        "texto": "NaCH₃COO"
+      },
+      {
+        "letra": "B",
+        "texto": "NaHCO₃"
+      },
+      {
+        "letra": "C",
+        "texto": "NaHSO₃"
+      },
+      {
+        "letra": "D",
+        "texto": "Na₂SO₄"
+      },
+      {
+        "letra": "E",
+        "texto": "NaOH"
+      }
+    ],
+    "gabarito": "A",
+    "tags": [
+      "Substituição nucleofílica",
+      "neutralização"
+    ]
+  },
+  {
+    "id": "enem-2022-2025-Q109",
+    "eixo": "quimica-organica",
+    "tema": "reacoes-organicas",
+    "subtema": "3.4 Reações Orgânicas",
+    "ano": 2025,
+    "banca": "ENEM",
+    "enunciado": "Ácido anacárdico → cardanol por aquecimento. Reação orgânica do tipo...",
+    "alternativas": [
+      {
+        "letra": "A",
+        "texto": "hidrólise"
+      },
+      {
+        "letra": "B",
+        "texto": "fenilação"
+      },
+      {
+        "letra": "C",
+        "texto": "esterificação"
+      },
+      {
+        "letra": "D",
+        "texto": "hidrogenação"
+      },
+      {
+        "letra": "E",
+        "texto": "descarboxilação"
+      }
+    ],
+    "gabarito": "E",
+    "tags": [
+      "Descarboxilação"
+    ]
+  },
+  {
+    "id": "enem-2022-2025-Q95",
+    "eixo": "quimica-organica",
+    "tema": "polimeros",
+    "subtema": "3.5 Polímeros",
+    "ano": 2024,
+    "banca": "ENEM",
+    "enunciado": "PET reciclado quimicamente: polímero submetido a reação para transformá-lo em outros compostos. Reação de...",
+    "alternativas": [
+      {
+        "letra": "A",
+        "texto": "hidrólise"
+      },
+      {
+        "letra": "B",
+        "texto": "eterificação"
+      },
+      {
+        "letra": "C",
+        "texto": "esterificação"
+      },
+      {
+        "letra": "D",
+        "texto": "neutralização"
+      },
+      {
+        "letra": "E",
+        "texto": "transesterificação"
+      }
+    ],
+    "gabarito": "A",
+    "tags": [
+      "Reciclagem de PET",
+      "hidrólise"
+    ]
+  },
+  {
+    "id": "enem-2022-2025-Q108",
+    "eixo": "quimica-inorganica",
+    "tema": "funcoes-inorganicas",
+    "subtema": "4.1 Funções Inorgânicas",
+    "ano": 2025,
+    "banca": "ENEM",
+    "enunciado": "Em 1909, nitrogênio=azoto (Az). AzO=monóxido de nitrogênio, NaAzO₃=nitrato de sódio. Representações de ácido nítrico e cloreto de cálcio?",
+    "alternativas": [
+      {
+        "letra": "A",
+        "texto": "HAzO₃ e CaCl₂"
+      },
+      {
+        "letra": "B",
+        "texto": "HAz₃O e Ca₂Cl"
+      },
+      {
+        "letra": "C",
+        "texto": "H₃AzO₄ e CaCl"
+      },
+      {
+        "letra": "D",
+        "texto": "HAz₃O e KCl₂"
+      },
+      {
+        "letra": "E",
+        "texto": "HAzO₂ e KCl"
+      }
+    ],
+    "gabarito": "A",
+    "tags": [
+      "Nomenclatura antiga (azoto=nitrogênio)"
+    ]
+  },
+  {
+    "id": "enem-2022-2025-Q105",
+    "eixo": "quimica-inorganica",
+    "tema": "reacoes-inorganicas",
+    "subtema": "4.2 Reações Inorgânicas",
+    "ano": 2022,
+    "banca": "ENEM",
+    "enunciado": "Constituintes atmosféricos secundários (O₃, CH₄, SO₂, CO, NO). Qual pode ser removido por purificador com CaCO₃?",
+    "alternativas": [
+      {
+        "letra": "A",
+        "texto": "Ozônio"
+      },
+      {
+        "letra": "B",
+        "texto": "Metano"
+      },
+      {
+        "letra": "C",
+        "texto": "Dióxido de enxofre"
+      },
+      {
+        "letra": "D",
+        "texto": "Monóxido de carbono"
+      },
+      {
+        "letra": "E",
+        "texto": "Monóxido de nitrogênio"
+      }
+    ],
+    "gabarito": "C",
+    "tags": [
+      "Reação ácido-base",
+      "purificador com CaCO₃"
+    ]
+  },
+  {
+    "id": "enem-2022-2025-Q109",
+    "eixo": "quimica-ambiental",
+    "tema": "ciclos-biogeoquimicos",
+    "subtema": "5.1 Ciclos Biogeoquímicos",
+    "ano": 2022,
+    "banca": "ENEM",
+    "enunciado": "Minhocas participam do ciclo do nitrogênio quando...",
+    "alternativas": [
+      {
+        "letra": "A",
+        "texto": "oxidam nitrito a nitrato"
+      },
+      {
+        "letra": "B",
+        "texto": "reduzem nitrito a amônia"
+      },
+      {
+        "letra": "C",
+        "texto": "oxidam amônia"
+      },
+      {
+        "letra": "D",
+        "texto": "transformam matéria orgânica liberando amônia"
+      },
+      {
+        "letra": "E",
+        "texto": "fixam N₂ atmosférico"
+      }
+    ],
+    "gabarito": "D",
+    "tags": [
+      "Ciclo do nitrogênio",
+      "minhocas"
+    ]
+  },
+  {
+    "id": "enem-2022-2025-Q124",
+    "eixo": "quimica-ambiental",
+    "tema": "ciclos-biogeoquimicos",
+    "subtema": "5.1 Ciclos Biogeoquímicos",
+    "ano": 2024,
+    "banca": "ENEM",
+    "enunciado": "Transferência de calor por radiação. Copo preto vs copo espelhado com água quente. Qual esfria mais rápido?",
+    "alternativas": [
+      {
+        "letra": "A",
+        "texto": "diminuem igualmente"
+      },
+      {
+        "letra": "B",
+        "texto": "copo 1 diminui, copo 2 igual"
+      },
+      {
+        "letra": "C",
+        "texto": "copo 2 diminui, copo 1 igual"
+      },
+      {
+        "letra": "D",
+        "texto": "copo 1 mais rápido"
+      },
+      {
+        "letra": "E",
+        "texto": "copo 2 mais rápido"
+      }
+    ],
+    "gabarito": "D",
+    "tags": [
+      "Eutrofização",
+      "adubação"
+    ]
+  },
+  {
+    "id": "enem-2022-2025-Q100",
+    "eixo": "quimica-ambiental",
+    "tema": "impactos-ambientais",
+    "subtema": "5.2 Impactos Ambientais",
+    "ano": 2022,
+    "banca": "ENEM",
+    "enunciado": "Usinas nucleares com sistema de arrefecimento. Se inadequado, impacto negativo porque...",
+    "alternativas": [
+      {
+        "letra": "A",
+        "texto": "gases tóxicos"
+      },
+      {
+        "letra": "B",
+        "texto": "diminuirá reserva hídrica"
+      },
+      {
+        "letra": "C",
+        "texto": "aquecerá ecossistemas aquáticos"
+      },
+      {
+        "letra": "D",
+        "texto": "aumentará nutrientes"
+      },
+      {
+        "letra": "E",
+        "texto": "contaminação por microrganismos"
+      }
+    ],
+    "gabarito": "C",
+    "tags": [
+      "Poluição térmica",
+      "usina nuclear"
+    ]
+  },
+  {
+    "id": "enem-2022-2025-Q96",
+    "eixo": "quimica-ambiental",
+    "tema": "impactos-ambientais",
+    "subtema": "5.2 Impactos Ambientais",
+    "ano": 2023,
+    "banca": "ENEM",
+    "enunciado": "Ciclo biogeoquímico do enxofre. Emissões de H₂S/SO₂/SO₄²⁻. Impacto ambiental gerado?",
+    "alternativas": [
+      {
+        "letra": "A",
+        "texto": "efeito estufa"
+      },
+      {
+        "letra": "B",
+        "texto": "ilhas de calor"
+      },
+      {
+        "letra": "C",
+        "texto": "chuva ácida"
+      },
+      {
+        "letra": "D",
+        "texto": "smog fotoquímico"
+      },
+      {
+        "letra": "E",
+        "texto": "degradação camada ozônio"
+      }
+    ],
+    "gabarito": "C",
+    "tags": [
+      "Chuva ácida",
+      "ciclo do enxofre"
+    ]
+  },
+  {
+    "id": "enem-2022-2025-Q127",
+    "eixo": "quimica-ambiental",
+    "tema": "impactos-ambientais",
+    "subtema": "5.2 Impactos Ambientais",
+    "ano": 2023,
+    "banca": "ENEM",
+    "enunciado": "Peixes na superfície de lago eutrofizado. Comportamento se deve a...",
+    "alternativas": [
+      {
+        "letra": "A",
+        "texto": "proliferação patogênicos"
+      },
+      {
+        "letra": "B",
+        "texto": "aumento nutrientes"
+      },
+      {
+        "letra": "C",
+        "texto": "elevação densidade"
+      },
+      {
+        "letra": "D",
+        "texto": "restrição de oxigênio"
+      },
+      {
+        "letra": "E",
+        "texto": "redução luminosidade"
+      }
+    ],
+    "gabarito": "D",
+    "tags": [
+      "Eutrofização",
+      "sacolas plásticas"
+    ]
+  },
+  {
+    "id": "enem-2022-2025-Q110",
+    "eixo": "quimica-ambiental",
+    "tema": "impactos-ambientais",
+    "subtema": "5.2 Impactos Ambientais",
+    "ano": 2024,
+    "banca": "ENEM",
+    "enunciado": "Procedimentos para resíduos plásticos. Procedimento adequado ambientalmente?",
+    "alternativas": [
+      {
+        "letra": "A",
+        "texto": "incinerar"
+      },
+      {
+        "letra": "B",
+        "texto": "reciclar"
+      },
+      {
+        "letra": "C",
+        "texto": "biodegradáveis"
+      },
+      {
+        "letra": "D",
+        "texto": "aterros"
+      },
+      {
+        "letra": "E",
+        "texto": "oxibiodegradáveis"
+      }
+    ],
+    "gabarito": "B",
+    "tags": [
+      "Reciclagem de plásticos"
+    ]
+  },
+  {
+    "id": "enem-2022-2025-Q100",
+    "eixo": "quimica-ambiental",
+    "tema": "impactos-ambientais",
+    "subtema": "5.2 Impactos Ambientais",
+    "ano": 2025,
+    "banca": "ENEM",
+    "enunciado": "CO₂ aumentou 50%. Ação mitigadora para remoção de CO₂ da atmosfera?",
+    "alternativas": [
+      {
+        "letra": "A",
+        "texto": "plantar mais árvores"
+      },
+      {
+        "letra": "B",
+        "texto": "usinas eólicas"
+      },
+      {
+        "letra": "C",
+        "texto": "energia solar"
+      },
+      {
+        "letra": "D",
+        "texto": "manter fósseis no solo"
+      },
+      {
+        "letra": "E",
+        "texto": "menos resíduos sólidos"
+      }
+    ],
+    "gabarito": "A",
+    "tags": [
+      "Aquecimento global",
+      "CO₂",
+      "ação mitigadora"
+    ]
+  },
+  {
+    "id": "enem-2022-2025-Q108",
+    "eixo": "quimica-ambiental",
+    "tema": "saneamento-e-tratamento-de-agua",
+    "subtema": "5.3 Saneamento",
+    "ano": 2022,
+    "banca": "ENEM",
+    "enunciado": "Efluentes com fenol. Solução recomendável para descarte?",
+    "alternativas": [
+      {
+        "letra": "A",
+        "texto": "incinerar"
+      },
+      {
+        "letra": "B",
+        "texto": "aquecer para evaporar"
+      },
+      {
+        "letra": "C",
+        "texto": "armazenar em piscinas"
+      },
+      {
+        "letra": "D",
+        "texto": "extrair e reinserir na produção"
+      },
+      {
+        "letra": "E",
+        "texto": "adicionar água"
+      }
+    ],
+    "gabarito": "D",
+    "tags": [
+      "Descarte de fenol",
+      "efluentes industriais"
+    ]
+  },
+  {
+    "id": "enem-2022-2025-Q123",
+    "eixo": "quimica-ambiental",
+    "tema": "saneamento-e-tratamento-de-agua",
+    "subtema": "5.3 Saneamento",
+    "ano": 2023,
+    "banca": "ENEM",
+    "enunciado": "Reator com bactérias para tratar esgoto. Bactérias externas à espuma realizam nitrificação. Na primeira etapa...",
+    "alternativas": [
+      {
+        "letra": "A",
+        "texto": "converter N₂ em fertilizante"
+      },
+      {
+        "letra": "B",
+        "texto": "usar CO₂ para converter nitrato em N₂"
+      },
+      {
+        "letra": "C",
+        "texto": "transformar matéria orgânica em NH₄⁺"
+      },
+      {
+        "letra": "D",
+        "texto": "capturar N₂ e converter em NH₃"
+      },
+      {
+        "letra": "E",
+        "texto": "usar O₂ para transformar NH₃ em nitrito/nitrato"
+      }
+    ],
+    "gabarito": "E",
+    "tags": [
+      "Tratamento de esgoto",
+      "nitrificação"
+    ]
+  },
+  {
+    "id": "enem-2022-2025-Q135",
+    "eixo": "quimica-ambiental",
+    "tema": "matrizes-energeticas",
+    "subtema": "5.4 Matrizes Energéticas e Combustíveis",
+    "ano": 2022,
+    "banca": "ENEM",
+    "enunciado": "Álcool como biocombustível de cana-de-açúcar. Contribui diretamente para...",
+    "alternativas": [
+      {
+        "letra": "A",
+        "texto": "preservação rios/lagos"
+      },
+      {
+        "letra": "B",
+        "texto": "preservação biodiversidade"
+      },
+      {
+        "letra": "C",
+        "texto": "diminuição camada ozônio"
+      },
+      {
+        "letra": "D",
+        "texto": "preservação espécies"
+      },
+      {
+        "letra": "E",
+        "texto": "diminuição emissão efetiva de CO₂"
+      }
+    ],
+    "gabarito": "E",
+    "tags": [
+      "Biocombustíveis",
+      "etanol"
+    ]
+  },
+  {
+    "id": "enem-2022-2025-Q108",
+    "eixo": "quimica-ambiental",
+    "tema": "matrizes-energeticas",
+    "subtema": "5.4 Matrizes Energéticas e Combustíveis",
+    "ano": 2023,
+    "banca": "ENEM",
+    "enunciado": "Etanol de segunda geração: bagaço de cana, hidrólise enzimática, fermentação. Para evitar rompimento da dorna, remover...",
+    "alternativas": [
+      {
+        "letra": "A",
+        "texto": "Etanol"
+      },
+      {
+        "letra": "B",
+        "texto": "Glicose"
+      },
+      {
+        "letra": "C",
+        "texto": "Ácido lático"
+      },
+      {
+        "letra": "D",
+        "texto": "Ácido pirúvico"
+      },
+      {
+        "letra": "E",
+        "texto": "Dióxido de carbono"
+      }
+    ],
+    "gabarito": "E",
+    "tags": [
+      "Etanol 2ª geração",
+      "fermentação"
+    ]
+  },
+  {
+    "id": "enem-2022-2025-Q111",
+    "eixo": "quimica-ambiental",
+    "tema": "matrizes-energeticas",
+    "subtema": "5.4 Matrizes Energéticas e Combustíveis",
+    "ano": 2025,
+    "banca": "ENEM",
+    "enunciado": "Biodigestão de excrementos animais. Destino sustentável (etapa 4) ajuda a evitar...",
+    "alternativas": [
+      {
+        "letra": "A",
+        "texto": "bioacumulação toxinas"
+      },
+      {
+        "letra": "B",
+        "texto": "eutrofização"
+      },
+      {
+        "letra": "C",
+        "texto": "destruição ozônio"
+      },
+      {
+        "letra": "D",
+        "texto": "inversão térmica"
+      },
+      {
+        "letra": "E",
+        "texto": "chuva ácida"
+      }
+    ],
+    "gabarito": "B",
+    "tags": [
+      "Biodigestão",
+      "biogás"
+    ]
+  },
+  {
+    "id": "enem-2022-2025-Q96",
+    "eixo": "quimica-ambiental",
+    "tema": "residuos-e-reciclagem",
+    "subtema": "5.5 Bioquímica Básica",
+    "ano": 2022,
+    "banca": "ENEM",
+    "enunciado": "Suco (50% polpa) vs néctar (20-30% polpa + açúcar). Qualidade e quantidade de açúcares diferem pois...",
+    "alternativas": [
+      {
+        "letra": "A",
+        "texto": "mais frutose no suco, mais sacarose no néctar"
+      },
+      {
+        "letra": "B",
+        "texto": "mais frutose no néctar, mais sacarose no suco"
+      },
+      {
+        "letra": "C",
+        "texto": "mais sacarose no suco, igual frutose"
+      },
+      {
+        "letra": "D",
+        "texto": "mais frutose no suco, igual sacarose"
+      },
+      {
+        "letra": "E",
+        "texto": "mais frutose no néctar, igual sacarose"
+      }
+    ],
+    "gabarito": "A",
+    "tags": [
+      "Carboidratos",
+      "frutose",
+      "sacarose"
+    ]
+  },
+  {
+    "id": "enem-2022-2025-Q106",
+    "eixo": "quimica-ambiental",
+    "tema": "residuos-e-reciclagem",
+    "subtema": "5.5 Bioquímica Básica",
+    "ano": 2022,
+    "banca": "ENEM",
+    "enunciado": "Fermentação alcoólica (vinho) e lática (iogurte). Em comum...",
+    "alternativas": [
+      {
+        "letra": "A",
+        "texto": "liberação de gases"
+      },
+      {
+        "letra": "B",
+        "texto": "descarboxilação do ácido"
+      },
+      {
+        "letra": "C",
+        "texto": "participação de procariontes"
+      },
+      {
+        "letra": "D",
+        "texto": "oxidação completa"
+      },
+      {
+        "letra": "E",
+        "texto": "formação de produtos metabolizáveis"
+      }
+    ],
+    "gabarito": "E",
+    "tags": [
+      "Fermentação alcoólica e lática"
+    ]
+  }
+]

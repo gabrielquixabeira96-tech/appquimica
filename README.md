@@ -18,7 +18,7 @@ cp .env.example .env.local     # opcional — dá para usar sem nenhuma chave
 npm run dev                    # http://localhost:3000
 ```
 
-Build de produção: `npm run build && npm start`. Requer Node 20.9 ou superior.
+Build de produção: `npm run build && npm start`.
 
 ## 2. Deploy
 
@@ -27,10 +27,7 @@ Nenhuma variável de ambiente é obrigatória. Se quiser que o assistente funcio
 colar chave, adicione em *Settings → Environment Variables* uma destas:
 `GOOGLE_API_KEY`, `OPENAI_API_KEY` ou `ANTHROPIC_API_KEY` (nunca com prefixo `NEXT_PUBLIC_`).
 
-Qualquer host com Node 20.9+ também serve (`npm run build && npm start`).
-
-> O conteúdo é lido do disco, então **publicar conteúdo novo é publicar de novo**: um `git push`
-> dispara o build e o site já sai com o tema ou a questão que você acabou de escrever.
+Qualquer host com Node 20+ também serve (`npm run build && npm start`).
 
 ---
 
@@ -54,13 +51,11 @@ src/
 │  ├─ config/                 chave de API, provedor, modelo, exportar progresso
 │  └─ api/chat/route.ts       proxy de streaming para Gemini / OpenAI / Anthropic
 ├─ components/                UI (todos em português, um arquivo por peça)
-│  └─ mdx/                    os blocos didáticos usados na teoria
 └─ lib/
    ├─ conteudo.ts             leitura de content/ no servidor
    ├─ progresso.ts            progresso do aluno em localStorage
    ├─ markdown.ts             markdown + LaTeX das respostas do assistente
-   ├─ configIA.ts             provedor, chave e modelo no navegador do aluno
-   └─ ai/                     provedores (streaming), persona e montagem de contexto (RAG)
+   └─ ai/                     provedores (streaming) e montagem de contexto (RAG)
 ```
 
 ---
@@ -89,11 +84,8 @@ pegadinhas: ["Usar massa direto na proporção da equação"]
 videos:    [{ titulo: "Aula 1", url: "https://youtu.be/…", duracao: "12min" }]
 materiais: [{ titulo: "Lista 3 comentada", arquivo: "/materiais/lista-3.pdf" }]
 flashcards: [{ frente: "…", verso: "…" }]
-atualizado: "2026-09-21"
 ---
 ```
-
-Todos os campos são opcionais: uma seção da barra lateral só aparece se o campo dela existir.
 
 E o **corpo em MDX**, onde você escreve normalmente e usa os blocos didáticos:
 
@@ -106,11 +98,11 @@ E o **corpo em MDX**, onde você escreve normalmente e usa os blocos didáticos:
 | `<PassoAPasso>` + `<Passo titulo="">` | resolução numerada |
 | `<Detalhe titulo="">` | aprofundamento recolhível |
 | `<Flashcard frente="" verso="">` | card de memorização |
-| `<Video url="" titulo="">` | embed de YouTube (sem cookies) |
+| `<Video url="" titulo="">` | embed de YouTube |
 | `<Colunas>` | duas colunas lado a lado |
 
 Matemática em LaTeX: `$n = m/M$` na linha, `$$…$$` em bloco. Fórmulas químicas: `$\mathrm{H_2SO_4}$`.
-Veja `content/temas/estequiometria.mdx` — ele é o **modelo de formatação** e usa todos os blocos.
+Veja `content/temas/estequiometria.mdx` — ele é o modelo de referência.
 
 ### 4.2 Questões
 
@@ -140,9 +132,7 @@ todos são somados automaticamente):
 ```
 
 O campo `tema` precisa ser um **slug existente** em `content/curriculo.json` — é ele que liga a
-questão à página do tema e ao relatório de desempenho. Um arquivo com JSON inválido é registrado
-no log e pulado, sem derrubar o site. Questões sem `id` ganham um gerado, mas vale defini-lo à
-mão: é a chave do progresso do aluno.
+questão à página do tema e ao relatório de desempenho.
 
 **Importar de planilha:**
 
@@ -152,11 +142,12 @@ npm run importar:xlsx -- minha-planilha.xlsx enem-2026
 
 Colunas esperadas: `Tema | Subtema | Detalhes/Tags | Questão | Ano | Enunciado (Resumo) | Alternativas | Gabarito Sugerido`,
 com uma alternativa por linha na célula (`A) …`). O vínculo com o tema é feito pelo número do
-subtema (ex.: `2.1`). Linhas que não puderam ser convertidas — alternativas em figura, gabarito
-ausente, subtema desconhecido — são listadas no fim com o número da linha, para cadastro manual
-com o campo `imagem`.
+subtema (ex.: `2.1`). Questões cujas alternativas são figuras são puladas com aviso — cadastre-as
+à mão com o campo `imagem`.
 
-Detalhes do formato em `content/questoes/README.md`.
+> O banco já vem com 55 questões do ENEM 2022–2025 importadas da sua planilha, em
+> `content/questoes/enem-2022-2025.json`. Os enunciados estão resumidos: substitua pelo texto
+> integral quando for publicar.
 
 ### 4.3 Materiais do assistente
 
@@ -176,57 +167,31 @@ o item na trilha, o filtro no banco de questões e a entrada no índice que o as
 
 - **Multi-provedor**: Google Gemini, OpenAI e Anthropic, trocáveis em `/config`.
 - **Chave do aluno**: fica apenas no `localStorage` do navegador dele e é usada só na chamada ao
-  provedor. Como alternativa, uma chave de servidor em `.env.local` atende todo mundo. Sem chave
-  nenhuma, o chat responde com erro 401 em português e um link para `/config`.
-- **Streaming real** nos três provedores, normalizado em texto puro pela rota `/api/chat` — o
-  cliente lê pedaços e concatena, sem saber de onde vieram.
+  provedor. Como alternativa, uma chave de servidor em `.env.local` atende todo mundo.
+- **Streaming real** nos três provedores, normalizado em texto puro pela rota `/api/chat`.
 - **Contexto (RAG simples, sem banco vetorial)**: a cada pergunta o servidor monta o índice do
-  curso + a teoria do tema aberto + os trechos mais relevantes dos materiais + até 5 questões do
-  tema como amostra de como a banca cobra. A busca normaliza acentos, remove stopwords em
-  português e fatia os documentos com sobreposição. O contexto é limitado a ~60 mil caracteres.
-- **Postura pedagógica** definida em `src/lib/ai/persona.ts`: constrói do conceito até o ponto
+  curso + a teoria do tema aberto + os trechos mais relevantes dos materiais + exemplos de como a
+  banca cobra o tema. A busca é por palavra-chave com fatiamento de documentos — rápida, sem custo
+  e suficiente para a escala de um curso.
+- **Postura pedagógica** definida em `src/lib/ai/contexto.ts`: constrói do conceito até o ponto
   cobrado, mostra as contas passo a passo, avisa quando a resposta saiu dos materiais e não entrega
   gabarito antes de perguntar o que o aluno tentou. Edite esse texto para mudar o "professor".
 - O conteúdo dos materiais é tratado como **dado**, nunca como instrução (proteção contra injeção
   de prompt em arquivos).
-- O assistente também está em todas as páginas pelo botão flutuante, com atalho **Ctrl/Cmd+K**.
-  Aberto dentro de um tema, ele manda o tema como contexto automaticamente.
 
 ---
 
 ## 6. Progresso do aluno
 
-Tudo no `localStorage` (`qp:progresso`, `qp:config-ia`, `qp:tema`, `qp:chat:*`): temas concluídos,
-respostas, acertos por tema, favoritas e ofensiva de dias. Em `/config` dá para **exportar**,
-**importar** e **apagar** o progresso em JSON.
-
-O hook `useProgresso` é o único ponto que toca o `localStorage`: ele hidrata em `useEffect`
-(nada de storage durante o render), protege toda leitura e escrita com `try/catch` e sincroniza
-as abas abertas por evento.
+Tudo no `localStorage` (`qp:progresso`, `qp:config-ia`, `qp:chat:*`): temas concluídos, respostas,
+acertos por tema, favoritas e ofensiva de dias. Em `/config` dá para **exportar** e **importar** o
+progresso em JSON. Para migrar para contas na nuvem depois, troque o hook `useProgresso` por
+chamadas ao Supabase — nenhum componente precisa mudar.
 
 ---
 
 ## 7. Identidade visual
 
 Tokens em `src/app/globals.css` (`--c-brand`, `--c-accent`, superfícies, linhas) com tema claro e
-escuro. **Trocar a cor do curso = trocar `--c-brand` nos dois blocos.** Tipografia: Fraunces
-(títulos), Inter (texto), JetBrains Mono (rótulos e metadados), carregadas por `<link>` no layout —
-não por `next/font`, que exigiria rede durante o build.
-
-O tema salvo é aplicado por um script inline antes da primeira pintura, então não há flash branco
-ao carregar no modo escuro.
-
----
-
-## 8. E se um dia eu quiser contas de usuário?
-
-Hoje não há banco, login nem backend: o progresso é do navegador. Para migrar:
-
-1. Troque o corpo de `useProgresso` (`src/lib/progresso.ts`) por chamadas ao seu backend —
-   a interface que ele devolve (`progresso`, `responder`, `alternarConcluido`, …) já é o contrato
-   que todos os componentes usam, então **nenhum componente precisa mudar**.
-2. Acrescente autenticação no `layout` e uma rota de sessão.
-3. Mova a chave de API do aluno para o servidor, associada à conta, e pare de enviá-la no corpo
-   da requisição em `src/components/Chat.tsx`.
-
-O conteúdo (`content/`) continua em arquivos versionados nos dois cenários.
+escuro. Trocar a cor do curso = trocar `--c-brand` nos dois blocos. Tipografia: Fraunces (títulos),
+Inter (texto), JetBrains Mono (rótulos e fórmulas inline).
