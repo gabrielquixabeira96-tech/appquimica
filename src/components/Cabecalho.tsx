@@ -18,9 +18,12 @@ export default function Cabecalho() {
   const pathname = usePathname();
   const [escuro, setEscuro] = useState(false);
   const [aberto, setAberto] = useState(false);
+  const [solto, setSolto] = useState(false);
+  const [sobreHeroi, setSobreHeroi] = useState(false);
 
   useEffect(() => setEscuro(document.documentElement.classList.contains('dark')), []);
   useEffect(() => setAberto(false), [pathname]);
+  useEffect(() => { const atualizar = () => { setSolto(window.scrollY > 8); setSobreHeroi(document.documentElement.dataset.heroi === 'on'); }; atualizar(); window.addEventListener('scroll', atualizar, { passive: true }); return () => window.removeEventListener('scroll', atualizar); }, [pathname]);
 
   function alternarTema() {
     const novo = !escuro;
@@ -32,7 +35,7 @@ export default function Cabecalho() {
   }
 
   return (
-    <header className="sticky top-0 z-40 border-b border-line bg-bg/85 backdrop-blur no-print">
+    <header className={`no-print sticky top-0 z-50 transition-all duration-300 ${sobreHeroi ? (solto ? 'border-b border-white/10 bg-black/35 backdrop-blur-md [&_*]:!text-white/85' : 'border-b border-transparent bg-transparent [&_*]:!text-white/85') : (solto ? 'vidro border-b border-line shadow-card' : 'border-b border-transparent bg-transparent')}`}>
       <div className="mx-auto flex max-w-7xl items-center gap-4 px-4 py-3 sm:px-6">
         <Link href="/" className="flex items-center gap-2.5 shrink-0">
           <span className="grid h-9 w-9 place-items-center rounded-xl bg-brand text-brandInk">
