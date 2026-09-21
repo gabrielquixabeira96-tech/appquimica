@@ -16,13 +16,13 @@ export const metadata: Metadata = {
 
 export const viewport: Viewport = {
   themeColor: [
-    { media: '(prefers-color-scheme: light)', color: '#f7f5f0' },
-    { media: '(prefers-color-scheme: dark)', color: '#0c0f10' },
+    { media: '(prefers-color-scheme: light)', color: '#060608' },
+    { media: '(prefers-color-scheme: dark)', color: '#060608' },
   ],
 };
 
 // Evita o flash de tema errado na primeira pintura.
-const SCRIPT_TEMA = `(function(){try{var t=localStorage.getItem('qp:tema');if(t==='dark'||(!t&&matchMedia('(prefers-color-scheme: dark)').matches))document.documentElement.classList.add('dark')}catch(e){}})();`;
+const SCRIPT_TEMA = `(function(){try{var t=localStorage.getItem('qp:tema');if(t!=='light')document.documentElement.classList.add('dark')}catch(e){}})();`;
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
@@ -31,7 +31,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
         <link
-          href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700;9..144,900&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+          href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;800;900&family=Playfair+Display:ital,wght@0,400;0,600;1,400;1,600&family=Space+Mono:wght@400;700&family=Syne:wght@400;500;600;700;800&display=swap"
           rel="stylesheet"
         />
         <script dangerouslySetInnerHTML={{ __html: SCRIPT_TEMA }} />

@@ -6,111 +6,69 @@
 
 @layer base {
   :root {
-    --font-sans: 'Inter', system-ui, sans-serif;
-    --font-display: 'Fraunces', Georgia, serif;
-    --font-mono: 'JetBrains Mono', ui-monospace, monospace;
-
-    /* tema claro — papel de caderno de laboratório */
-    --c-bg: 247 245 240;
-    --c-surface: 255 255 255;
-    --c-surface-2: 240 237 230;
-    --c-line: 222 217 206;
-    --c-ink: 24 27 26;
-    --c-muted: 108 112 108;
-    --c-brand: 13 116 96;
-    --c-brand-ink: 255 255 255;
-    --c-accent: 214 122 47;
-    --c-ok: 21 128 61;
-    --c-warn: 180 120 10;
-    --c-err: 190 45 45;
+    --font-sans: 'Syne', system-ui, sans-serif;
+    --font-display: 'Cinzel', 'Playfair Display', Georgia, serif;
+    --font-mono: 'Space Mono', ui-monospace, monospace;
+    --c-bg: 6 6 8;
+    --c-surface: 18 17 22;
+    --c-surface-2: 26 24 31;
+    --c-line: 63 58 52;
+    --c-ink: 245 242 235;
+    --c-muted: 156 151 143;
+    --c-brand: 212 175 55;
+    --c-brand-ink: 6 6 8;
+    --c-accent: 220 38 38;
+    --c-ok: 104 190 130;
+    --c-warn: 232 203 137;
+    --c-err: 239 68 68;
   }
 
-  .dark {
-    --c-bg: 12 15 16;
-    --c-surface: 22 26 28;
-    --c-surface-2: 31 36 38;
-    --c-line: 50 57 59;
-    --c-ink: 236 238 236;
-    --c-muted: 152 160 158;
-    --c-brand: 45 194 160;
-    --c-brand-ink: 8 20 18;
-    --c-accent: 240 160 80;
-    --c-ok: 74 190 120;
-    --c-warn: 226 178 60;
-    --c-err: 244 110 110;
-  }
-
-  * {
-    @apply border-line;
-  }
-
+  .dark { color-scheme: dark; }
+  * { @apply border-line; }
+  html { @apply bg-bg scroll-smooth; }
   body {
     @apply bg-bg text-ink font-sans antialiased;
+    background-image: radial-gradient(circle at 50% -20%, rgb(var(--c-brand) / .10), transparent 32rem);
   }
-
-  ::selection {
-    background: rgb(var(--c-brand) / 0.25);
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    z-index: 60;
+    pointer-events: none;
+    opacity: .025;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
   }
-
-  h1, h2, h3, h4 {
-    @apply font-display tracking-tight;
-  }
-
-  :focus-visible {
-    @apply outline-none ring-2 ring-brand ring-offset-2 ring-offset-bg rounded;
-  }
+  ::selection { background: rgb(var(--c-accent) / .78); color: white; }
+  h1, h2, h3, h4 { @apply font-display tracking-[.025em]; }
+  :focus-visible { @apply outline-none ring-2 ring-brand ring-offset-2 ring-offset-bg rounded; }
 }
 
 @layer components {
   .card {
     @apply bg-surface border border-line rounded-2xl shadow-card;
+    background-image: linear-gradient(140deg, rgb(255 255 255 / .035), transparent 45%);
   }
-
   .btn {
-    @apply inline-flex items-center justify-center gap-2 rounded-xl border border-line px-4 py-2
-           text-sm font-medium transition-colors hover:bg-surface2 disabled:opacity-40
-           disabled:cursor-not-allowed;
+    @apply inline-flex items-center justify-center gap-2 rounded-full border border-line px-4 py-2 text-xs font-mono uppercase tracking-[.12em] transition-all hover:border-brand hover:text-brand disabled:opacity-40 disabled:cursor-not-allowed;
   }
-
   .btn-primary {
-    @apply bg-brand text-brandInk border-brand hover:opacity-90 hover:bg-brand;
+    @apply bg-brand text-brandInk border-brand hover:bg-brand hover:text-brandInk;
+    box-shadow: 0 5px 22px rgb(var(--c-brand) / .25);
   }
-
   .chip {
-    @apply inline-flex items-center gap-1 rounded-full border border-line bg-surface2 px-2.5 py-1
-           text-xs font-medium text-muted;
+    @apply inline-flex items-center gap-1 rounded-full border border-brand/35 bg-brand/10 px-2.5 py-1 text-xs font-mono uppercase tracking-[.08em] text-brand;
   }
-
-  .label {
-    @apply font-mono text-[10px] uppercase tracking-[0.18em] text-muted;
-  }
-
-  .input {
-    @apply w-full rounded-xl border border-line bg-surface px-3 py-2 text-sm
-           placeholder:text-muted focus:border-brand;
-  }
-
-  /* tipografia da teoria (MDX) */
+  .label { @apply font-mono text-[10px] uppercase tracking-[.18em] text-brand; }
+  .input { @apply w-full rounded-xl border border-line bg-bg/70 px-3 py-2 text-sm placeholder:text-muted focus:border-brand; }
   .prosa {
-    @apply prose prose-neutral dark:prose-invert max-w-content
-           prose-headings:font-display prose-headings:tracking-tight
-           prose-a:text-brand prose-a:no-underline hover:prose-a:underline
-           prose-strong:text-ink
-           prose-code:font-mono prose-code:text-[0.9em] prose-code:before:content-none prose-code:after:content-none
-           prose-img:rounded-xl prose-img:border prose-img:border-line
-           prose-table:text-sm;
+    @apply prose prose-invert max-w-content prose-headings:font-display prose-headings:tracking-[.025em] prose-a:text-brand prose-a:no-underline hover:prose-a:underline prose-strong:text-ink prose-code:font-mono prose-code:text-[.9em] prose-code:before:content-none prose-code:after:content-none prose-img:rounded-xl prose-img:border prose-img:border-line prose-table:text-sm;
   }
 }
 
-/* KaTeX respeita o tema */
 .katex { font-size: 1.04em; }
 .katex-display { @apply overflow-x-auto overflow-y-hidden py-2; }
-
-/* scrollbar discreta */
 ::-webkit-scrollbar { width: 10px; height: 10px; }
 ::-webkit-scrollbar-thumb { background: rgb(var(--c-line)); border-radius: 99px; }
 ::-webkit-scrollbar-track { background: transparent; }
-
-@media print {
-  .no-print { display: none !important; }
-}
+@media print { .no-print { display: none !important; } }
