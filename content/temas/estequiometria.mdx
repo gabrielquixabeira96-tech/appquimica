@@ -1,0 +1,137 @@
+---
+titulo: Estequiometria
+objetivos:
+  - Converter massa, mol, volume de gás e número de partículas sem decorar fórmula
+  - Balancear uma equação e ler a proporção correta entre as substâncias
+  - Resolver questões com reagente limitante, pureza e rendimento
+formulas:
+  - nome: Quantidade de matéria
+    latex: "n = \\frac{m}{M}"
+    quando: a questão dá massa (g) e pede mol, ou o contrário
+  - nome: Número de partículas
+    latex: "N = n \\cdot 6{,}02 \\times 10^{23}"
+    quando: aparecer "quantas moléculas/átomos"
+  - nome: Volume molar (CNTP)
+    latex: "V = n \\cdot 22{,}4\\ \\mathrm{L}"
+    quando: gás nas condições normais de temperatura e pressão
+  - nome: Rendimento
+    latex: "R\\,(\\%) = \\frac{m_{\\text{real}}}{m_{\\text{teórica}}} \\times 100"
+    quando: o enunciado disser que a reação "não foi completa"
+pegadinhas:
+  - Usar a massa direto na proporção da equação — a proporção é em MOL, nunca em grama
+  - Esquecer de balancear antes de montar a regra de três
+  - Assumir que os dois reagentes acabam juntos; quase sempre um deles sobra
+  - Confundir pureza (entra antes da reação) com rendimento (sai depois)
+videos: []
+materiais: []
+flashcards:
+  - frente: O que significa o coeficiente 3 em 3 H₂ + N₂ → 2 NH₃?
+    verso: 3 mols de H₂ reagem com 1 mol de N₂ — proporção em quantidade de matéria, não em massa.
+  - frente: Como identifico o reagente limitante?
+    verso: Divida o mol disponível de cada reagente pelo seu coeficiente. O menor quociente é o limitante.
+  - frente: 1 mol de qualquer gás na CNTP ocupa quanto?
+    verso: 22,4 L — vale para qualquer gás ideal, independente de qual seja.
+atualizado: 2026-09-20
+---
+
+<Objetivos>
+- Transitar entre **massa, mol, volume e partículas** com uma única ponte mental
+- Balancear e **ler** a equação como uma receita
+- Resolver os três complicadores de prova: **limitante, pureza e rendimento**
+</Objetivos>
+
+## O panorama: por que estequiometria existe
+
+Uma equação química é uma receita de bolo escrita em linguagem de átomos. Quando você lê
+
+$$\mathrm{2\,H_2 + O_2 \rightarrow 2\,H_2O}$$
+
+o que está escrito não é "2 gramas de hidrogênio". É **2 porções de moléculas de H₂ para 1 porção de moléculas de O₂**. O problema é prático: ninguém conta moléculas no laboratório — a gente **pesa**. A estequiometria é exatamente a ponte entre o que a receita diz (proporção de partículas) e o que a balança mostra (gramas).
+
+Essa ponte tem um nome: **mol**. Um mol é só um número de contagem, como "dúzia", mas gigante: $6{,}02 \times 10^{23}$ unidades. E a genialidade é que **a massa de 1 mol de qualquer substância, em gramas, é o número que está na tabela periódica**.
+
+<Alerta tipo="dica">
+Guarde o fluxo e você resolve 90% das questões: **grama → mol → (proporção da equação) → mol → grama**. Toda questão de estequiometria é uma caminhada nesse trilho.
+</Alerta>
+
+## O átomo da conta: a relação massa ↔ mol
+
+<Formula nome="Quantidade de matéria" quando="sempre que a questão der massa e você precisar entrar na equação">
+$$n = \frac{m}{M}$$
+</Formula>
+
+onde $n$ é a quantidade de matéria (mol), $m$ a massa (g) e $M$ a massa molar (g/mol), lida direto na tabela periódica.
+
+Exemplo mínimo: a água tem $M = 2(1) + 16 = 18\ \mathrm{g/mol}$. Então 36 g de água são $n = 36/18 = 2$ mol — ou seja, $2 \times 6{,}02 \times 10^{23}$ moléculas.
+
+<Detalhe titulo="Por que a massa molar 'coincide' com a tabela periódica?">
+Porque o mol foi definido assim de propósito. A unidade de massa atômica foi calibrada para que 12 g de carbono-12 contenham exatamente $6{,}02\times10^{23}$ átomos. Isso faz com que ler "16" para o oxigênio signifique, ao mesmo tempo, 16 u por átomo e 16 g por mol. Não é coincidência, é engenharia de unidades.
+</Detalhe>
+
+## Balancear é conservar átomos
+
+A equação só pode ser usada como proporção depois de balanceada, porque átomos não somem nem aparecem. Na prática, no ENEM, quase sempre o balanceamento vem pronto ou é simples — o erro mais comum não é balancear errado, é **esquecer de conferir**.
+
+<Alerta tipo="erro" titulo="Erro clássico">
+Montar a regra de três com os coeficientes **e as massas** ao mesmo tempo. Os coeficientes valem para MOL. Converta para mol, use a proporção, e só então volte para grama.
+</Alerta>
+
+## Como isso cai na prova
+
+<Exemplo titulo="Combustão do etanol">
+**Enunciado.** Quantos gramas de CO₂ são liberados na combustão completa de 92 g de etanol (C₂H₆O)?
+Dados: C = 12, H = 1, O = 16.
+
+<PassoAPasso>
+  <Passo titulo="Escreva e balanceie a equação">
+    $\mathrm{C_2H_6O + 3\,O_2 \rightarrow 2\,CO_2 + 3\,H_2O}$ — confira: 2 C de cada lado, 6 H de cada lado, 7 O de cada lado.
+  </Passo>
+  <Passo titulo="Converta a massa dada em mol">
+    $M_{\mathrm{C_2H_6O}} = 2(12)+6(1)+16 = 46\ \mathrm{g/mol}$, logo $n = 92/46 = 2\ \mathrm{mol}$.
+  </Passo>
+  <Passo titulo="Use a proporção da equação">
+    1 mol de etanol produz 2 mol de CO₂ → 2 mol de etanol produzem **4 mol** de CO₂.
+  </Passo>
+  <Passo titulo="Volte para gramas">
+    $M_{\mathrm{CO_2}} = 44\ \mathrm{g/mol}$, então $m = 4 \times 44 = 176\ \mathrm{g}$.
+  </Passo>
+</PassoAPasso>
+
+**Resposta.** 176 g de CO₂.
+</Exemplo>
+
+## Os três complicadores
+
+### 1. Reagente limitante
+
+Quando a questão dá a quantidade dos **dois** reagentes, ela está avisando que um vai sobrar. A reação para quando o primeiro acaba.
+
+<Formula nome="Teste do limitante" quando="a questão fornece a quantidade de mais de um reagente">
+$$\text{compare } \frac{n_{\text{disponível}}}{\text{coeficiente}} \text{ de cada reagente; o MENOR é o limitante}$$
+</Formula>
+
+Todo o cálculo do produto sai **do limitante**. O outro é o reagente em excesso, e a sobra é a diferença entre o que havia e o que foi consumido.
+
+### 2. Pureza
+
+Amostras reais vêm com impurezas que **não reagem**. A pureza entra **antes** da conta:
+
+$$m_{\text{que reage}} = m_{\text{amostra}} \times \frac{\text{pureza}\,(\%)}{100}$$
+
+Calcário 80% puro, 200 g de amostra → só 160 g de CaCO₃ entram na reação.
+
+### 3. Rendimento
+
+Na prática nem toda a reação se completa. O rendimento entra **depois** da conta:
+
+$$m_{\text{obtida}} = m_{\text{teórica}} \times \frac{R\,(\%)}{100}$$
+
+<Alerta tipo="atencao">
+Pureza **antes**, rendimento **depois**. Se a questão trouxer os dois, o caminho é: massa da amostra → aplica pureza → converte em mol → proporção → massa teórica → aplica rendimento.
+</Alerta>
+
+## Fechamento
+
+Estequiometria não é uma fórmula, é um trilho: **massa → mol → proporção → mol → massa**, com três desvios possíveis (limitante, pureza, rendimento). Se você souber em que ponto do trilho cada desvio entra, a conta vira mecânica.
+
+O próximo tema natural é **Soluções**, onde a mesma lógica aparece com o volume no lugar da massa: em vez de $n = m/M$, você usará $n = c \cdot V$.
