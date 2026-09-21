@@ -37,8 +37,8 @@ export default function PainelProgresso({ curriculo, totalQuestoes }: { curricul
           </div>
 
           <div className="mt-5">
-            <div className="h-2 overflow-hidden rounded-full bg-surface2">
-              <div className="h-full rounded-full bg-brand transition-all" style={{ width: `${pctTemas}%` }} />
+            <div className="barra" role="progressbar" aria-valuenow={pctTemas} aria-valuemin={0} aria-valuemax={100} aria-label="Progresso de temas concluídos">
+              <span style={{ width: `${pctTemas}%` }} />
             </div>
           </div>
 
@@ -46,7 +46,7 @@ export default function PainelProgresso({ curriculo, totalQuestoes }: { curricul
             <div className="mt-5 space-y-2">
               <p className="label">Onde focar agora</p>
               {fracos.map(({ t, pct, acertos: a, total: tt }) => (
-                <Link key={t.slug} href={`/temas/${t.slug}`} className="flex items-center justify-between rounded-xl px-3 py-2 text-sm hover:bg-surface2">
+                <Link key={t.slug} href={`/temas/${t.slug}`} className="flex items-center justify-between rounded-xl border border-transparent px-3 py-2 text-sm transition-colors hover:border-brand/35 hover:bg-brand/5 hover:text-brand">
                   <span>{t.titulo}</span>
                   <span className="font-mono text-xs text-muted">
                     {a}/{tt} · {pct}%
@@ -74,7 +74,7 @@ function Metrica({ Icone, valor, rotulo }: { Icone: React.ElementType; valor: st
   return (
     <div>
       <Icone size={16} className="mb-1.5 text-brand" />
-      <p className="font-display text-2xl font-bold leading-none">{valor}</p>
+      <p className="font-display text-2xl font-semibold tracking-[.02em] leading-none">{valor}</p>
       <p className="mt-1 text-xs text-muted">{rotulo}</p>
     </div>
   );

@@ -22,8 +22,9 @@ export default function TrilhaPage() {
 
   return (
     <div className="mx-auto max-w-5xl px-4 py-10 sm:px-6">
-      <header className="mb-8">
-        <h1 className="font-display text-3xl font-black tracking-tight">Trilha de conteúdos</h1>
+      <header className="mb-8 surgir">
+        <h1 className="titulo-pagina">Trilha de conteúdos</h1>
+        <hr className="regra-ouro my-5" />
         <p className="mt-2 max-w-2xl text-muted">
           A ordem abaixo é a recomendada: cada eixo usa o anterior. Marque o tema como concluído quando terminar a teoria
           <em> e </em> acertar pelo menos 70% das questões dele.

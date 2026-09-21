@@ -77,8 +77,8 @@ export default function BancoQuestoes({ questoes, curriculo }: { questoes: Quest
       {/* filtros */}
       <aside className="lg:sticky lg:top-24 lg:self-start">
         <div className="card space-y-4 p-4">
-          <div className="flex items-center gap-2 text-sm font-semibold">
-            <Filter size={15} /> Filtros
+          <div className="label flex items-center gap-2 text-[11px]">
+            <Filter size={13} /> Filtros
           </div>
 
           <div className="relative">
@@ -174,12 +174,12 @@ export default function BancoQuestoes({ questoes, curriculo }: { questoes: Quest
                 setAba(a.id);
                 setPagina(1);
               }}
-              className={clsx('rounded-full border px-3 py-1.5 text-xs font-medium', aba === a.id ? 'border-brand bg-brand text-brandInk' : 'border-line text-muted hover:text-ink')}
+              className={clsx('aba', aba === a.id && 'aba-ativa')}
             >
               {a.rotulo}
             </button>
           ))}
-          <span className="ml-auto text-sm text-muted">{filtradas.length} questões</span>
+          <span className="ml-auto font-mono text-xs uppercase tracking-[.1em] text-muted">{filtradas.length} questões</span>
         </div>
 
         {visiveis.length === 0 && (

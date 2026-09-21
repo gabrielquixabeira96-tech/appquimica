@@ -37,7 +37,7 @@ export default async function TemaPage({ params }: { params: Promise<{ slug: str
   return (
     <article className="mx-auto max-w-7xl px-4 py-8 sm:px-6">
       {/* cabeçalho */}
-      <header className="mb-8 border-b border-line pb-6">
+      <header className="mb-8 surgir">
         <nav className="label mb-3 flex items-center gap-2">
           <Link href="/trilha" className="hover:text-ink">
             Trilha
@@ -47,10 +47,11 @@ export default async function TemaPage({ params }: { params: Promise<{ slug: str
         </nav>
         <div className="flex flex-wrap items-start justify-between gap-4">
           <div>
-            <h1 className="font-display text-4xl font-black tracking-tight">
+            <h1 className="titulo-pagina">
               <span className="mr-3 font-mono text-xl text-muted">{tema.id}</span>
               {frontmatter.titulo ?? tema.titulo}
             </h1>
+            <hr className="regra-ouro my-5" />
             <p className="mt-2 max-w-2xl text-muted">{tema.resumo}</p>
             <div className="mt-3 flex flex-wrap gap-2">
               {tema.tags.map((t) => (
@@ -97,7 +98,7 @@ export default async function TemaPage({ params }: { params: Promise<{ slug: str
 
           {questoes.length > 0 && (
             <section id="questoes" className="scroll-mt-24">
-              <h2 className="mb-1 font-display text-2xl font-bold">Questões deste tema</h2>
+              <h2 className="titulo-secao mb-1 text-2xl">Questões deste tema</h2>
               <p className="mb-5 text-sm text-muted">{questoes.length} questões · responda e veja o gabarito comentado.</p>
               <QuestoesDoTema questoes={questoes} tema={{ titulo: tema.titulo, slug }} />
             </section>
