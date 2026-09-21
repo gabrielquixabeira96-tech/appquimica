@@ -48,7 +48,7 @@ export default function Home() {
           { href: '/simulado', Icone: Timer, titulo: 'Simulado cronometrado', texto: 'Monte uma prova do tamanho que quiser e receba o relatório.' },
           { href: '/assistente', Icone: Bot, titulo: 'Assistente de química', texto: 'Explica, corrige e puxa exemplos dos materiais do curso.' },
         ].map(({ href, Icone, titulo, texto }) => (
-          <Link key={href} href={href} className="card group p-5 transition-all hover:-translate-y-1 hover:border-brand hover:shadow-[0_20px_50px_rgb(0_0_0_/_0.55),0_0_28px_rgb(var(--c-brand)/.12)]">
+          <Link key={href} href={href} className="card card-interativo group p-5">
             <Icone size={20} className="mb-3 text-brand" />
             <p className="mb-1 font-display text-base font-bold">{titulo}</p>
             <p className="text-sm text-muted">{texto}</p>
@@ -61,7 +61,7 @@ export default function Home() {
 
       {/* eixos */}
       <section className="mx-auto max-w-7xl px-4 pb-20 sm:px-6">
-        <h2 className="mb-1 font-display text-2xl font-bold">Os cinco eixos do curso</h2>
+        <h2 className="mb-1 titulo-secao">Os cinco eixos do curso</h2>
         <p className="mb-6 text-muted">Clique em um eixo para ver seus temas.</p>
         <div className="grid gap-4 md:grid-cols-2">
           {curriculo.eixos.map((eixo) => (

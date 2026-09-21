@@ -13,13 +13,18 @@ export default function AssistentePage() {
   const materiais = listarMateriais();
 
   return (
-    <div className="mx-auto grid max-w-7xl gap-6 px-4 py-10 sm:px-6 lg:grid-cols-[1fr_18rem]">
+    <div className="mx-auto max-w-7xl px-4 py-10 sm:px-6">
+      <header className="mb-8 surgir">
+        <h1 className="titulo-pagina">Assistente de Química</h1>
+        <hr className="regra-ouro my-5" />
+      </header>
+      <div className="grid gap-6 lg:grid-cols-[1fr_18rem]">
       <div className="card overflow-hidden">
         <Chat altura="h-[calc(100vh-14rem)]" />
       </div>
 
       <aside className="space-y-4">
-        <div className="card p-4">
+        <div className="card card-interativo p-4">
           <p className="label mb-2 flex items-center gap-1.5">
             <Bot size={12} /> Como ele responde
           </p>
@@ -31,7 +36,7 @@ export default function AssistentePage() {
           </ul>
         </div>
 
-        <div className="card p-4">
+        <div className="card card-interativo p-4">
           <p className="label mb-2 flex items-center gap-1.5">
             <FolderOpen size={12} /> Materiais indexados ({materiais.length})
           </p>
@@ -51,7 +56,7 @@ export default function AssistentePage() {
           )}
         </div>
 
-        <div className="card p-4">
+        <div className="card card-interativo p-4">
           <p className="label mb-2 flex items-center gap-1.5">
             <ShieldCheck size={12} /> Sua chave de API
           </p>
@@ -64,6 +69,7 @@ export default function AssistentePage() {
           </p>
         </div>
       </aside>
+      </div>
     </div>
   );
 }

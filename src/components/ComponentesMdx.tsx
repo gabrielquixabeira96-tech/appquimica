@@ -28,7 +28,7 @@ export function Alerta({
   const { Icone, classe, titulo: padrao } = ESTILOS[tipo];
   return (
     <div className={clsx('my-5 rounded-2xl border p-4', classe)}>
-      <p className="mb-1 flex items-center gap-2 text-sm font-semibold">
+      <p className="mb-1 flex items-center gap-2 text-sm font-semibold uppercase tracking-[.05em]">
         <Icone size={16} /> {titulo ?? padrao}
       </p>
       <div className="text-sm [&>p:last-child]:mb-0 [&>p]:mb-2">{children}</div>
@@ -49,7 +49,7 @@ export function Formula({ nome, children, quando }: { nome?: string; children: R
 export function Exemplo({ titulo = 'Exemplo resolvido', children }: { titulo?: string; children: React.ReactNode }) {
   return (
     <div className="my-6 rounded-2xl border border-line bg-surface p-4 sm:p-5">
-      <p className="mb-3 flex items-center gap-2 font-display text-base font-bold">
+      <p className="mb-3 flex items-center gap-2 font-display text-base font-semibold uppercase tracking-[.05em]">
         <FlaskConical size={16} className="text-brand" /> {titulo}
       </p>
       <div className="text-sm [&>p:last-child]:mb-0">{children}</div>
@@ -65,7 +65,7 @@ export function Passo({ titulo, children }: { titulo: string; children: React.Re
   return (
     <li className="relative list-none [counter-increment:passo]">
       <span className="absolute -left-[1.85rem] grid h-6 w-6 place-items-center rounded-full bg-brand font-mono text-xs text-brandInk before:content-[counter(passo)]" />
-      <p className="font-semibold">{titulo}</p>
+      <p className="font-semibold uppercase tracking-[.05em]">{titulo}</p>
       <div className="text-sm text-muted [&>p:last-child]:mb-0">{children}</div>
     </li>
   );
@@ -74,7 +74,7 @@ export function Passo({ titulo, children }: { titulo: string; children: React.Re
 export function Objetivos({ children }: { children: React.ReactNode }) {
   return (
     <div className="my-5 rounded-2xl border border-line bg-surface2/60 p-4">
-      <p className="mb-2 flex items-center gap-2 text-sm font-semibold">
+      <p className="mb-2 flex items-center gap-2 text-sm font-semibold uppercase tracking-[.05em]">
         <Target size={15} className="text-brand" /> Ao final deste tema você consegue
       </p>
       <div className="text-sm [&_ul]:my-0">{children}</div>
@@ -99,7 +99,7 @@ export function Detalhe({ titulo, children }: { titulo: string; children: React.
   const [aberto, setAberto] = useState(false);
   return (
     <div className="my-4 overflow-hidden rounded-2xl border border-line">
-      <button onClick={() => setAberto((a) => !a)} className="flex w-full items-center justify-between gap-3 px-4 py-3 text-left text-sm font-medium hover:bg-surface2">
+      <button onClick={() => setAberto((a) => !a)} className="flex w-full items-center justify-between gap-3 px-4 py-3 text-left text-sm font-medium uppercase tracking-[.05em] hover:bg-surface2">
         {titulo}
         <ChevronDown size={16} className={clsx('transition-transform', aberto && 'rotate-180')} />
       </button>

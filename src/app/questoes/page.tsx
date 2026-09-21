@@ -13,8 +13,9 @@ export default function QuestoesPage() {
 
   return (
     <div className="mx-auto max-w-7xl px-4 py-10 sm:px-6">
-      <header className="mb-8">
-        <h1 className="font-display text-3xl font-black tracking-tight">Banco de questões</h1>
+      <header className="mb-8 surgir">
+        <h1 className="titulo-pagina">Banco de questões</h1>
+        <hr className="regra-ouro my-5" />
         <p className="mt-2 max-w-2xl text-muted">
           {questoes.length} questões catalogadas por tema. Responda para ver o gabarito comentado — o que você errar vira
           lista de revisão automaticamente.

@@ -68,8 +68,9 @@ export default function SimuladoCliente({ questoes, curriculo }: { questoes: Que
   if (fase === 'config') {
     return (
       <div className="space-y-6">
-        <header>
-          <h1 className="font-display text-3xl font-black tracking-tight">Simulado cronometrado</h1>
+        <header className="surgir">
+          <h1 className="titulo-pagina">Simulado cronometrado</h1>
+          <hr className="regra-ouro my-5" />
           <p className="mt-2 text-muted">
             Sorteie questões do banco, responda contra o relógio e receba um relatório por tema. O resultado entra no seu
             progresso geral.
@@ -217,7 +218,7 @@ export default function SimuladoCliente({ questoes, curriculo }: { questoes: Que
     <div className="space-y-6">
       <div className="card p-8 text-center">
         <p className="label">Resultado</p>
-        <p className="my-2 font-display text-6xl font-black text-brand">{pct}%</p>
+        <p className="my-2 font-display text-6xl font-semibold tracking-[.02em] text-brand">{pct}%</p>
         <p className="text-muted">
           {acertos} de {sorteadas.length} questões · {sorteadas.length - Object.keys(marcadas).length} em branco
         </p>
@@ -236,8 +237,8 @@ export default function SimuladoCliente({ questoes, curriculo }: { questoes: Que
                     {d.certas}/{d.total}
                   </span>
                 </div>
-                <div className="h-1.5 overflow-hidden rounded-full bg-surface2">
-                  <div className={clsx('h-full rounded-full', p >= 70 ? 'bg-ok' : p >= 40 ? 'bg-warn' : 'bg-err')} style={{ width: `${p}%` }} />
+                <div className="barra" role="progressbar" aria-valuenow={p} aria-valuemin={0} aria-valuemax={100} aria-label={`Desempenho em ${tema}`}>
+                  <span style={{ width: `${p}%` }} />
                 </div>
               </li>
             );
@@ -255,7 +256,7 @@ export default function SimuladoCliente({ questoes, curriculo }: { questoes: Que
       </div>
 
       <section className="space-y-4">
-        <h2 className="font-display text-xl font-bold">Gabarito comentado</h2>
+        <h2 className="titulo-secao">Gabarito comentado</h2>
         {sorteadas.map((q, i) => (
           <QuestaoCard key={q.id} questao={q} numero={i + 1} modo="simulado" marcada={marcadas[q.id] ?? null} revelada />
         ))}

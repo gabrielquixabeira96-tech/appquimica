@@ -29,10 +29,11 @@ export default function TrilhaCliente({ eixos }: { eixos: EixoExt[] }) {
           <section key={eixo.slug}>
             <div className="mb-3 flex items-end justify-between gap-4">
               <div>
-                <p className="label" style={{ color: eixo.cor }}>
+                <p className="label flex items-center gap-2">
+                  <span aria-hidden className="inline-block h-2 w-2 rounded-full" style={{ backgroundColor: eixo.cor }} />
                   Eixo {eixo.id}
                 </p>
-                <h2 className="font-display text-2xl font-bold">{eixo.titulo}</h2>
+                <h2 className="titulo-secao text-2xl">{eixo.titulo}</h2>
                 <p className="mt-1 max-w-2xl text-sm text-muted">{eixo.descricao}</p>
               </div>
               {pronto && (
@@ -42,8 +43,8 @@ export default function TrilhaCliente({ eixos }: { eixos: EixoExt[] }) {
               )}
             </div>
 
-            <div className="h-1.5 overflow-hidden rounded-full bg-surface2">
-              <div className="h-full rounded-full transition-all" style={{ width: `${pct}%`, background: eixo.cor }} />
+            <div className="barra" role="progressbar" aria-valuenow={pct} aria-valuemin={0} aria-valuemax={100} aria-label={`Progresso em ${eixo.titulo}`}>
+              <span style={{ width: `${pct}%` }} />
             </div>
 
             <ul className="mt-4 grid gap-3 md:grid-cols-2">
@@ -53,7 +54,7 @@ export default function TrilhaCliente({ eixos }: { eixos: EixoExt[] }) {
                 const prio = ROTULO_PRIORIDADE[tema.prioridade];
 
                 return (
-                  <li key={tema.slug} className={clsx('card p-4 transition-colors', feito && 'border-brand/50')}>
+                  <li key={tema.slug} className={clsx('card card-interativo p-4', feito && 'border-brand/50')}>
                     <div className="flex items-start gap-3">
                       <button
                         onClick={() => alternarTema(tema.slug)}
@@ -68,8 +69,8 @@ export default function TrilhaCliente({ eixos }: { eixos: EixoExt[] }) {
 
                       <div className="min-w-0 flex-1">
                         <Link href={`/temas/${tema.slug}`} className="block">
-                          <p className="flex items-center gap-2 font-medium leading-tight hover:text-brand">
-                            <span className="font-mono text-xs text-muted">{tema.id}</span>
+                          <p className="flex items-center gap-2 font-display text-[.95rem] uppercase tracking-[.05em] leading-tight transition-colors hover:text-brand">
+                            <span className="font-mono text-xs normal-case tracking-normal text-brand/70">{tema.id}</span>
                             {tema.titulo}
                           </p>
                           <p className="mt-1 text-sm text-muted">{tema.resumo}</p>
@@ -79,14 +80,14 @@ export default function TrilhaCliente({ eixos }: { eixos: EixoExt[] }) {
                           {prio.texto !== 'média' && prio.texto !== 'baixa' && (
                             <span className={clsx('chip', prio.classe)}>{prio.texto}</span>
                           )}
-                          <span className="chip">
+                          <span className="chip chip-neutro">
                             <Clock size={11} /> {tema.horas}h
                           </span>
-                          <span className={clsx('chip', tema.temTeoria ? 'text-ok' : 'opacity-60')}>
+                          <span className={clsx('chip', tema.temTeoria ? 'border-ok/40 bg-ok/10 text-ok' : 'chip-neutro opacity-70')}>
                             <FileText size={11} /> {tema.temTeoria ? 'teoria pronta' : 'teoria pendente'}
                           </span>
                           {tema.questoes > 0 && (
-                            <span className="chip">
+                            <span className="chip chip-neutro">
                               <ListChecks size={11} /> {tema.questoes}q
                               {d.total > 0 && ` · ${Math.round((d.acertos / d.total) * 100)}%`}
                             </span>

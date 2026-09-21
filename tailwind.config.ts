@@ -26,7 +26,7 @@ const config: Config = {
       },
       borderRadius: { xl: '14px', '2xl': '20px' },
       boxShadow: {
-        card: '0 1px 2px rgb(0 0 0 / 0.04), 0 8px 24px -12px rgb(0 0 0 / 0.18)',
+        card: '0 1px 2px rgb(0 0 0 / 0.35), 0 10px 30px -18px rgb(0 0 0 / 0.8)',
       },
       maxWidth: { content: '76ch' },
     },
