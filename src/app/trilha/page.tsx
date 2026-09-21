@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import { getCurriculo, getQuestoes, getTeoria } from '@/lib/conteudo';
-import TrilhaCliente from '@/components/TrilhaCliente';
+import { decorar, numeral } from '@/lib/decoracao';
+import TrilhaCliente, { type AlaCompleta } from '@/components/TrilhaCliente';
 
 export const metadata: Metadata = {
   title: 'Trilha de conteúdos',
@@ -10,26 +11,55 @@ export const metadata: Metadata = {
 export default function TrilhaPage() {
   const curriculo = getCurriculo();
   const questoes = getQuestoes();
+  const totalTemas = curriculo.eixos.reduce((s, e) => s + e.temas.length, 0);
 
-  const dados = curriculo.eixos.map((eixo) => ({
-    ...eixo,
-    temas: eixo.temas.map((tema) => ({
-      ...tema,
-      questoes: questoes.filter((q) => q.tema === tema.slug).length,
-      temTeoria: getTeoria(tema.slug).existe,
-    })),
-  }));
+  const alas: AlaCompleta[] = curriculo.eixos.map((eixo, i) => {
+    const { roman } = decorar(i);
+    return {
+      slug: eixo.slug,
+      titulo: eixo.titulo,
+      descricao: eixo.descricao,
+      roman,
+      num: numeral(i),
+      temas: eixo.temas.map((tema) => ({
+        slug: tema.slug,
+        titulo: tema.titulo,
+        prioridade: tema.prioridade,
+        questoes: questoes.filter((q) => q.tema === tema.slug).length,
+        temTeoria: getTeoria(tema.slug).existe,
+      })),
+    };
+  });
 
   return (
-    <div className="mx-auto max-w-5xl px-4 py-10 sm:px-6">
-      <header className="mb-8">
-        <h1 className="font-display text-3xl font-black tracking-tight">Trilha de conteúdos</h1>
-        <p className="mt-2 max-w-2xl text-muted">
-          A ordem abaixo é a recomendada: cada eixo usa o anterior. Marque o tema como concluído quando terminar a teoria
-          <em> e </em> acertar pelo menos 70% das questões dele.
-        </p>
-      </header>
-      <TrilhaCliente eixos={dados} />
-    </div>
+    <>
+      {/* o pórtico: a colunata iluminada sobre o gradiente */}
+      <section className="relative overflow-hidden">
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          className="kb absolute inset-0 h-full w-full object-cover"
+          src="/templo/colunata.jpg"
+          alt="Colunata luminosa de mármore"
+          style={{ opacity: 0.5, filter: 'sepia(0.15)' }}
+        />
+        <div
+          className="absolute inset-0"
+          style={{ background: 'linear-gradient(180deg, rgb(var(--c-bg) / 0.45), rgb(var(--c-bg) / 0.95))' }}
+        />
+        <div className="relative mx-auto max-w-[980px] px-4 py-16 sm:px-6">
+          <div className="text-xs uppercase tracking-[0.3em] text-ivoryWarm">
+            Cinco alas · {totalTemas} temas
+          </div>
+          <h1 className="my-2 font-display text-[clamp(44px,6vw,76px)] font-normal text-ivory">A trilha</h1>
+          <p className="max-w-[60ch] leading-[1.6] text-[rgb(var(--c-n200))]">
+            Marque um tema como concluído na caixa; o nome abre a teoria. As alas se iluminam conforme você avança.
+          </p>
+        </div>
+      </section>
+
+      <main className="mx-auto max-w-[980px] px-4 pb-14 pt-6 sm:px-6">
+        <TrilhaCliente alas={alas} />
+      </main>
+    </>
   );
 }

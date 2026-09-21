@@ -2,7 +2,6 @@
 
 import { useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
-import { Send, Square, Trash2, Sparkles, AlertTriangle } from 'lucide-react';
 import clsx from 'clsx';
 import { useConfigIA, usePersistido } from '@/lib/progresso';
 import { PROVEDORES } from '@/lib/ai/provedores';
@@ -97,29 +96,39 @@ export default function Chat({
 
   return (
     <div className={clsx('flex flex-col', altura)}>
-      <div className="flex items-center gap-2 border-b border-line px-4 py-2.5 text-xs text-muted">
-        <Sparkles size={14} className="text-brand" />
+      <div
+        className="flex items-baseline gap-3 border-b px-5 py-3 text-[13px] text-[rgb(var(--c-n400))]"
+        style={{ borderBottomColor: 'rgb(var(--c-ivory) / 0.3)' }}
+      >
+        <span className="text-[rgb(var(--c-n300))]">✳</span>
         <span>
           {PROVEDORES[config.provider].nome}
           {tituloTema ? ` · contexto: ${tituloTema}` : ' · contexto: curso inteiro'}
         </span>
         {mensagens.length > 0 && (
-          <button onClick={() => setMensagens([])} className="ml-auto flex items-center gap-1 hover:text-ink">
-            <Trash2 size={13} /> limpar
+          <button
+            onClick={() => setMensagens([])}
+            className="ml-auto border-b border-transparent hover:border-[rgb(var(--c-n300))] hover:text-ivory"
+          >
+            limpar
           </button>
         )}
       </div>
 
-      <div className="flex-1 space-y-4 overflow-y-auto px-4 py-5">
+      <div className="flex flex-1 flex-col gap-5 overflow-y-auto px-5 py-6">
         {mensagens.length === 0 && !parcial && (
-          <div className="space-y-4">
-            <p className="text-sm text-muted">
+          <div className="flex flex-col gap-4">
+            <p className="text-[15px] leading-[1.65] text-[rgb(var(--c-n300))]">
               Pergunte qualquer coisa de química. O assistente responde usando os materiais que estão em{' '}
-              <code className="font-mono text-xs">content/materiais/</code> e a teoria dos temas.
+              <code className="font-mono text-[13px]">content/materiais/</code> e a teoria dos temas.
             </p>
             <div className="grid gap-2 sm:grid-cols-2">
               {SUGESTOES.map((s) => (
-                <button key={s} onClick={() => enviar(s)} className="card px-3 py-2.5 text-left text-sm hover:border-brand">
+                <button
+                  key={s}
+                  onClick={() => enviar(s)}
+                  className="card px-4 py-3 text-left text-[15px] leading-[1.5] text-[rgb(var(--c-n200))] transition-colors hover:border-[rgb(var(--c-n300))] hover:text-ivory"
+                >
                   {s}
                 </button>
               ))}
@@ -131,26 +140,28 @@ export default function Chat({
           <Balao key={i} papel={m.role} conteudo={m.content} />
         ))}
         {parcial && <Balao papel="assistant" conteudo={parcial} digitando />}
-        {carregando && !parcial && <p className="text-sm text-muted">pensando…</p>}
+        {carregando && !parcial && (
+          <p className="text-[13px] italic text-[rgb(var(--c-n500))]">O assistente está lendo os materiais…</p>
+        )}
 
         {erro && (
-          <div className="flex items-start gap-2 rounded-xl border border-err/40 bg-err/10 p-3 text-sm text-err">
-            <AlertTriangle size={16} className="mt-0.5 shrink-0" />
-            <span>
-              {erro}{' '}
-              <Link href="/config" className="underline">
-                Abrir configurações
-              </Link>
-            </span>
+          <div className="card p-4 text-[15px] text-err" style={{ borderColor: 'rgb(var(--c-err) / 0.5)' }}>
+            {erro}{' '}
+            <Link href="/config" className="underline decoration-1 underline-offset-4">
+              Abrir configurações
+            </Link>
           </div>
         )}
         <div ref={fimRef} />
       </div>
 
       {!temChave && (
-        <p className="border-t border-line bg-surface2 px-4 py-2 text-xs text-muted">
+        <p
+          className="border-t px-5 py-2.5 text-[13px] text-[rgb(var(--c-n400))]"
+          style={{ borderTopColor: 'rgb(var(--c-ivory) / 0.16)' }}
+        >
           Nenhuma chave de API salva neste navegador —{' '}
-          <Link href="/config" className="underline">
+          <Link href="/config" className="underline decoration-1 underline-offset-4 hover:text-ivory">
             configure em 30 segundos
           </Link>
           . (Se o servidor já tiver chave própria, pode ignorar.)
@@ -162,7 +173,8 @@ export default function Chat({
           e.preventDefault();
           enviar(entrada);
         }}
-        className="flex items-end gap-2 border-t border-line p-3"
+        className="flex items-end gap-3 border-t p-4"
+        style={{ borderTopColor: 'rgb(var(--c-ivory) / 0.3)' }}
       >
         <textarea
           value={entrada}
@@ -174,16 +186,17 @@ export default function Chat({
             }
           }}
           rows={1}
-          placeholder="Escreva sua dúvida…  (Enter envia, Shift+Enter quebra linha)"
+          placeholder="Pergunte sobre qualquer tema do curso…"
+          aria-label="Sua pergunta"
           className="input max-h-40 flex-1 resize-none"
         />
         {carregando ? (
-          <button type="button" onClick={() => abortRef.current?.abort()} className="btn px-3" aria-label="Parar">
-            <Square size={16} />
+          <button type="button" onClick={() => abortRef.current?.abort()} className="btn btn-sm">
+            Parar
           </button>
         ) : (
-          <button type="submit" disabled={!entrada.trim()} className="btn btn-primary px-3" aria-label="Enviar">
-            <Send size={16} />
+          <button type="submit" disabled={!entrada.trim()} className="btn btn-primary btn-sm">
+            Enviar
           </button>
         )}
       </form>
@@ -192,22 +205,20 @@ export default function Chat({
 }
 
 function Balao({ papel, conteudo, digitando }: { papel: 'user' | 'assistant'; conteudo: string; digitando?: boolean }) {
-  if (papel === 'user') {
-    return (
-      <div className="flex justify-end">
-        <div className="max-w-[85%] rounded-2xl rounded-br-sm bg-brand px-4 py-2.5 text-sm text-brandInk">{conteudo}</div>
-      </div>
-    );
-  }
+  const meu = papel === 'user';
   return (
-    <div className="flex gap-3">
-      <span className="mt-1 grid h-7 w-7 shrink-0 place-items-center rounded-lg bg-surface2 text-brand">
-        <Sparkles size={14} />
-      </span>
-      <div
-        className="min-w-0 flex-1 text-sm leading-relaxed [&_p:first-child]:mt-0"
-        dangerouslySetInnerHTML={{ __html: renderizarMarkdown(conteudo) + (digitando ? '<span class="animate-pulse">▍</span>' : '') }}
-      />
+    <div className={meu ? 'msg-a' : 'msg-t'}>
+      <div className="mb-1 text-[11px] uppercase tracking-[0.16em] text-ivoryWarm">{meu ? 'Você' : 'Assistente'}</div>
+      {meu ? (
+        conteudo
+      ) : (
+        <div
+          className="[&_p:first-child]:mt-0 [&_p:last-child]:mb-0"
+          dangerouslySetInnerHTML={{
+            __html: renderizarMarkdown(conteudo) + (digitando ? '<span class="animate-pulse">▍</span>' : ''),
+          }}
+        />
+      )}
     </div>
   );
 }

@@ -1,19 +1,18 @@
 'use client';
 
 import { useState } from 'react';
-import { Lightbulb, AlertTriangle, Info, FlaskConical, Target, ChevronDown } from 'lucide-react';
 import clsx from 'clsx';
 
 /**
  * Blocos didáticos disponíveis dentro dos arquivos .mdx de content/temas/.
- * Use-os para que a teoria não vire um muro de texto.
+ * Todos desenham com traço e régua — nenhum deles preenche a página de cor.
  */
 
-const ESTILOS = {
-  dica: { Icone: Lightbulb, classe: 'border-brand/40 bg-brand/5', titulo: 'Dica de prova' },
-  atencao: { Icone: AlertTriangle, classe: 'border-warn/40 bg-warn/10', titulo: 'Atenção' },
-  info: { Icone: Info, classe: 'border-line bg-surface2', titulo: 'Para saber mais' },
-  erro: { Icone: AlertTriangle, classe: 'border-err/40 bg-err/10', titulo: 'Erro clássico' },
+const ALERTAS = {
+  dica: { titulo: 'Dica de prova', borda: 'rgb(var(--c-n300))', rotulo: 'text-ivoryWarm' },
+  atencao: { titulo: 'Atenção', borda: 'rgb(var(--c-warn))', rotulo: 'text-warn' },
+  info: { titulo: 'Para saber mais', borda: 'rgb(var(--c-ivory) / 0.26)', rotulo: 'text-ivoryWarm' },
+  erro: { titulo: 'Erro clássico', borda: 'rgb(var(--c-err))', rotulo: 'text-err' },
 } as const;
 
 export function Alerta({
@@ -21,90 +20,132 @@ export function Alerta({
   titulo,
   children,
 }: {
-  tipo?: keyof typeof ESTILOS;
+  tipo?: keyof typeof ALERTAS;
   titulo?: string;
   children: React.ReactNode;
 }) {
-  const { Icone, classe, titulo: padrao } = ESTILOS[tipo];
+  const { titulo: padrao, borda, rotulo } = ALERTAS[tipo];
   return (
-    <div className={clsx('my-5 rounded-2xl border p-4', classe)}>
-      <p className="mb-1 flex items-center gap-2 text-sm font-semibold">
-        <Icone size={16} /> {titulo ?? padrao}
-      </p>
-      <div className="text-sm [&>p:last-child]:mb-0 [&>p]:mb-2">{children}</div>
+    <div className="card my-6 p-5" style={{ borderColor: borda }}>
+      <p className={clsx('kick mb-2', rotulo)}>{titulo ?? padrao}</p>
+      <div className="text-[15px] leading-[1.6] [&>p:last-child]:mb-0 [&>p]:mb-2">{children}</div>
     </div>
   );
 }
 
+/** A fórmula gravada numa placa escura, com moldura dupla e o § fantasma. */
 export function Formula({ nome, children, quando }: { nome?: string; children: React.ReactNode; quando?: string }) {
   return (
-    <div className="my-5 overflow-hidden rounded-2xl border border-line">
-      {nome && <p className="label border-b border-line bg-surface2 px-4 py-2">{nome}</p>}
-      <div className="px-4 py-3 text-center">{children}</div>
-      {quando && <p className="border-t border-line bg-surface2 px-4 py-2 text-xs text-muted">Use quando: {quando}</p>}
+    <div
+      className="relative my-7 overflow-hidden rounded-sm bg-surface px-6 py-7 text-center"
+      style={{
+        border: '1px solid rgb(var(--c-ivory) / 0.45)',
+        outline: '1px solid rgb(var(--c-ivory) / 0.22)',
+        outlineOffset: '6px',
+      }}
+    >
+      <div className="ghost left-3 top-2 text-[56px]">§</div>
+      <div className="relative font-display text-[34px] italic text-ivoryWarm">{children}</div>
+      {nome && <div className="kick relative mt-3">{nome}</div>}
+      {quando && (
+        <div className="relative mt-2 text-xs uppercase tracking-[0.18em] text-[rgb(var(--c-n300))]">
+          Use quando: {quando}
+        </div>
+      )}
     </div>
   );
 }
 
 export function Exemplo({ titulo = 'Exemplo resolvido', children }: { titulo?: string; children: React.ReactNode }) {
   return (
-    <div className="my-6 rounded-2xl border border-line bg-surface p-4 sm:p-5">
-      <p className="mb-3 flex items-center gap-2 font-display text-base font-bold">
-        <FlaskConical size={16} className="text-brand" /> {titulo}
-      </p>
-      <div className="text-sm [&>p:last-child]:mb-0">{children}</div>
+    <div className="my-8">
+      <h3 className="mb-3 font-display text-[28px] font-semibold text-ivory">{titulo}</h3>
+      <div className="text-[15px] leading-[1.6] [&>p:last-child]:mb-0">{children}</div>
     </div>
   );
 }
 
+/** Passos numerados: numeral em Cormorant, cada degrau separado por hairline. */
 export function PassoAPasso({ children }: { children: React.ReactNode }) {
-  return <ol className="my-5 space-y-3 border-l-2 border-brand/30 pl-5 [counter-reset:passo]">{children}</ol>;
+  return <ol className="my-5 list-none p-0 [counter-reset:passo]">{children}</ol>;
 }
 
 export function Passo({ titulo, children }: { titulo: string; children: React.ReactNode }) {
   return (
-    <li className="relative list-none [counter-increment:passo]">
-      <span className="absolute -left-[1.85rem] grid h-6 w-6 place-items-center rounded-full bg-brand font-mono text-xs text-brandInk before:content-[counter(passo)]" />
-      <p className="font-semibold">{titulo}</p>
-      <div className="text-sm text-muted [&>p:last-child]:mb-0">{children}</div>
+    <li
+      className="flex list-none gap-4 border-b py-3.5 [counter-increment:passo] last:border-b-0"
+      style={{ borderBottomColor: 'rgb(var(--c-ivory) / 0.12)' }}
+    >
+      <span className="font-display text-[22px] text-ivoryWarm tnum before:content-[counter(passo)]" />
+      <div className="min-w-0 text-[15px] leading-[1.6]">
+        <strong className="font-semibold text-ivory">{titulo}</strong>{' '}
+        <span className="[&>p:first-child]:inline [&>p:last-child]:mb-0">{children}</span>
+      </div>
     </li>
   );
 }
 
 export function Objetivos({ children }: { children: React.ReactNode }) {
   return (
-    <div className="my-5 rounded-2xl border border-line bg-surface2/60 p-4">
-      <p className="mb-2 flex items-center gap-2 text-sm font-semibold">
-        <Target size={15} className="text-brand" /> Ao final deste tema você consegue
-      </p>
-      <div className="text-sm [&_ul]:my-0">{children}</div>
+    <div className="card my-6 p-5">
+      <p className="kick mb-2">Ao final deste tema você consegue</p>
+      <div className="text-[15px] leading-[1.7] [&_ul]:my-0">{children}</div>
     </div>
   );
 }
 
+/** Flashcard com virada 3D de verdade — frente e verso em faces opostas. */
 export function Flashcard({ frente, verso }: { frente: string; verso: string }) {
   const [virado, setVirado] = useState(false);
+
   return (
-    <button
-      onClick={() => setVirado((v) => !v)}
-      className="my-3 w-full rounded-2xl border border-line bg-surface p-5 text-left transition-colors hover:border-brand"
-    >
-      <p className="label mb-1">{virado ? 'resposta' : 'pergunta — clique para virar'}</p>
-      <p className="text-sm">{virado ? verso : frente}</p>
-    </button>
+    <div className="flipw my-4">
+      <div
+        role="button"
+        tabIndex={0}
+        aria-pressed={virado}
+        onClick={() => setVirado((v) => !v)}
+        onKeyDown={(e) => {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            setVirado((v) => !v);
+          }
+        }}
+        className={clsx('flip', virado && 'flip-on')}
+      >
+        <div className="fface">
+          <div className="kick flex justify-between">
+            <span>Flashcard</span>
+            <span>frente</span>
+          </div>
+          <p className="mt-3 font-display text-[22px] leading-[1.35] text-ivory">{frente}</p>
+          <div className="mt-auto text-xs text-[rgb(var(--c-n500))]">Clique para virar</div>
+        </div>
+
+        <div className="fface fback">
+          <div className="kick flex justify-between">
+            <span>Flashcard</span>
+            <span>verso</span>
+          </div>
+          <p className="mt-3 text-[15px] leading-[1.55] text-[rgb(var(--c-n200))]">{verso}</p>
+          <div className="mt-auto text-xs text-[rgb(var(--c-n500))]">Clique para voltar</div>
+        </div>
+      </div>
+    </div>
   );
 }
 
 export function Detalhe({ titulo, children }: { titulo: string; children: React.ReactNode }) {
-  const [aberto, setAberto] = useState(false);
   return (
-    <div className="my-4 overflow-hidden rounded-2xl border border-line">
-      <button onClick={() => setAberto((a) => !a)} className="flex w-full items-center justify-between gap-3 px-4 py-3 text-left text-sm font-medium hover:bg-surface2">
+    <details
+      className="my-6 border-t pt-3.5"
+      style={{ borderTopColor: 'rgb(var(--c-ivory) / 0.15)' }}
+    >
+      <summary className="cursor-pointer font-display text-[19px] text-ivory marker:text-[rgb(var(--c-n500))]">
         {titulo}
-        <ChevronDown size={16} className={clsx('transition-transform', aberto && 'rotate-180')} />
-      </button>
-      {aberto && <div className="border-t border-line px-4 py-3 text-sm">{children}</div>}
-    </div>
+      </summary>
+      <div className="mt-3 text-[15px] leading-[1.65]">{children}</div>
+    </details>
   );
 }
 
@@ -112,8 +153,8 @@ export function Video({ url, titulo }: { url: string; titulo?: string }) {
   const id = url.match(/(?:v=|youtu\.be\/|embed\/)([\w-]{11})/)?.[1];
   if (!id) return <a href={url}>{titulo ?? url}</a>;
   return (
-    <figure className="my-5">
-      <div className="aspect-video overflow-hidden rounded-2xl border border-line">
+    <figure className="plated my-6">
+      <div className="aspect-video overflow-hidden">
         <iframe
           src={`https://www.youtube-nocookie.com/embed/${id}`}
           title={titulo ?? 'Vídeo'}
@@ -122,12 +163,13 @@ export function Video({ url, titulo }: { url: string; titulo?: string }) {
           className="h-full w-full"
         />
       </div>
-      {titulo && <figcaption className="mt-2 text-xs text-muted">{titulo}</figcaption>}
+      {titulo && (
+        <figcaption className="mt-2.5 text-xs text-[rgb(var(--c-n400))]">{titulo}</figcaption>
+      )}
     </figure>
   );
 }
 
 export function Colunas({ children }: { children: React.ReactNode }) {
-  return <div className="my-5 grid gap-4 sm:grid-cols-2">{children}</div>;
+  return <div className="my-6 grid gap-6 sm:grid-cols-2">{children}</div>;
 }
-

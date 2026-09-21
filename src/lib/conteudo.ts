@@ -44,6 +44,14 @@ export function getTeoria(slug: string): TeoriaTema {
   return { frontmatter: data as TemaFrontmatter, mdx: content, existe: content.trim().length > 0 };
 }
 
+/** dd/mm/aaaa a partir do que o YAML devolveu (Date sem aspas, string com aspas). */
+export function formatarData(valor?: string | Date): string | null {
+  if (!valor) return null;
+  const d = valor instanceof Date ? valor : new Date(valor);
+  if (Number.isNaN(d.getTime())) return String(valor);
+  return d.toLocaleDateString('pt-BR', { day: '2-digit', month: '2-digit', year: 'numeric', timeZone: 'UTC' });
+}
+
 /* ─────────────────────── banco de questões ─────────────────── */
 
 let cacheQuestoes: Questao[] | null = null;

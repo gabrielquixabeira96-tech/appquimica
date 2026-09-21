@@ -34,7 +34,8 @@ export interface TemaFrontmatter {
   materiais?: { titulo: string; arquivo: string; tipo?: string }[];
   flashcards?: { frente: string; verso: string }[];
   pegadinhas?: string[];
-  atualizado?: string;
+  /** YAML sem aspas (2026-09-20) é lido como Date; com aspas, como string. */
+  atualizado?: string | Date;
 }
 
 export type Letra = 'A' | 'B' | 'C' | 'D' | 'E';

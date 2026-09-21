@@ -3,77 +3,69 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useEffect, useState } from 'react';
-import { Atom, BookOpen, ListChecks, Timer, Bot, Settings, Moon, Sun, Menu, X } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
 import clsx from 'clsx';
 
 const LINKS = [
-  { href: '/trilha', rotulo: 'Trilha', Icone: BookOpen },
-  { href: '/questoes', rotulo: 'Questões', Icone: ListChecks },
-  { href: '/simulado', rotulo: 'Simulado', Icone: Timer },
-  { href: '/assistente', rotulo: 'Assistente', Icone: Bot },
-  { href: '/config', rotulo: 'Config', Icone: Settings },
+  { href: '/', rotulo: 'Início' },
+  { href: '/trilha', rotulo: 'Trilha' },
+  { href: '/questoes', rotulo: 'Questões' },
+  { href: '/simulado', rotulo: 'Simulado' },
+  { href: '/assistente', rotulo: 'Assistente' },
+  { href: '/config', rotulo: 'Config' },
 ];
 
 export default function Cabecalho() {
   const pathname = usePathname();
-  const [escuro, setEscuro] = useState(false);
   const [aberto, setAberto] = useState(false);
 
-  useEffect(() => setEscuro(document.documentElement.classList.contains('dark')), []);
   useEffect(() => setAberto(false), [pathname]);
 
-  function alternarTema() {
-    const novo = !escuro;
-    setEscuro(novo);
-    document.documentElement.classList.toggle('dark', novo);
-    try {
-      localStorage.setItem('qp:tema', novo ? 'dark' : 'light');
-    } catch {}
-  }
+  // '/' só acende na home; as demais acendem em qualquer rota-filha.
+  const ativo = (href: string) => (href === '/' ? pathname === '/' : pathname.startsWith(href));
 
   return (
-    <header className="sticky top-0 z-40 border-b border-line bg-bg/85 backdrop-blur no-print">
-      <div className="mx-auto flex max-w-7xl items-center gap-4 px-4 py-3 sm:px-6">
-        <Link href="/" className="flex items-center gap-2.5 shrink-0">
-          <span className="grid h-9 w-9 place-items-center rounded-xl bg-brand text-brandInk">
-            <Atom size={19} />
-          </span>
-          <span className="leading-tight">
-            <span className="block font-display text-lg font-bold">Química</span>
-            <span className="label">ENEM &amp; Vestibulares</span>
+    <header
+      className="no-print sticky top-0 z-40 border-b backdrop-blur-[10px]"
+      style={{
+        background: 'color-mix(in srgb, rgb(var(--c-surface)) 88%, transparent)',
+        borderBottomColor: 'rgb(var(--c-ivory) / 0.35)',
+      }}
+    >
+      <div className="mx-auto flex max-w-[1160px] items-center gap-6 px-4 py-3 sm:px-6">
+        <Link href="/" className="shrink-0 font-display text-xl font-medium tracking-[0.06em] text-ivory">
+          Q<span className="text-[rgb(var(--c-n300))]">v</span>ímica{' '}
+          <span className="ml-1.5 hidden text-xs tracking-[0.2em] text-[rgb(var(--c-n400))] sm:inline">
+            ENEM &amp; VESTIBVLARES
           </span>
         </Link>
 
-        <nav className="ml-auto hidden items-center gap-1 md:flex">
-          {LINKS.map(({ href, rotulo, Icone }) => (
-            <Link
-              key={href}
-              href={href}
-              className={clsx(
-                'flex items-center gap-2 rounded-xl px-3 py-2 text-sm font-medium transition-colors',
-                pathname.startsWith(href) ? 'bg-surface2 text-ink' : 'text-muted hover:bg-surface2 hover:text-ink',
-              )}
-            >
-              <Icone size={16} />
+        <nav className="ml-auto hidden flex-wrap items-center gap-4 md:flex">
+          {LINKS.map(({ href, rotulo }) => (
+            <Link key={href} href={href} className={clsx('nv', ativo(href) && 'nv-on')}>
               {rotulo}
             </Link>
           ))}
         </nav>
 
-        <button onClick={alternarTema} className="btn ml-auto px-2.5 md:ml-0" aria-label="Alternar tema">
-          {escuro ? <Sun size={16} /> : <Moon size={16} />}
-        </button>
-
-        <button onClick={() => setAberto((a) => !a)} className="btn px-2.5 md:hidden" aria-label="Menu">
-          {aberto ? <X size={16} /> : <Menu size={16} />}
+        <button
+          onClick={() => setAberto((a) => !a)}
+          className="btn btn-sm ml-auto px-3 md:hidden"
+          aria-label="Menu"
+          aria-expanded={aberto}
+        >
+          {aberto ? <X size={15} /> : <Menu size={15} />}
         </button>
       </div>
 
       {aberto && (
-        <nav className="grid gap-1 border-t border-line px-4 py-3 md:hidden">
-          {LINKS.map(({ href, rotulo, Icone }) => (
-            <Link key={href} href={href} className="flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm hover:bg-surface2">
-              <Icone size={16} /> {rotulo}
+        <nav
+          className="grid gap-1 border-t px-4 py-3 md:hidden"
+          style={{ borderTopColor: 'rgb(var(--c-ivory) / 0.2)' }}
+        >
+          {LINKS.map(({ href, rotulo }) => (
+            <Link key={href} href={href} className={clsx('nv py-2.5', ativo(href) && 'nv-on')}>
+              {rotulo}
             </Link>
           ))}
         </nav>

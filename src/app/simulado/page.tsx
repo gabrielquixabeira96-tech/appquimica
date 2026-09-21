@@ -8,9 +8,6 @@ export const metadata: Metadata = {
 };
 
 export default function SimuladoPage() {
-  return (
-    <div className="mx-auto max-w-4xl px-4 py-10 sm:px-6">
-      <SimuladoCliente questoes={getQuestoes()} curriculo={getCurriculo()} />
-    </div>
-  );
+  // O componente traz a própria moldura: cada fase do simulado tem a sua.
+  return <SimuladoCliente questoes={getQuestoes()} curriculo={getCurriculo()} />;
 }

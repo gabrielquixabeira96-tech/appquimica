@@ -12,15 +12,27 @@ export default function QuestoesPage() {
   const curriculo = getCurriculo();
 
   return (
-    <div className="mx-auto max-w-7xl px-4 py-10 sm:px-6">
-      <header className="mb-8">
-        <h1 className="font-display text-3xl font-black tracking-tight">Banco de questões</h1>
-        <p className="mt-2 max-w-2xl text-muted">
-          {questoes.length} questões catalogadas por tema. Responda para ver o gabarito comentado — o que você errar vira
-          lista de revisão automaticamente.
-        </p>
-      </header>
+    <main className="relative mx-auto max-w-[860px] overflow-hidden px-4 py-12 sm:px-6">
+      <div className="ghost -right-5 top-2 text-[180px]">?</div>
+
+      <div className="kick">Acervo</div>
+      <h1 className="my-1 font-display text-[clamp(40px,5vw,56px)] font-normal text-ivory">Banco de questões</h1>
+      <p className="mb-7 text-[rgb(var(--c-n400))]">
+        {questoes.length} questões catalogadas por tema. Responda e receba o comentário na hora — a estrela guarda a
+        questão na sua lista de revisão.
+      </p>
+
+      <figure className="plated">
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src="/templo/patio.jpg"
+          alt="Pátio com fonte e estátuas"
+          className="h-[180px] object-cover"
+          style={{ objectPosition: 'center 60%' }}
+        />
+      </figure>
+
       <BancoQuestoes questoes={questoes} curriculo={curriculo} />
-    </div>
+    </main>
   );
 }

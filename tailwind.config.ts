@@ -1,6 +1,8 @@
 import type { Config } from 'tailwindcss';
 
 const config: Config = {
+  // Tema único (escuro). A classe 'dark' fica fixa no <html> para que os
+  // utilitários dark: do plugin typography continuem resolvendo.
   darkMode: 'class',
   content: ['./src/**/*.{ts,tsx,mdx}', './content/**/*.mdx'],
   theme: {
@@ -18,17 +20,34 @@ const config: Config = {
         ok: 'rgb(var(--c-ok) / <alpha-value>)',
         warn: 'rgb(var(--c-warn) / <alpha-value>)',
         err: 'rgb(var(--c-err) / <alpha-value>)',
+        // O marfim — base de todo traço, véu e hairline do sistema
+        ivory: 'rgb(var(--c-ivory) / <alpha-value>)',
+        ivoryWarm: 'rgb(var(--c-ivory-warm) / <alpha-value>)',
+        ivoryBright: 'rgb(var(--c-ivory-bright) / <alpha-value>)',
       },
       fontFamily: {
-        sans: ['var(--font-sans)', 'system-ui', 'sans-serif'],
+        sans: ['var(--font-sans)', 'Georgia', 'serif'],
         display: ['var(--font-display)', 'Georgia', 'serif'],
-        mono: ['var(--font-mono)', 'ui-monospace', 'monospace'],
+        mono: ['var(--font-mono)', 'Georgia', 'serif'],
       },
-      borderRadius: { xl: '14px', '2xl': '20px' },
+      // Cantos quase retos: a escala Classical é 2 / 4 / 7px. Os apelidos
+      // maiores colapsam para 7px, então qualquer rounded-* remanescente
+      // segue dentro do sistema em vez de virar uma pílula.
+      borderRadius: {
+        none: '0',
+        sm: '2px',
+        DEFAULT: '4px',
+        md: '4px',
+        lg: '7px',
+        xl: '7px',
+        '2xl': '7px',
+        '3xl': '7px',
+        full: '9999px',
+      },
       boxShadow: {
-        card: '0 1px 2px rgb(0 0 0 / 0.04), 0 8px 24px -12px rgb(0 0 0 / 0.18)',
+        card: '0 18px 40px rgb(0 0 0 / 0.5)',
       },
-      maxWidth: { content: '76ch' },
+      maxWidth: { content: '72ch' },
     },
   },
   plugins: [require('@tailwindcss/typography')],

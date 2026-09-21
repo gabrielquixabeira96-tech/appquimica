@@ -1,7 +1,6 @@
 'use client';
 
 import { useMemo, useState } from 'react';
-import { Search, Filter, Shuffle, RotateCcw } from 'lucide-react';
 import clsx from 'clsx';
 import QuestaoCard from './QuestaoCard';
 import { useProgresso } from '@/lib/progresso';
@@ -12,9 +11,18 @@ type Aba = 'todas' | 'nao-respondidas' | 'erradas' | 'favoritas';
 const ABAS: { id: Aba; rotulo: string }[] = [
   { id: 'todas', rotulo: 'Todas' },
   { id: 'nao-respondidas', rotulo: 'Não respondidas' },
-  { id: 'erradas', rotulo: 'Erradas (revisar)' },
-  { id: 'favoritas', rotulo: 'Favoritas' },
+  { id: 'erradas', rotulo: 'A revisar' },
+  { id: 'favoritas', rotulo: '★ Favoritas' },
 ];
+
+const DIFICULDADES: { id: string; rotulo: string }[] = [
+  { id: '', rotulo: 'Todas' },
+  { id: 'facil', rotulo: 'Fáceis' },
+  { id: 'media', rotulo: 'Médias' },
+  { id: 'dificil', rotulo: 'Difíceis' },
+];
+
+const POR_PAGINA = 10;
 
 export default function BancoQuestoes({ questoes, curriculo }: { questoes: Questao[]; curriculo: Curriculo }) {
   const { progresso, registrarResposta, alternarFavorita, pronto } = useProgresso();
@@ -22,14 +30,16 @@ export default function BancoQuestoes({ questoes, curriculo }: { questoes: Quest
   const [eixo, setEixo] = useState('');
   const [tema, setTema] = useState('');
   const [ano, setAno] = useState('');
+  const [dificuldade, setDificuldade] = useState('');
   const [aba, setAba] = useState<Aba>('todas');
   const [ordem, setOrdem] = useState(0);
   const [pagina, setPagina] = useState(1);
-  const POR_PAGINA = 10;
 
   const mapaTemas = useMemo(() => {
     const m = new Map<string, { titulo: string; slug: string; eixo: string }>();
-    curriculo.eixos.forEach((e) => e.temas.forEach((t) => m.set(t.slug, { titulo: t.titulo, slug: t.slug, eixo: e.slug })));
+    curriculo.eixos.forEach((e) =>
+      e.temas.forEach((t) => m.set(t.slug, { titulo: t.titulo, slug: t.slug, eixo: e.slug })),
+    );
     return m;
   }, [curriculo]);
 
@@ -47,150 +57,173 @@ export default function BancoQuestoes({ questoes, curriculo }: { questoes: Quest
       if (eixo && infoTema?.eixo !== eixo) return false;
       if (tema && q.tema !== tema) return false;
       if (ano && String(q.ano) !== ano) return false;
+      if (dificuldade && q.dificuldade !== dificuldade) return false;
       if (aba === 'favoritas' && !progresso.favoritas.includes(q.id)) return false;
       if (aba === 'nao-respondidas' && respostas.has(q.id)) return false;
       if (aba === 'erradas' && respostas.get(q.id)?.correta !== false) return false;
       if (termo) {
-        const alvo = `${q.enunciado} ${q.tags?.join(' ') ?? ''} ${infoTema?.titulo ?? ''} ${q.alternativas.map((a) => a.texto).join(' ')}`;
+        const alvo = `${q.enunciado} ${q.tags?.join(' ') ?? ''} ${infoTema?.titulo ?? ''} ${q.alternativas
+          .map((a) => a.texto)
+          .join(' ')}`;
         if (!alvo.toLowerCase().includes(termo)) return false;
       }
       return true;
     });
     if (ordem) lista = [...lista].sort(() => Math.random() - 0.5);
     return lista;
-  }, [questoes, busca, eixo, tema, ano, aba, ordem, mapaTemas, progresso.favoritas, respostas]);
+  }, [questoes, busca, eixo, tema, ano, dificuldade, aba, ordem, mapaTemas, progresso.favoritas, respostas]);
 
   const visiveis = filtradas.slice(0, pagina * POR_PAGINA);
-  const temasDoEixo = eixo ? (curriculo.eixos.find((e) => e.slug === eixo)?.temas ?? []) : curriculo.eixos.flatMap((e) => e.temas);
+  const temasDoEixo = eixo
+    ? (curriculo.eixos.find((e) => e.slug === eixo)?.temas ?? [])
+    : curriculo.eixos.flatMap((e) => e.temas);
 
   function limpar() {
     setBusca('');
     setEixo('');
     setTema('');
     setAno('');
+    setDificuldade('');
     setAba('todas');
     setPagina(1);
   }
 
   return (
-    <div className="grid gap-6 lg:grid-cols-[17rem_1fr]">
-      {/* filtros */}
-      <aside className="lg:sticky lg:top-24 lg:self-start">
-        <div className="card space-y-4 p-4">
-          <div className="flex items-center gap-2 text-sm font-semibold">
-            <Filter size={15} /> Filtros
+    <>
+      {/* ── a régua de filtros: hairlines em cima e embaixo ── */}
+      <div
+        className="relative mt-8 border-y py-4"
+        style={{ borderColor: 'rgb(var(--c-ivory) / 0.3)' }}
+      >
+        <div className="flex flex-wrap items-center gap-x-4 gap-y-3">
+          <span className="text-xs uppercase tracking-[0.14em] text-[rgb(var(--c-n400))]">Lista</span>
+          <div className="flex flex-wrap">
+            {ABAS.map((a) => (
+              <button
+                key={a.id}
+                onClick={() => {
+                  setAba(a.id);
+                  setPagina(1);
+                }}
+                className={clsx('seg-b', aba === a.id && 'seg-on')}
+              >
+                {a.rotulo}
+              </button>
+            ))}
           </div>
+          <span className="ml-auto text-[13px] text-[rgb(var(--c-n400))] tnum">
+            {filtradas.length} {filtradas.length === 1 ? 'questão' : 'questões'}
+          </span>
+        </div>
 
-          <div className="relative">
-            <Search size={15} className="absolute left-3 top-1/2 -translate-y-1/2 text-muted" />
-            <input
-              value={busca}
-              onChange={(e) => {
-                setBusca(e.target.value);
-                setPagina(1);
-              }}
-              placeholder="Buscar no enunciado…"
-              className="input pl-9"
-            />
+        <div className="mt-4 flex flex-wrap items-center gap-x-4 gap-y-3">
+          <span className="text-xs uppercase tracking-[0.14em] text-[rgb(var(--c-n400))]">Dificuldade</span>
+          <div className="flex">
+            {DIFICULDADES.map((d) => (
+              <button
+                key={d.id || 'todas'}
+                onClick={() => {
+                  setDificuldade(d.id);
+                  setPagina(1);
+                }}
+                className={clsx('seg-b', dificuldade === d.id && 'seg-on')}
+              >
+                {d.rotulo}
+              </button>
+            ))}
           </div>
+        </div>
 
-          <div>
-            <label className="label mb-1 block">Eixo</label>
-            <select
-              value={eixo}
-              onChange={(e) => {
-                setEixo(e.target.value);
-                setTema('');
-                setPagina(1);
-              }}
-              className="input"
-            >
-              <option value="">Todos os eixos</option>
-              {curriculo.eixos.map((e) => (
-                <option key={e.slug} value={e.slug}>
-                  {e.id}. {e.titulo}
-                </option>
-              ))}
-            </select>
-          </div>
+        <div className="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+          <input
+            value={busca}
+            onChange={(e) => {
+              setBusca(e.target.value);
+              setPagina(1);
+            }}
+            placeholder="Buscar no enunciado…"
+            aria-label="Buscar no enunciado"
+            className="input sm:col-span-2 lg:col-span-1"
+          />
 
-          <div>
-            <label className="label mb-1 block">Tema</label>
-            <select
-              value={tema}
-              onChange={(e) => {
-                setTema(e.target.value);
-                setPagina(1);
-              }}
-              className="input"
-            >
-              <option value="">Todos os temas</option>
-              {temasDoEixo.map((t) => (
-                <option key={t.slug} value={t.slug}>
-                  {t.id} {t.titulo}
-                </option>
-              ))}
-            </select>
-          </div>
+          <select
+            value={eixo}
+            onChange={(e) => {
+              setEixo(e.target.value);
+              setTema('');
+              setPagina(1);
+            }}
+            aria-label="Filtrar por ala"
+            className="input"
+          >
+            <option value="">Todas as alas</option>
+            {curriculo.eixos.map((e) => (
+              <option key={e.slug} value={e.slug}>
+                {e.titulo}
+              </option>
+            ))}
+          </select>
 
-          <div>
-            <label className="label mb-1 block">Ano</label>
-            <select value={ano} onChange={(e) => { setAno(e.target.value); setPagina(1); }} className="input">
-              <option value="">Todos</option>
-              {anos.map((a) => (
-                <option key={a} value={a}>
-                  {a}
-                </option>
-              ))}
-            </select>
-          </div>
+          <select
+            value={tema}
+            onChange={(e) => {
+              setTema(e.target.value);
+              setPagina(1);
+            }}
+            aria-label="Filtrar por tema"
+            className="input"
+          >
+            <option value="">Todos os temas</option>
+            {temasDoEixo.map((t) => (
+              <option key={t.slug} value={t.slug}>
+                {t.titulo}
+              </option>
+            ))}
+          </select>
 
-          <div className="flex gap-2">
-            <button onClick={() => setOrdem((o) => o + 1)} className="btn flex-1 text-xs">
-              <Shuffle size={14} /> Embaralhar
-            </button>
-            <button onClick={limpar} className="btn text-xs">
-              <RotateCcw size={14} />
-            </button>
-          </div>
+          <select
+            value={ano}
+            onChange={(e) => {
+              setAno(e.target.value);
+              setPagina(1);
+            }}
+            aria-label="Filtrar por ano"
+            className="input"
+          >
+            <option value="">Todos os anos</option>
+            {anos.map((a) => (
+              <option key={a} value={a}>
+                {a}
+              </option>
+            ))}
+          </select>
+        </div>
 
+        <div className="mt-4 flex flex-wrap items-center gap-3">
+          <button onClick={() => setOrdem((o) => o + 1)} className="btn btn-sm">
+            Embaralhar
+          </button>
+          <button onClick={limpar} className="btn btn-sm">
+            Limpar filtros
+          </button>
           {pronto && (
-            <p className="border-t border-line pt-3 text-xs text-muted">
-              {progresso.respostas.length} respondidas ·{' '}
-              {progresso.respostas.filter((r) => r.correta).length} certas ·{' '}
+            <span className="ml-auto text-[13px] text-[rgb(var(--c-n400))] tnum">
+              {progresso.respostas.length} respondidas · {progresso.respostas.filter((r) => r.correta).length} certas ·{' '}
               {progresso.favoritas.length} favoritas
-            </p>
+            </span>
           )}
         </div>
-      </aside>
+      </div>
 
-      {/* lista */}
-      <div className="space-y-4">
-        <div className="flex flex-wrap items-center gap-2">
-          {ABAS.map((a) => (
-            <button
-              key={a.id}
-              onClick={() => {
-                setAba(a.id);
-                setPagina(1);
-              }}
-              className={clsx('rounded-full border px-3 py-1.5 text-xs font-medium', aba === a.id ? 'border-brand bg-brand text-brandInk' : 'border-line text-muted hover:text-ink')}
-            >
-              {a.rotulo}
-            </button>
-          ))}
-          <span className="ml-auto text-sm text-muted">{filtradas.length} questões</span>
+      {/* ── o acervo ── */}
+      {visiveis.length === 0 ? (
+        <div className="card mt-8 p-10 text-center text-[15px] text-[rgb(var(--c-n400))]">
+          Nenhuma questão com esses filtros.
+          <br />
+          Adicione arquivos JSON em <code className="font-mono">content/questoes/</code> para popular o banco.
         </div>
-
-        {visiveis.length === 0 && (
-          <div className="card p-10 text-center text-sm text-muted">
-            Nenhuma questão com esses filtros.
-            <br />
-            Adicione arquivos JSON em <code className="font-mono">content/questoes/</code> para popular o banco.
-          </div>
-        )}
-
-        {visiveis.map((q, i) => {
+      ) : (
+        visiveis.map((q, i) => {
           const r = respostas.get(q.id);
           return (
             <QuestaoCard
@@ -207,14 +240,14 @@ export default function BancoQuestoes({ questoes, curriculo }: { questoes: Quest
               }
             />
           );
-        })}
+        })
+      )}
 
-        {visiveis.length < filtradas.length && (
-          <button onClick={() => setPagina((p) => p + 1)} className="btn w-full">
-            Carregar mais ({filtradas.length - visiveis.length} restantes)
-          </button>
-        )}
-      </div>
-    </div>
+      {visiveis.length < filtradas.length && (
+        <button onClick={() => setPagina((p) => p + 1)} className="btn mt-8 w-full">
+          Carregar mais ({filtradas.length - visiveis.length} restantes)
+        </button>
+      )}
+    </>
   );
 }

@@ -2,13 +2,16 @@
 
 import { useEffect, useMemo, useState } from 'react';
 import Link from 'next/link';
-import { Timer, Play, Flag, RotateCcw, ChevronLeft, ChevronRight } from 'lucide-react';
 import clsx from 'clsx';
 import QuestaoCard from './QuestaoCard';
 import { useProgresso } from '@/lib/progresso';
+import { renderizarMarkdown } from '@/lib/markdown';
 import type { Curriculo, Letra, Questao } from '@/lib/tipos';
 
 type Fase = 'config' | 'prova' | 'relatorio';
+
+const QUANTIDADES = [5, 10, 15, 20, 30];
+const DURACOES = [10, 15, 20, 30, 45, 60];
 
 export default function SimuladoCliente({ questoes, curriculo }: { questoes: Questao[]; curriculo: Curriculo }) {
   const { registrarResposta } = useProgresso();
@@ -32,6 +35,13 @@ export default function SimuladoCliente({ questoes, curriculo }: { questoes: Que
     [questoes, eixo, mapaTemas],
   );
 
+  // Enquanto a prova corre, o documento entra em modo foco e o assistente
+  // flutuante some — é o "sem distrações na tela" prometido na antessala.
+  useEffect(() => {
+    document.documentElement.classList.toggle('modo-foco', fase === 'prova');
+    return () => document.documentElement.classList.remove('modo-foco');
+  }, [fase]);
+
   useEffect(() => {
     if (fase !== 'prova') return;
     const t = setInterval(() => {
@@ -47,161 +57,204 @@ export default function SimuladoCliente({ questoes, curriculo }: { questoes: Que
     return () => clearInterval(t);
   }, [fase]);
 
+  const quantidadeEfetiva = Math.min(quantidade, disponiveis.length);
+
   function iniciar() {
-    const embaralhadas = [...disponiveis].sort(() => Math.random() - 0.5).slice(0, quantidade);
-    setSorteadas(embaralhadas);
+    setSorteadas([...disponiveis].sort(() => Math.random() - 0.5).slice(0, quantidadeEfetiva));
     setMarcadas({});
     setIndice(0);
     setRestante(minutos * 60);
     setFase('prova');
+    window.scrollTo(0, 0);
   }
 
   function finalizar() {
     sorteadas.forEach((q) => {
       const letra = marcadas[q.id];
-      if (letra) registrarResposta({ questaoId: q.id, tema: q.tema, marcada: letra, correta: letra === q.gabarito, em: Date.now() });
+      if (letra)
+        registrarResposta({ questaoId: q.id, tema: q.tema, marcada: letra, correta: letra === q.gabarito, em: Date.now() });
     });
     setFase('relatorio');
+    window.scrollTo(0, 0);
   }
 
-  /* ───────────────────────── configuração ───────────────────────── */
+  /* ─────────────────────────── a antessala ─────────────────────────── */
   if (fase === 'config') {
     return (
-      <div className="space-y-6">
-        <header>
-          <h1 className="font-display text-3xl font-black tracking-tight">Simulado cronometrado</h1>
-          <p className="mt-2 text-muted">
-            Sorteie questões do banco, responda contra o relógio e receba um relatório por tema. O resultado entra no seu
-            progresso geral.
-          </p>
-        </header>
+      <main className="mx-auto max-w-[1060px] px-4 py-12 sm:px-6">
+        <div className="grid items-center gap-10" style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))' }}>
+          <div>
+            <div className="kick">A prova</div>
+            <h1 className="my-1 font-display text-[clamp(40px,5vw,56px)] font-normal text-ivory">
+              Simulado cronometrado
+            </h1>
 
-        {questoes.length === 0 ? (
-          <div className="card p-8 text-center text-sm text-muted">
-            O banco ainda está vazio. Adicione questões em <code className="font-mono">content/questoes/</code> para
-            liberar o simulado.
-          </div>
-        ) : (
-          <div className="card space-y-5 p-6">
-            <div>
-              <label className="label mb-1 block">Eixo</label>
-              <select value={eixo} onChange={(e) => setEixo(e.target.value)} className="input">
-                <option value="">Todos os eixos ({questoes.length} questões)</option>
-                {curriculo.eixos.map((e) => (
-                  <option key={e.slug} value={e.slug}>
-                    {e.id}. {e.titulo}
-                  </option>
-                ))}
-              </select>
-            </div>
-
-            <div className="grid gap-5 sm:grid-cols-2">
-              <div>
-                <label className="label mb-1 block">Questões: {Math.min(quantidade, disponiveis.length)}</label>
-                <input
-                  type="range"
-                  min={5}
-                  max={Math.max(5, Math.min(45, disponiveis.length))}
-                  step={5}
-                  value={quantidade}
-                  onChange={(e) => setQuantidade(Number(e.target.value))}
-                  className="w-full accent-[rgb(var(--c-brand))]"
-                />
+            {questoes.length === 0 ? (
+              <div className="card mt-6 p-8 text-[15px] text-[rgb(var(--c-n400))]">
+                O banco ainda está vazio. Adicione questões em <code className="font-mono">content/questoes/</code> para
+                liberar o simulado.
               </div>
-              <div>
-                <label className="label mb-1 block">Tempo: {minutos} min</label>
-                <input
-                  type="range"
-                  min={5}
-                  max={120}
-                  step={5}
-                  value={minutos}
-                  onChange={(e) => setMinutos(Number(e.target.value))}
-                  className="w-full accent-[rgb(var(--c-brand))]"
-                />
-              </div>
-            </div>
+            ) : (
+              <>
+                <p className="mb-7 mt-3 text-justify leading-[1.65] text-[rgb(var(--c-n200))]">
+                  Questões sorteadas do banco, contra o relógio, em modo foco — sem distrações na tela. Ao final, o
+                  relatório mostra os acertos por tema para orientar a revisão.
+                </p>
 
-            <p className="text-xs text-muted">
-              Ritmo do ENEM: ~3 min por questão. Com {Math.min(quantidade, disponiveis.length)} questões em {minutos} min
-              você terá {(minutos / Math.max(1, Math.min(quantidade, disponiveis.length))).toFixed(1)} min por questão.
-            </p>
+                <div className="mb-2 text-xs uppercase tracking-[0.14em] text-[rgb(var(--c-n400))]">Ala</div>
+                <select
+                  value={eixo}
+                  onChange={(e) => setEixo(e.target.value)}
+                  aria-label="Ala do simulado"
+                  className="input mb-6"
+                >
+                  <option value="">Todas as alas ({questoes.length} questões)</option>
+                  {curriculo.eixos.map((e) => (
+                    <option key={e.slug} value={e.slug}>
+                      {e.titulo}
+                    </option>
+                  ))}
+                </select>
 
-            <button onClick={iniciar} disabled={!disponiveis.length} className="btn btn-primary w-full">
-              <Play size={16} /> Iniciar simulado
-            </button>
+                <div className="mb-2 text-xs uppercase tracking-[0.14em] text-[rgb(var(--c-n400))]">Questões</div>
+                <div className="mb-6 flex flex-wrap">
+                  {QUANTIDADES.filter((n, i) => n <= disponiveis.length || i === 0).map((n) => (
+                    <button
+                      key={n}
+                      onClick={() => setQuantidade(n)}
+                      className={clsx('seg-b', quantidade === n && 'seg-on')}
+                    >
+                      {n}
+                    </button>
+                  ))}
+                </div>
+
+                <div className="mb-2 text-xs uppercase tracking-[0.14em] text-[rgb(var(--c-n400))]">Duração</div>
+                <div className="mb-6 flex flex-wrap">
+                  {DURACOES.map((m) => (
+                    <button key={m} onClick={() => setMinutos(m)} className={clsx('seg-b', minutos === m && 'seg-on')}>
+                      {m} min
+                    </button>
+                  ))}
+                </div>
+
+                <p className="mb-7 text-[13px] text-[rgb(var(--c-n400))] tnum">
+                  Ritmo do ENEM: ~3 min por questão. Com {quantidadeEfetiva} questões em {minutos} min você terá{' '}
+                  {(minutos / Math.max(1, quantidadeEfetiva)).toFixed(1)} min por questão.
+                </p>
+
+                <button onClick={iniciar} disabled={!disponiveis.length} className="btn btn-primary">
+                  Entrar em modo foco
+                </button>
+              </>
+            )}
           </div>
-        )}
-      </div>
+
+          <figure className="plated">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src="/templo/atleta.jpg" alt="Discóbolo em mármore" />
+          </figure>
+        </div>
+      </main>
     );
   }
 
-  /* ───────────────────────────── prova ───────────────────────────── */
+  /* ───────────────────────── o modo foco ───────────────────────── */
   if (fase === 'prova') {
     const q = sorteadas[indice];
     const mm = String(Math.floor(restante / 60)).padStart(2, '0');
     const ss = String(restante % 60).padStart(2, '0');
+    const tema = mapaTemas.get(q.tema);
 
     return (
-      <div className="space-y-5">
-        <div className="card sticky top-20 z-30 flex items-center gap-4 px-4 py-3">
-          <span className={clsx('flex items-center gap-2 font-mono text-lg font-semibold', restante < 60 && 'text-err')}>
-            <Timer size={18} /> {mm}:{ss}
-          </span>
-          <span className="text-sm text-muted">
-            {indice + 1} / {sorteadas.length} · {Object.keys(marcadas).length} respondidas
-          </span>
-          <button onClick={finalizar} className="btn ml-auto text-xs">
-            <Flag size={14} /> Finalizar
-          </button>
-        </div>
-
-        <div className="flex flex-wrap gap-1.5">
-          {sorteadas.map((s, i) => (
-            <button
-              key={s.id}
-              onClick={() => setIndice(i)}
+      <section className="min-h-[calc(100vh-58px)] bg-surface">
+        <main className="mx-auto max-w-[820px] px-4 py-12 sm:px-6">
+          <div className="flex flex-wrap items-baseline gap-x-7 gap-y-3">
+            <div
               className={clsx(
-                'h-8 w-8 rounded-lg border text-xs font-mono',
-                i === indice && 'border-brand ring-2 ring-brand/40',
-                marcadas[s.id] ? 'bg-brand/15 border-brand/40' : 'border-line',
+                'font-display text-[clamp(44px,6vw,64px)] leading-none tnum',
+                restante < 60 ? 'text-err' : 'text-ivoryWarm',
               )}
+              role="timer"
+              aria-live="off"
             >
-              {i + 1}
-            </button>
-          ))}
-        </div>
+              {mm}:{ss}
+            </div>
 
-        <QuestaoCard
-          key={q.id}
-          questao={q}
-          numero={indice + 1}
-          modo="simulado"
-          marcada={marcadas[q.id] ?? null}
-          onResponder={(letra) => setMarcadas((m) => ({ ...m, [q.id]: letra }))}
-        />
+            <div className="flex items-center gap-2">
+              {sorteadas.map((s, i) => (
+                <button
+                  key={s.id}
+                  onClick={() => setIndice(i)}
+                  aria-label={`Ir para a questão ${i + 1}`}
+                  className={clsx('dot', i === indice && 'dot-on', marcadas[s.id] && 'dot-done')}
+                />
+              ))}
+            </div>
 
-        <div className="flex justify-between">
-          <button onClick={() => setIndice((i) => Math.max(0, i - 1))} disabled={indice === 0} className="btn">
-            <ChevronLeft size={16} /> Anterior
-          </button>
-          {indice === sorteadas.length - 1 ? (
-            <button onClick={finalizar} className="btn btn-primary">
-              <Flag size={16} /> Finalizar
+            <span className="text-[13px] text-[rgb(var(--c-n400))] tnum">
+              Questão {indice + 1} de {sorteadas.length}
+            </span>
+
+            <button onClick={finalizar} className="btn btn-sm ml-auto">
+              Encerrar e corrigir
             </button>
-          ) : (
-            <button onClick={() => setIndice((i) => i + 1)} className="btn btn-primary">
-              Próxima <ChevronRight size={16} />
-            </button>
+          </div>
+
+          <div className="hrl my-7" />
+
+          <div className="flex flex-wrap items-center gap-2 text-xs uppercase tracking-[0.16em] text-ivoryWarm">
+            <span>{[q.banca, q.ano].filter(Boolean).join(' · ')}</span>
+            <span className="text-[rgb(var(--c-n500))]">/</span>
+            <span>{tema?.titulo ?? q.tema}</span>
+          </div>
+
+          <div
+            className="prosa my-6 text-[17px] leading-[1.65]"
+            dangerouslySetInnerHTML={{ __html: renderizarMarkdown(q.enunciado) }}
+          />
+
+          {q.imagem && (
+            <figure className="plated mb-6">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src={q.imagem} alt="Figura da questão" className="max-h-96 object-contain" />
+            </figure>
           )}
-        </div>
-      </div>
+
+          <div className="flex flex-col gap-2">
+            {q.alternativas.map((alt) => (
+              <button
+                key={alt.letra}
+                onClick={() => setMarcadas((m) => ({ ...m, [q.id]: alt.letra }))}
+                className={clsx('alt', marcadas[q.id] === alt.letra && 'alt-sel')}
+              >
+                <span className="min-w-[18px] font-display text-[17px] font-semibold text-ivoryWarm">{alt.letra}</span>
+                <span className="[&_p]:my-0" dangerouslySetInnerHTML={{ __html: renderizarMarkdown(alt.texto) }} />
+              </button>
+            ))}
+          </div>
+
+          <div className="mt-10 flex flex-wrap gap-3">
+            <button onClick={() => setIndice((i) => Math.max(0, i - 1))} disabled={indice === 0} className="btn">
+              ← Anterior
+            </button>
+            {indice === sorteadas.length - 1 ? (
+              <button onClick={finalizar} className="btn btn-primary">
+                Encerrar e corrigir
+              </button>
+            ) : (
+              <button onClick={() => setIndice((i) => i + 1)} className="btn btn-primary">
+                Próxima →
+              </button>
+            )}
+          </div>
+        </main>
+      </section>
     );
   }
 
-  /* ──────────────────────────── relatório ────────────────────────── */
+  /* ─────────────────────────── o relatório ─────────────────────────── */
   const acertos = sorteadas.filter((q) => marcadas[q.id] === q.gabarito).length;
-  const pct = sorteadas.length ? Math.round((acertos / sorteadas.length) * 100) : 0;
 
   const porTema = Object.entries(
     sorteadas.reduce<Record<string, { certas: number; total: number }>>((acc, q) => {
@@ -214,52 +267,107 @@ export default function SimuladoCliente({ questoes, curriculo }: { questoes: Que
   ).sort((a, b) => a[1].certas / a[1].total - b[1].certas / b[1].total);
 
   return (
-    <div className="space-y-6">
-      <div className="card p-8 text-center">
-        <p className="label">Resultado</p>
-        <p className="my-2 font-display text-6xl font-black text-brand">{pct}%</p>
-        <p className="text-muted">
-          {acertos} de {sorteadas.length} questões · {sorteadas.length - Object.keys(marcadas).length} em branco
-        </p>
-      </div>
+    <section className="relative overflow-hidden">
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img
+        src="/templo/jardim.jpg"
+        alt=""
+        aria-hidden
+        className="absolute inset-0 h-full w-full object-cover"
+        style={{ opacity: 0.14, filter: 'sepia(0.2)' }}
+      />
 
-      <div className="card p-5">
-        <p className="label mb-3">Desempenho por tema (do pior para o melhor)</p>
-        <ul className="space-y-2.5">
-          {porTema.map(([tema, d]) => {
-            const p = Math.round((d.certas / d.total) * 100);
-            return (
-              <li key={tema}>
-                <div className="mb-1 flex justify-between text-sm">
-                  <span>{tema}</span>
-                  <span className="font-mono text-xs text-muted">
-                    {d.certas}/{d.total}
-                  </span>
+      <main className="relative mx-auto max-w-[820px] px-4 py-12 sm:px-6">
+        <div className="pb-7 text-center">
+          <div className="text-[rgb(var(--c-n300))]">✳</div>
+          <div className="mt-2 text-xs uppercase tracking-[0.26em] text-ivoryWarm">Relatório do simulado</div>
+          <div className="mt-3 font-display text-[clamp(72px,12vw,120px)] font-normal leading-none text-ivory tnum">
+            {acertos}
+            <span className="text-[0.35em] text-[rgb(var(--c-n500))]"> / {sorteadas.length}</span>
+          </div>
+          <div className="mt-2 text-sm text-[rgb(var(--c-n400))]">
+            questões corretas · {sorteadas.length - Object.keys(marcadas).length} em branco
+          </div>
+        </div>
+
+        <div className="hrl" />
+
+        {sorteadas.map((q, i) => {
+          const marcou = marcadas[q.id];
+          const ok = marcou === q.gabarito;
+          return (
+            <div
+              key={q.id}
+              className="flex items-center gap-4 border-b py-3.5"
+              style={{ borderBottomColor: 'rgb(var(--c-ivory) / 0.12)' }}
+            >
+              <span
+                className={clsx(
+                  'w-6 text-center text-sm',
+                  ok ? 'text-[rgb(var(--c-n300))]' : 'text-[rgb(var(--c-n500))]',
+                )}
+              >
+                {ok ? '✓' : '✕'}
+              </span>
+              <span className="min-w-0 flex-1 text-ivory">
+                <span className="text-[rgb(var(--c-n500))] tnum">{String(i + 1).padStart(2, '0')} </span>
+                {mapaTemas.get(q.tema)?.titulo ?? q.tema}
+              </span>
+              <span className="whitespace-nowrap text-[13px] text-[rgb(var(--c-n400))] tnum">
+                {marcou ? `você marcou ${marcou}` : 'em branco'} · gabarito {q.gabarito}
+              </span>
+            </div>
+          );
+        })}
+
+        {porTema.length > 1 && (
+          <div className="mt-10">
+            <div className="kick mb-4">Desempenho por tema — do mais frágil ao mais firme</div>
+            {porTema.map(([nome, d]) => {
+              const p = Math.round((d.certas / d.total) * 100);
+              return (
+                <div key={nome} className="mb-4">
+                  <div className="mb-1.5 flex justify-between text-sm">
+                    <span className="text-[rgb(var(--c-n200))]">{nome}</span>
+                    <span className="text-[13px] text-[rgb(var(--c-n400))] tnum">
+                      {d.certas}/{d.total}
+                    </span>
+                  </div>
+                  <div className="trk">
+                    <span className="barra" style={{ width: `${p}%` }} />
+                  </div>
                 </div>
-                <div className="h-1.5 overflow-hidden rounded-full bg-surface2">
-                  <div className={clsx('h-full rounded-full', p >= 70 ? 'bg-ok' : p >= 40 ? 'bg-warn' : 'bg-err')} style={{ width: `${p}%` }} />
-                </div>
-              </li>
-            );
-          })}
-        </ul>
-      </div>
+              );
+            })}
+          </div>
+        )}
 
-      <div className="flex flex-wrap gap-3">
-        <button onClick={() => setFase('config')} className="btn btn-primary">
-          <RotateCcw size={16} /> Novo simulado
-        </button>
-        <Link href="/questoes" className="btn">
-          Revisar erros no banco
-        </Link>
-      </div>
+        <div className="mt-10 flex flex-wrap justify-center gap-3">
+          <button onClick={() => setFase('config')} className="btn btn-primary">
+            Refazer o simulado
+          </button>
+          <Link href="/questoes" className="btn">
+            Rever no banco de questões
+          </Link>
+        </div>
 
-      <section className="space-y-4">
-        <h2 className="font-display text-xl font-bold">Gabarito comentado</h2>
-        {sorteadas.map((q, i) => (
-          <QuestaoCard key={q.id} questao={q} numero={i + 1} modo="simulado" marcada={marcadas[q.id] ?? null} revelada />
-        ))}
-      </section>
-    </div>
+        <section className="mt-14">
+          <div className="mb-2 flex items-baseline gap-5">
+            <h2 className="font-display text-[clamp(28px,3.4vw,36px)] font-semibold text-ivory">Gabarito comentado</h2>
+            <span className="hrl flex-1" />
+          </div>
+          {sorteadas.map((q, i) => (
+            <QuestaoCard
+              key={q.id}
+              questao={q}
+              numero={i + 1}
+              modo="simulado"
+              marcada={marcadas[q.id] ?? null}
+              revelada
+            />
+          ))}
+        </section>
+      </main>
+    </section>
   );
 }

@@ -1,106 +1,101 @@
 'use client';
 
 import Link from 'next/link';
-import { Check, Circle, FileText, ListChecks, Clock } from 'lucide-react';
 import clsx from 'clsx';
 import { useProgresso } from '@/lib/progresso';
-import type { Eixo, Tema } from '@/lib/tipos';
+import type { Prioridade } from '@/lib/tipos';
 
-type TemaExt = Tema & { questoes: number; temTeoria: boolean };
-type EixoExt = Omit<Eixo, 'temas'> & { temas: TemaExt[] };
+export interface TemaDaAla {
+  slug: string;
+  titulo: string;
+  prioridade: Prioridade;
+  questoes: number;
+  temTeoria: boolean;
+}
 
-const ROTULO_PRIORIDADE: Record<string, { texto: string; classe: string }> = {
-  critica: { texto: 'cai muito', classe: 'text-err border-err/40' },
-  alta: { texto: 'alta', classe: 'text-accent border-accent/40' },
-  media: { texto: 'média', classe: '' },
-  baixa: { texto: 'baixa', classe: '' },
+export interface AlaCompleta {
+  slug: string;
+  titulo: string;
+  descricao: string;
+  roman: string;
+  num: string;
+  temas: TemaDaAla[];
+}
+
+/** Só as duas prioridades altas ganham etiqueta — o resto seria ruído. */
+const ETIQUETA: Partial<Record<Prioridade, string>> = {
+  critica: 'cai muito',
+  alta: 'prioridade alta',
 };
 
-export default function TrilhaCliente({ eixos }: { eixos: EixoExt[] }) {
+export default function TrilhaCliente({ alas }: { alas: AlaCompleta[] }) {
   const { progresso, alternarTema, desempenhoPorTema, pronto } = useProgresso();
 
   return (
-    <div className="space-y-10">
-      {eixos.map((eixo) => {
-        const concluidos = eixo.temas.filter((t) => progresso.temasConcluidos.includes(t.slug)).length;
-        const pct = Math.round((concluidos / eixo.temas.length) * 100);
+    <>
+      {alas.map((ala) => {
+        const feitos = ala.temas.filter((t) => progresso.temasConcluidos.includes(t.slug)).length;
+        const pct = ala.temas.length ? Math.round((feitos / ala.temas.length) * 100) : 0;
 
         return (
-          <section key={eixo.slug}>
-            <div className="mb-3 flex items-end justify-between gap-4">
-              <div>
-                <p className="label" style={{ color: eixo.cor }}>
-                  Eixo {eixo.id}
-                </p>
-                <h2 className="font-display text-2xl font-bold">{eixo.titulo}</h2>
-                <p className="mt-1 max-w-2xl text-sm text-muted">{eixo.descricao}</p>
-              </div>
-              {pronto && (
-                <span className="shrink-0 font-mono text-xs text-muted">
-                  {concluidos}/{eixo.temas.length} · {pct}%
-                </span>
-              )}
+          <section key={ala.slug} id={ala.slug} className="relative mt-14 scroll-mt-24">
+            <div className="ghost -top-8 right-0 text-[150px]">{ala.num}</div>
+
+            <div className="relative flex flex-wrap items-baseline gap-3">
+              <span className="font-display text-[34px] font-medium text-ivoryWarm">Ala {ala.roman}</span>
+              <h2 className="m-0 font-display text-[27px] font-semibold text-ivory">{ala.titulo}</h2>
+              <span className="ml-auto text-[13px] text-[rgb(var(--c-n400))] tnum">
+                {pronto ? feitos : 0} de {ala.temas.length} concluídos
+              </span>
             </div>
 
-            <div className="h-1.5 overflow-hidden rounded-full bg-surface2">
-              <div className="h-full rounded-full transition-all" style={{ width: `${pct}%`, background: eixo.cor }} />
+            <p className="relative mt-1 max-w-[62ch] text-sm text-[rgb(var(--c-n400))]">{ala.descricao}</p>
+
+            <div className="trk mt-3">
+              <span className="barra" style={{ width: `${pronto ? pct : 0}%` }} />
             </div>
 
-            <ul className="mt-4 grid gap-3 md:grid-cols-2">
-              {eixo.temas.map((tema) => {
-                const feito = progresso.temasConcluidos.includes(tema.slug);
-                const d = desempenhoPorTema(tema.slug);
-                const prio = ROTULO_PRIORIDADE[tema.prioridade];
+            {ala.temas.map((tema) => {
+              const feito = progresso.temasConcluidos.includes(tema.slug);
+              const d = desempenhoPorTema(tema.slug);
+              const etiqueta = ETIQUETA[tema.prioridade];
 
-                return (
-                  <li key={tema.slug} className={clsx('card p-4 transition-colors', feito && 'border-brand/50')}>
-                    <div className="flex items-start gap-3">
-                      <button
-                        onClick={() => alternarTema(tema.slug)}
-                        className={clsx(
-                          'mt-0.5 grid h-6 w-6 shrink-0 place-items-center rounded-full border transition-colors',
-                          feito ? 'border-brand bg-brand text-brandInk' : 'border-line text-muted hover:border-brand',
-                        )}
-                        aria-label={feito ? 'Desmarcar tema' : 'Marcar tema como concluído'}
-                      >
-                        {feito ? <Check size={13} /> : <Circle size={9} />}
-                      </button>
+              return (
+                <div
+                  key={tema.slug}
+                  className="relative flex flex-wrap items-center gap-4 border-b py-3.5"
+                  style={{ borderBottomColor: 'rgb(var(--c-ivory) / 0.12)' }}
+                >
+                  <button
+                    onClick={() => alternarTema(tema.slug)}
+                    className={clsx('chk', feito && 'chk-on')}
+                    title={feito ? 'Desmarcar tema' : 'Marcar como concluído'}
+                    aria-pressed={feito}
+                    aria-label={feito ? `Desmarcar ${tema.titulo}` : `Marcar ${tema.titulo} como concluído`}
+                  >
+                    {pronto && feito ? '✓' : ''}
+                  </button>
 
-                      <div className="min-w-0 flex-1">
-                        <Link href={`/temas/${tema.slug}`} className="block">
-                          <p className="flex items-center gap-2 font-medium leading-tight hover:text-brand">
-                            <span className="font-mono text-xs text-muted">{tema.id}</span>
-                            {tema.titulo}
-                          </p>
-                          <p className="mt-1 text-sm text-muted">{tema.resumo}</p>
-                        </Link>
+                  <Link
+                    href={`/temas/${tema.slug}`}
+                    className="border-b border-transparent text-[17px] text-ivory no-underline hover:border-[rgb(var(--c-n300))]"
+                  >
+                    {tema.titulo}
+                  </Link>
 
-                        <div className="mt-2.5 flex flex-wrap items-center gap-1.5 text-[11px]">
-                          {prio.texto !== 'média' && prio.texto !== 'baixa' && (
-                            <span className={clsx('chip', prio.classe)}>{prio.texto}</span>
-                          )}
-                          <span className="chip">
-                            <Clock size={11} /> {tema.horas}h
-                          </span>
-                          <span className={clsx('chip', tema.temTeoria ? 'text-ok' : 'opacity-60')}>
-                            <FileText size={11} /> {tema.temTeoria ? 'teoria pronta' : 'teoria pendente'}
-                          </span>
-                          {tema.questoes > 0 && (
-                            <span className="chip">
-                              <ListChecks size={11} /> {tema.questoes}q
-                              {d.total > 0 && ` · ${Math.round((d.acertos / d.total) * 100)}%`}
-                            </span>
-                          )}
-                        </div>
-                      </div>
-                    </div>
-                  </li>
-                );
-              })}
-            </ul>
+                  {etiqueta && <span className="chip chip-forte">{etiqueta}</span>}
+                  {!tema.temTeoria && <span className="chip opacity-70">teoria pendente</span>}
+
+                  <span className="ml-auto whitespace-nowrap text-[13px] text-[rgb(var(--c-n400))] tnum">
+                    {tema.questoes} {tema.questoes === 1 ? 'questão' : 'questões'}
+                    {pronto && d.total > 0 && ` · ${Math.round((d.acertos / d.total) * 100)}%`}
+                  </span>
+                </div>
+              );
+            })}
           </section>
         );
       })}
-    </div>
+    </>
   );
 }

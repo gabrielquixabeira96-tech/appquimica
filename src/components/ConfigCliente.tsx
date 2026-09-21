@@ -92,12 +92,16 @@ export default function ConfigCliente() {
                 setTeste('idle');
               }}
               className={clsx(
-                'rounded-xl border px-3 py-3 text-left text-sm transition-colors',
-                config.provider === id ? 'border-brand bg-brand/10' : 'border-line hover:border-brand/50',
+                'card px-4 py-3 text-left text-sm transition-colors',
+                config.provider === id
+                  ? 'border-[rgb(var(--c-n300))] bg-[rgb(var(--c-ivory)/0.1)]'
+                  : 'hover:border-[rgb(var(--c-n300))]',
               )}
             >
-              <span className="block font-medium">{PROVEDORES[id].nome}</span>
-              <span className="block text-xs text-muted">{config.chaves[id] ? 'chave salva' : 'sem chave'}</span>
+              <span className="block font-display text-lg text-ivory">{PROVEDORES[id].nome}</span>
+              <span className="block text-xs text-[rgb(var(--c-n400))]">
+                {config.chaves[id] ? 'chave salva' : 'sem chave'}
+              </span>
             </button>
           ))}
         </div>
@@ -113,34 +117,34 @@ export default function ConfigCliente() {
                 setTeste('idle');
               }}
               placeholder={`${provedor.prefixoChave}…`}
-              className="input pr-10 font-mono text-xs"
+              className="input pr-10 font-mono text-[13px]"
               autoComplete="off"
               spellCheck={false}
             />
             <button
               onClick={() => setVisivel((v) => !v)}
-              className="absolute right-2 top-1/2 -translate-y-1/2 p-1 text-muted hover:text-ink"
+              className="absolute right-2 top-1/2 -translate-y-1/2 p-1 text-[rgb(var(--c-n400))] hover:text-ivory"
               aria-label="Mostrar chave"
               type="button"
             >
               {visivel ? <EyeOff size={15} /> : <Eye size={15} />}
             </button>
           </div>
-          <button onClick={testar} disabled={teste === 'testando'} className="btn">
-            {teste === 'testando' ? <Loader2 size={15} className="animate-spin" /> : teste === 'ok' ? <Check size={15} className="text-ok" /> : null}
+          <button onClick={testar} disabled={teste === 'testando'} className="btn btn-sm">
+            {teste === 'testando' ? <Loader2 size={15} className="animate-spin" /> : teste === 'ok' ? <Check size={15} /> : null}
             Testar
           </button>
         </div>
 
-        <p className="mt-2 text-xs text-muted">
+        <p className="mt-2.5 text-[13px] leading-[1.6] text-[rgb(var(--c-n400))]">
           A chave fica <strong>somente neste navegador</strong> (localStorage) e é enviada ao provedor apenas quando você
           faz uma pergunta.{' '}
-          <a href={provedor.ondePegarChave} target="_blank" rel="noreferrer" className="inline-flex items-center gap-1 text-brand underline">
+          <a href={provedor.ondePegarChave} target="_blank" rel="noreferrer" className="inline-flex items-center gap-1 text-ivory underline decoration-1 underline-offset-4">
             Pegar chave <ExternalLink size={11} />
           </a>
         </p>
 
-        {teste === 'ok' && <p className="mt-2 text-sm text-ok">Conexão funcionando.</p>}
+        {teste === 'ok' && <p className="mt-2 text-sm text-ivoryWarm">✳ Conexão funcionando.</p>}
         {teste === 'erro' && <p className="mt-2 text-sm text-err">{msgTeste}</p>}
 
         <div className="mt-4">
@@ -162,29 +166,29 @@ export default function ConfigCliente() {
           <Database size={12} /> Base de conhecimento
         </p>
         {materiais ? (
-          <p className="text-sm text-muted">
+          <p className="text-[15px] leading-[1.65] text-[rgb(var(--c-n300))]">
             {materiais.total} arquivos em <code className="font-mono text-xs">content/materiais/</code>, dos quais{' '}
-            <strong className="text-ink">{materiais.indexaveis}</strong> são lidos pelo assistente (.md, .mdx, .txt, .csv,
+            <strong className="text-ivory">{materiais.indexaveis}</strong> são lidos pelo assistente (.md, .mdx, .txt, .csv,
             .json). PDFs e imagens ficam disponíveis para download, mas não entram no contexto — converta para .md se
             quiser que o assistente os use.
           </p>
         ) : (
-          <p className="text-sm text-muted">Carregando…</p>
+          <p className="text-[15px] leading-[1.65] text-[rgb(var(--c-n300))]">Carregando…</p>
         )}
       </section>
 
       {/* dados */}
       <section className="card p-6">
         <p className="label mb-3">Seus dados de estudo</p>
-        <p className="mb-4 text-sm text-muted">
+        <p className="mb-5 text-[15px] leading-[1.65] text-[rgb(var(--c-n300))]">
           {progresso.temasConcluidos.length} temas concluídos · {progresso.respostas.length} questões respondidas ·{' '}
           {progresso.favoritas.length} favoritas. Tudo fica neste navegador — exporte antes de trocar de computador.
         </p>
         <div className="flex flex-wrap gap-2">
-          <button onClick={exportar} className="btn text-sm">
+          <button onClick={exportar} className="btn btn-sm">
             <Download size={15} /> Exportar
           </button>
-          <label className="btn cursor-pointer text-sm">
+          <label className="btn btn-sm cursor-pointer">
             <Upload size={15} /> Importar
             <input
               type="file"
@@ -195,7 +199,7 @@ export default function ConfigCliente() {
           </label>
           <button
             onClick={() => confirm('Apagar todo o progresso deste navegador?') && limpar()}
-            className="btn text-sm text-err"
+            className="btn btn-sm !text-err"
           >
             <Trash2 size={15} /> Apagar progresso
           </button>
