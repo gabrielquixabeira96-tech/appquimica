@@ -13,6 +13,7 @@ export async function POST(req: NextRequest) {
     modelo?: string;
     mensagens?: ChatMessage[];
     temaSlug?: string;
+    contextoPagina?: string;
   };
 
   try {
@@ -38,7 +39,14 @@ export async function POST(req: NextRequest) {
 
   const ultima = mensagens[mensagens.length - 1].content;
   const { contexto, fontes } = montarContexto(ultima, body.temaSlug);
-  const system = `${SYSTEM_PROMPT}\n\n===== CONTEXTO DO CURSO =====\n${contexto}\n===== FIM DO CONTEXTO =====`;
+
+  // Onde o aluno está na plataforma. Vem do navegador, então entra truncado e
+  // dentro do bloco de contexto — que o prompt já manda tratar como material de
+  // estudo, nunca como instrução.
+  const pagina = (body.contextoPagina ?? '').trim().slice(0, 600);
+  const blocoPagina = pagina ? `\n\n### ONDE O ALUNO ESTÁ AGORA\n${pagina}` : '';
+
+  const system = `${SYSTEM_PROMPT}\n\n===== CONTEXTO DO CURSO =====\n${contexto}${blocoPagina}\n===== FIM DO CONTEXTO =====`;
 
   try {
     const stream = await streamResposta({

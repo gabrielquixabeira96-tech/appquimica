@@ -19,10 +19,13 @@ const SUGESTOES = [
 export default function Chat({
   temaSlug,
   tituloTema,
+  contextoPagina,
   altura = 'h-[70vh]',
 }: {
   temaSlug?: string;
   tituloTema?: string;
+  /** Onde o aluno está agora, para o assistente responder situado (ex.: na Forja). */
+  contextoPagina?: string;
   altura?: string;
 }) {
   const [config] = useConfigIA();
@@ -64,6 +67,7 @@ export default function Chat({
           modelo: config.modelo || undefined,
           mensagens: historico,
           temaSlug,
+          contextoPagina,
         }),
       });
 

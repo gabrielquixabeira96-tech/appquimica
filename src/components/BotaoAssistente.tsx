@@ -13,6 +13,14 @@ export default function BotaoAssistente() {
   const temaSlug = pathname.startsWith('/temas/') ? pathname.split('/')[2] : undefined;
   const escondido = pathname.startsWith('/assistente');
 
+  const contextoPagina = pathname.startsWith('/forja')
+    ? 'O aluno está na Forja: as questões de Química do ENEM de 2020 a 2025, cada uma virada máquina de decisão. ' +
+      'Ele toca num dado sublinhado do enunciado e a questão inteira se reescreve — vinheta, gabarito e comentário. ' +
+      'A página tem tabela periódica, ponte do mol, simulador de equilíbrio, escala de pH, balanceador e modo grifo. ' +
+      'Provavelmente a dúvida nasce de uma questão que ele acabou de responder ou de uma variação que ele forjou, ' +
+      'então pergunte de qual questão ou variação se trata antes de assumir.'
+    : undefined;
+
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
       if (e.key === 'Escape') setAberto(false);
@@ -40,7 +48,7 @@ export default function BotaoAssistente() {
 
       {aberto && (
         <div className="fixed bottom-20 right-5 z-50 w-[min(28rem,calc(100vw-2.5rem))] overflow-hidden rounded-2xl border border-line bg-surface shadow-card">
-          <Chat temaSlug={temaSlug} altura="h-[min(34rem,70vh)]" />
+          <Chat temaSlug={temaSlug} contextoPagina={contextoPagina} altura="h-[min(34rem,70vh)]" />
         </div>
       )}
     </div>

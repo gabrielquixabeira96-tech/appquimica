@@ -3,12 +3,13 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useEffect, useState } from 'react';
-import { Atom, BookOpen, ListChecks, Timer, Bot, Settings, Moon, Sun, Menu, X } from 'lucide-react';
+import { Atom, BookOpen, ListChecks, Hammer, Timer, Bot, Settings, Moon, Sun, Menu, X } from 'lucide-react';
 import clsx from 'clsx';
 
 const LINKS = [
   { href: '/trilha', rotulo: 'Trilha', Icone: BookOpen },
   { href: '/questoes', rotulo: 'Questões', Icone: ListChecks },
+  { href: '/forja', rotulo: 'Forja', Icone: Hammer },
   { href: '/simulado', rotulo: 'Simulado', Icone: Timer },
   { href: '/assistente', rotulo: 'Assistente', Icone: Bot },
   { href: '/config', rotulo: 'Config', Icone: Settings },
