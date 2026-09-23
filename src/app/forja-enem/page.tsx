@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import ForjaEnem from "@/components/ForjaEnem";
+import "./forja.css";
 
 export const metadata: Metadata = {
   title: "Forja Química ENEM | AppQuímica",
