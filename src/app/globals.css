@@ -1,0 +1,655 @@
+@import 'katex/dist/katex.min.css';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ══════════════════════════════════════════════════════════════════════════
+   O TEMPLO DA QUÍMICA — sistema visual "Classical", escuro e cinematográfico.
+   Marfim sobre mármore escuro: cor aplicada como traço, nunca como preenchimento.
+   Tema único (escuro) — não há alternância claro/escuro.
+   ══════════════════════════════════════════════════════════════════════ */
+
+@layer base {
+  :root {
+    --font-sans: 'Lora', Georgia, serif;
+    --font-display: 'Cormorant Garamond', Georgia, serif;
+    --font-mono: 'Lora', Georgia, serif;
+
+    /* Chão — dois níveis de mármore escuro */
+    --c-bg: 27 26 24; /* #1b1a18 — a página */
+    --c-surface: 21 20 18; /* #151412 — cabeçalho, rodapé, colofão, modo foco */
+    --c-surface-2: 32 31 28; /* #201f1c — face de cartão levantada */
+
+    /* Marfim — o único "acento" do sistema */
+    --c-ivory: 243 242 242; /* #f3f2f2 — texto principal, base de todo color-mix */
+    --c-ivory-warm: 237 234 230; /* #EDEAE6 — destaques, numerais, kickers */
+    --c-ivory-bright: 253 250 246; /* #FDFAF6 — o ponto mais claro da página */
+
+    /* Rampa neutra (Classical, passos 200–500) */
+    --c-n200: 234 231 231;
+    --c-n300: 215 211 211;
+    --c-n400: 186 182 182;
+    --c-n500: 155 151 151;
+
+    /* Papéis que o Tailwind consome */
+    --c-line: 70 69 68; /* hairline sólida ≈ marfim 20% sobre o chão */
+    --c-ink: 243 242 242;
+    --c-muted: 186 182 182;
+    --c-brand: 237 234 230;
+    --c-brand-ink: 21 20 18;
+    --c-accent: 215 211 211;
+    --c-ok: 215 211 211; /* monocromático: certo/errado se lê por marca e texto */
+    --c-warn: 200 184 160;
+    --c-err: 198 138 122; /* argila dessaturada — só falhas reais, nunca gabarito */
+
+    color-scheme: dark;
+  }
+
+  * {
+    @apply border-line;
+  }
+
+  body {
+    @apply bg-bg text-ink font-sans antialiased;
+  }
+
+  ::selection {
+    background: rgb(var(--c-ivory) / 0.22);
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    @apply font-display;
+    font-weight: 400;
+    letter-spacing: -0.015em;
+  }
+
+  :focus-visible {
+    outline: 2px solid rgb(var(--c-n300));
+    outline-offset: 2px;
+    border-radius: 2px;
+  }
+
+  /* Números como algarismos tabulares onde são figuras ou colunas */
+  .tnum,
+  table,
+  .font-mono {
+    font-variant-numeric: tabular-nums;
+    font-feature-settings: 'tnum';
+  }
+}
+
+@layer components {
+  /* ── superfícies ─────────────────────────────────────────────────────── */
+
+  /* Cartão: borda, sem preenchimento sólido — apenas um véu de marfim */
+  .card {
+    border: 1px solid rgb(var(--c-ivory) / 0.26);
+    border-radius: 4px;
+    background: rgb(var(--c-ivory) / 0.03);
+  }
+
+  /* A moldura das fotografias — "estampa colada" num paspatur fino */
+  .plated {
+    margin: 0;
+    padding: 10px;
+    border: 1px solid rgb(var(--c-ivory) / 0.38);
+    background: rgb(var(--c-ivory) / 0.04);
+  }
+
+  .plated img {
+    display: block;
+    width: 100%;
+    filter: sepia(0.18) saturate(0.85) contrast(1.04);
+  }
+
+  /* Numeral fantasma — marca d'água tipográfica das seções */
+  .ghost {
+    position: absolute;
+    font-family: var(--font-display);
+    line-height: 1;
+    color: rgb(var(--c-ivory) / 0.08);
+    user-select: none;
+    pointer-events: none;
+    font-feature-settings: 'tnum';
+  }
+
+  /* Faixa fotográfica de respiro entre seções */
+  .strip {
+    position: relative;
+    height: 230px;
+    background-size: cover;
+    background-position: center 65%;
+    background-attachment: fixed;
+  }
+
+  /* ── tipografia de interface ─────────────────────────────────────────── */
+
+  .kick,
+  .label {
+    font-size: 11px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: rgb(var(--c-ivory-warm));
+    font-family: var(--font-sans);
+  }
+
+  .hrl {
+    height: 1px;
+    background: rgb(var(--c-ivory) / 0.3);
+  }
+
+  /* ── navegação: versalete sublinhado, sem pílula nem preenchimento ───── */
+
+  .nv {
+    cursor: pointer;
+    font-size: 13px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 6px 2px;
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    color: rgb(var(--c-n300));
+    transition: color 0.15s, border-color 0.15s;
+  }
+
+  .nv:hover {
+    color: rgb(var(--c-ivory));
+  }
+
+  .nv-on {
+    border-bottom-color: rgb(var(--c-n300));
+    color: rgb(var(--c-ivory-warm));
+  }
+
+  /* ── botões: contorno sobre transparente, jamais preenchidos ─────────── */
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    font: inherit;
+    font-size: 13px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 12px 26px;
+    cursor: pointer;
+    background: transparent;
+    color: rgb(var(--c-n200));
+    border: 1px solid rgb(var(--c-ivory) / 0.35);
+    border-radius: 4px;
+    transition: border-color 0.15s, background-color 0.15s, color 0.15s;
+  }
+
+  .btn:hover:not(:disabled) {
+    border-color: rgb(var(--c-n300));
+    color: rgb(var(--c-ivory-warm));
+  }
+
+  .btn:active:not(:disabled) {
+    background: rgb(var(--c-ivory) / 0.06);
+  }
+
+  .btn:disabled {
+    opacity: 0.45;
+    cursor: not-allowed;
+  }
+
+  /* A ação principal: contorno marfim cheio */
+  .btn-primary {
+    color: rgb(var(--c-ivory-warm));
+    border-color: rgb(var(--c-n300));
+  }
+
+  .btn-primary:hover:not(:disabled) {
+    background: rgb(var(--c-ivory) / 0.1);
+    color: rgb(var(--c-ivory-bright));
+  }
+
+  .btn-sm {
+    padding: 8px 16px;
+    font-size: 11px;
+    letter-spacing: 0.1em;
+  }
+
+  /* ── etiquetas ───────────────────────────────────────────────────────── */
+
+  .chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 12px;
+    letter-spacing: 0.06em;
+    padding: 3px 10px;
+    border: 1px solid rgb(var(--c-ivory) / 0.25);
+    border-radius: 2px;
+    color: rgb(var(--c-n300));
+    background: transparent;
+  }
+
+  /* A etiqueta que precisa pesar mais */
+  .chip-forte {
+    border-color: rgb(var(--c-ivory) / 0.45);
+    color: rgb(var(--c-ivory-warm));
+  }
+
+  /* ── campos ──────────────────────────────────────────────────────────── */
+
+  .input {
+    width: 100%;
+    font: inherit;
+    font-size: 15px;
+    padding: 11px 14px;
+    background: transparent;
+    border: 1px solid rgb(var(--c-ivory) / 0.25);
+    border-radius: 4px;
+    color: rgb(var(--c-ivory));
+  }
+
+  .input::placeholder {
+    color: rgb(var(--c-n500));
+  }
+
+  .input:hover {
+    border-color: rgb(var(--c-ivory) / 0.4);
+  }
+
+  .input:focus-visible {
+    outline: 2px solid rgb(var(--c-n300));
+    outline-offset: 2px;
+  }
+
+  select.input {
+    appearance: none;
+    background-image: linear-gradient(45deg, transparent 50%, rgb(var(--c-n400)) 50%),
+      linear-gradient(135deg, rgb(var(--c-n400)) 50%, transparent 50%);
+    background-position: calc(100% - 17px) calc(1em + 2px), calc(100% - 12px) calc(1em + 2px);
+    background-size: 5px 5px, 5px 5px;
+    background-repeat: no-repeat;
+    padding-right: 34px;
+  }
+
+  select.input option {
+    background: rgb(var(--c-surface));
+    color: rgb(var(--c-ivory));
+  }
+
+  /* ── azulejo: o cartão-fotografia da tabela periódica ────────────────── */
+
+  .tile {
+    position: relative;
+    overflow: hidden;
+    display: block;
+    border: 1px solid rgb(var(--c-ivory) / 0.28);
+    border-radius: 4px;
+    padding: 18px;
+    cursor: pointer;
+    background: rgb(var(--c-bg));
+    transition: border-color 0.25s, transform 0.25s, box-shadow 0.25s;
+  }
+
+  .tile:hover {
+    border-color: rgb(var(--c-n300));
+    transform: translateY(-4px);
+    box-shadow: 0 18px 40px rgb(0 0 0 / 0.5);
+  }
+
+  .tili {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.3;
+    filter: sepia(0.25) brightness(0.9);
+    transition: opacity 0.35s, transform 0.6s;
+  }
+
+  .tile:hover .tili {
+    opacity: 0.52;
+    transform: scale(1.06);
+  }
+
+  /* ── trilhos de progresso ────────────────────────────────────────────── */
+
+  .trk {
+    height: 2px;
+    background: rgb(var(--c-ivory) / 0.14);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .barra {
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 2px;
+    background: rgb(var(--c-n300));
+    transition: width 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  /* ── caixa de marcar concluído ───────────────────────────────────────── */
+
+  .chk {
+    width: 19px;
+    height: 19px;
+    flex: 0 0 auto;
+    display: grid;
+    place-items: center;
+    font-size: 12px;
+    line-height: 1;
+    cursor: pointer;
+    padding: 0;
+    border-radius: 2px;
+    border: 1px solid rgb(var(--c-ivory) / 0.32);
+    color: rgb(var(--c-ivory-warm));
+    background: transparent;
+    transition: all 0.15s;
+  }
+
+  .chk:hover {
+    border-color: rgb(var(--c-n300));
+  }
+
+  .chk-on {
+    border-color: rgb(var(--c-n300));
+    background: rgb(var(--c-ivory) / 0.1);
+  }
+
+  /* ── alternativas ────────────────────────────────────────────────────── */
+
+  .alt {
+    display: flex;
+    gap: 12px;
+    align-items: baseline;
+    width: 100%;
+    text-align: left;
+    font: inherit;
+    font-size: 15px;
+    line-height: 1.5;
+    color: rgb(var(--c-n200));
+    padding: 12px 16px;
+    background: transparent;
+    border: 1px solid rgb(var(--c-ivory) / 0.2);
+    border-radius: 4px;
+    cursor: pointer;
+    transition: border-color 0.15s;
+  }
+
+  .alt:hover {
+    border-color: rgb(var(--c-n300));
+  }
+
+  .alt-sel {
+    border-color: rgb(var(--c-n300));
+    background: rgb(var(--c-ivory) / 0.1);
+  }
+
+  /* Correção monocromática: a marca ✓/✕ e o texto carregam o significado */
+  .alt-certa {
+    border-color: rgb(var(--c-n300));
+    background: rgb(var(--c-ivory) / 0.1);
+    cursor: default;
+  }
+
+  .alt-errada {
+    border-color: rgb(var(--c-n400));
+    cursor: default;
+  }
+
+  .alt-fora {
+    opacity: 0.45;
+    cursor: default;
+  }
+
+  /* ── a estrela de revisão ────────────────────────────────────────────── */
+
+  .fav {
+    margin-left: auto;
+    font: inherit;
+    font-size: 17px;
+    line-height: 1;
+    cursor: pointer;
+    background: transparent;
+    border: none;
+    padding: 2px 6px;
+    color: rgb(var(--c-n500));
+    transition: color 0.15s;
+  }
+
+  .fav:hover {
+    color: rgb(var(--c-ivory-warm));
+  }
+
+  .fav-on {
+    color: rgb(var(--c-n300));
+  }
+
+  /* ── controle segmentado ─────────────────────────────────────────────── */
+
+  .seg-b {
+    font: inherit;
+    font-size: 13px;
+    padding: 6px 14px;
+    cursor: pointer;
+    background: transparent;
+    color: rgb(var(--c-n300));
+    border: 1px solid rgb(var(--c-ivory) / 0.22);
+    margin-left: -1px;
+    transition: border-color 0.15s, background-color 0.15s;
+  }
+
+  .seg-b:first-child {
+    margin-left: 0;
+  }
+
+  .seg-b:hover {
+    border-color: rgb(var(--c-n300));
+  }
+
+  .seg-on {
+    background: rgb(var(--c-ivory) / 0.1);
+    color: rgb(var(--c-ivory-warm));
+    border-color: rgb(var(--c-n300));
+    position: relative;
+    z-index: 1;
+  }
+
+  /* ── pontos do simulado ──────────────────────────────────────────────── */
+
+  .dot {
+    width: 9px;
+    height: 9px;
+    border: 1px solid rgb(var(--c-n300));
+    background: transparent;
+    border-radius: 1px;
+    padding: 0;
+    cursor: pointer;
+  }
+
+  .dot-done {
+    background: rgb(var(--c-n300));
+  }
+
+  .dot-on {
+    outline: 2px solid rgb(var(--c-n300));
+    outline-offset: 2px;
+  }
+
+  /* ── mensagens do assistente ─────────────────────────────────────────── */
+
+  .msg-a {
+    align-self: flex-end;
+    max-width: 75%;
+    padding: 12px 16px;
+    border: 1px solid rgb(var(--c-n300));
+    border-radius: 4px;
+    background: rgb(var(--c-ivory) / 0.12);
+    line-height: 1.55;
+    font-size: 15px;
+    color: rgb(var(--c-ivory));
+  }
+
+  .msg-t {
+    align-self: flex-start;
+    max-width: 85%;
+    padding: 12px 0 14px;
+    border-bottom: 1px solid rgb(var(--c-ivory) / 0.16);
+    line-height: 1.65;
+    font-size: 15px;
+    color: rgb(var(--c-n200));
+  }
+
+  /* ── flashcard com virada 3D ─────────────────────────────────────────── */
+
+  .flipw {
+    perspective: 1000px;
+  }
+
+  .flip {
+    position: relative;
+    min-height: 200px;
+    transform-style: preserve-3d;
+    transition: transform 0.65s cubic-bezier(0.4, 0.1, 0.2, 1);
+    cursor: pointer;
+  }
+
+  .flip-on {
+    transform: rotateY(180deg);
+  }
+
+  .fface {
+    position: absolute;
+    inset: 0;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    padding: 18px;
+    border: 1px solid rgb(var(--c-ivory) / 0.18);
+    border-radius: 4px;
+    background: rgb(var(--c-surface-2));
+    display: flex;
+    flex-direction: column;
+  }
+
+  .fback {
+    transform: rotateY(180deg);
+    border-color: rgb(var(--c-n300));
+  }
+
+  /* ── a prosa da teoria ───────────────────────────────────────────────── */
+
+  .prosa {
+    @apply prose prose-invert max-w-content
+           prose-headings:font-display prose-headings:font-normal
+           prose-a:text-ink prose-a:underline prose-a:decoration-1 prose-a:underline-offset-4
+           prose-strong:text-ink prose-strong:font-semibold
+           prose-code:font-mono prose-code:text-[0.9em] prose-code:before:content-none prose-code:after:content-none
+           prose-img:border prose-img:border-line
+           prose-table:text-sm;
+    --tw-prose-body: rgb(var(--c-n200));
+    --tw-prose-headings: rgb(var(--c-ivory));
+    --tw-prose-bold: rgb(var(--c-ivory));
+    --tw-prose-bullets: rgb(var(--c-n500));
+    --tw-prose-hr: rgb(var(--c-ivory) / 0.18);
+    --tw-prose-quotes: rgb(var(--c-n200));
+    --tw-prose-quote-borders: rgb(var(--c-n300));
+    --tw-prose-captions: rgb(var(--c-n400));
+    --tw-prose-code: rgb(var(--c-ivory-warm));
+    --tw-prose-th-borders: rgb(var(--c-ivory) / 0.3);
+    --tw-prose-td-borders: rgb(var(--c-ivory) / 0.14);
+    text-align: justify;
+    text-justify: inter-word;
+    hyphens: auto;
+  }
+
+  /* Capitular — a primeira letra da teoria, como num livro */
+  .capitular > p:first-of-type::first-letter {
+    float: left;
+    font-family: var(--font-display);
+    font-size: 74px;
+    line-height: 0.78;
+    padding: 6px 10px 0 0;
+    color: rgb(var(--c-ivory-warm));
+  }
+}
+
+@layer utilities {
+  /* Entrada da dobra — sobe e revela */
+  @keyframes rise {
+    from {
+      opacity: 0;
+      transform: translateY(26px);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+
+  .rise {
+    animation: rise 0.9s ease both;
+  }
+
+  /* Ken Burns lentíssimo no herói */
+  @keyframes kb {
+    from {
+      transform: scale(1);
+    }
+    to {
+      transform: scale(1.08);
+    }
+  }
+
+  .kb {
+    animation: kb 24s ease-in-out infinite alternate;
+  }
+}
+
+/* Modo foco: a tela do simulado não carrega nada além da prova. */
+.modo-foco .assistente-flutuante {
+  display: none;
+}
+
+/* KaTeX no marfim */
+.katex {
+  font-size: 1.04em;
+}
+.katex-display {
+  @apply overflow-x-auto overflow-y-hidden py-2;
+}
+
+/* Barra de rolagem discreta, em pedra */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-thumb {
+  background: rgb(var(--c-ivory) / 0.16);
+  border-radius: 99px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+@media print {
+  .no-print {
+    display: none !important;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+  .strip {
+    background-attachment: scroll;
+  }
+}
